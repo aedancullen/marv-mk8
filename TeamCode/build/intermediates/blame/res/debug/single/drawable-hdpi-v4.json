@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_launcher.png",
+        "source": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/bundles/default/res/drawable-hdpi-v4/ic_launcher.png"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/drawable-hdpi-v4/button_shape.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/drawable-hdpi-v4/button_shape.xml"
+    }
+]
