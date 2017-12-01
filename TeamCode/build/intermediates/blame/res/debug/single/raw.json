@@ -1,5 +1,65 @@
 [
     {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/haarcascade_evolution_pictograph_2k3k_18st.xml",
+        "source": "/home/aedan/FTC/marv-mk8/TeamCode/src/main/res/raw/haarcascade_evolution_pictograph_2k3k_18st.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/haarcascade_evolution_pictograph_2k3k_18st.xml",
+        "source": "/home/aedan/ftc_app/TeamCode/src/main/res/raw/haarcascade_evolution_pictograph_2k3k_18st.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/haarcascade_evolution_supercrypto_2k3k_20st.xml",
+        "source": "/home/aedan/FTC/marv-mk8/TeamCode/src/main/res/raw/haarcascade_evolution_supercrypto_2k3k_20st.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/chimeconnect.wav",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/raw/chimeconnect.wav"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/haarcascade_evolution_supercrypto_2k3k_20st.xml",
+        "source": "/home/aedan/ftc_app/TeamCode/src/main/res/raw/haarcascade_evolution_supercrypto_2k3k_20st.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/nxtstartupsound.wav",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/raw/nxtstartupsound.wav"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/texture_vertex_shader.glsl",
+        "source": "/home/aedan/.android/build-cache/9344d9bd0ebabac7ea8165e2e31014f816d550b4/output/res/raw/texture_vertex_shader.glsl"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/haarcascade_evolution_cryptoboxnj_2k3k_19st.xml",
+        "source": "/home/aedan/FTC/marv-mk8/TeamCode/src/main/res/raw/haarcascade_evolution_cryptoboxnj_2k3k_19st.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/cube_mesh_vertex_shader.glsl",
+        "source": "/home/aedan/.android/build-cache/9344d9bd0ebabac7ea8165e2e31014f816d550b4/output/res/raw/cube_mesh_vertex_shader.glsl"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/haarcascade_evolution_beacon_2k2k_20st.xml",
+        "source": "/home/aedan/FTC/marv-mk8/TeamCode/src/main/res/raw/haarcascade_evolution_beacon_2k2k_20st.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/simple_vertex_shader.glsl",
+        "source": "/home/aedan/.android/build-cache/9344d9bd0ebabac7ea8165e2e31014f816d550b4/output/res/raw/simple_vertex_shader.glsl"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/texture_vertex_shader.glsl",
+        "source": "/home/aedan/.android/build-cache/b604b7ab36e2b4cd78c6a6f892d0c45b6610384a/output/res/raw/texture_vertex_shader.glsl"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/haarcascade_evolution_cryptobox_2k3k_19st.xml",
+        "source": "/home/aedan/ftc_app/TeamCode/src/main/res/raw/haarcascade_evolution_cryptobox_2k3k_19st.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/color_fragment_shader.glsl",
+        "source": "/home/aedan/.android/build-cache/9344d9bd0ebabac7ea8165e2e31014f816d550b4/output/res/raw/color_fragment_shader.glsl"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/nxtstartupsound.wav",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/raw/nxtstartupsound.wav"
+    },
+    {
         "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/texture_fragment_shader.glsl",
         "source": "/home/aedan/.android/build-cache/b604b7ab36e2b4cd78c6a6f892d0c45b6610384a/output/res/raw/texture_fragment_shader.glsl"
     },
@@ -8,16 +68,24 @@
         "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/raw/warningmessage.wav"
     },
     {
-        "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/haarcascade_evolution_pictograph_2k3k_18st.xml",
-        "source": "/home/aedan/ftc_app/TeamCode/src/main/res/raw/haarcascade_evolution_pictograph_2k3k_18st.xml"
-    },
-    {
         "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/errormessage.wav",
         "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/raw/errormessage.wav"
     },
     {
-        "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/haarcascade_evolution_supercrypto_2k3k_20st.xml",
-        "source": "/home/aedan/ftc_app/TeamCode/src/main/res/raw/haarcascade_evolution_supercrypto_2k3k_20st.xml"
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/warningmessage.wav",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/raw/warningmessage.wav"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/texture_fragment_shader.glsl",
+        "source": "/home/aedan/.android/build-cache/9344d9bd0ebabac7ea8165e2e31014f816d550b4/output/res/raw/texture_fragment_shader.glsl"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/chimedisconnect.wav",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/raw/chimedisconnect.wav"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/haarcascade_evolution_cryptobox_2k3k_19st.xml",
+        "source": "/home/aedan/FTC/marv-mk8/TeamCode/src/main/res/raw/haarcascade_evolution_cryptobox_2k3k_19st.xml"
     },
     {
         "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/color_fragment_shader.glsl",
@@ -32,20 +100,16 @@
         "source": "/home/aedan/.android/build-cache/b604b7ab36e2b4cd78c6a6f892d0c45b6610384a/output/res/raw/cube_mesh_vertex_shader.glsl"
     },
     {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/errormessage.wav",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/raw/errormessage.wav"
+    },
+    {
         "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/chimeconnect.wav",
         "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/raw/chimeconnect.wav"
     },
     {
         "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/cube_mesh_fragment_shader.glsl",
         "source": "/home/aedan/.android/build-cache/b604b7ab36e2b4cd78c6a6f892d0c45b6610384a/output/res/raw/cube_mesh_fragment_shader.glsl"
-    },
-    {
-        "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/texture_vertex_shader.glsl",
-        "source": "/home/aedan/.android/build-cache/b604b7ab36e2b4cd78c6a6f892d0c45b6610384a/output/res/raw/texture_vertex_shader.glsl"
-    },
-    {
-        "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/haarcascade_evolution_cryptobox_2k3k_19st.xml",
-        "source": "/home/aedan/ftc_app/TeamCode/src/main/res/raw/haarcascade_evolution_cryptobox_2k3k_19st.xml"
     },
     {
         "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/haarcascade_evolution_cryptoboxnj_2k3k_19st.xml",
@@ -56,8 +120,8 @@
         "source": "/home/aedan/ftc_app/TeamCode/src/main/res/raw/haarcascade_evolution_beacon_2k2k_20st.xml"
     },
     {
-        "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/nxtstartupsound.wav",
-        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/raw/nxtstartupsound.wav"
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/raw/cube_mesh_fragment_shader.glsl",
+        "source": "/home/aedan/.android/build-cache/9344d9bd0ebabac7ea8165e2e31014f816d550b4/output/res/raw/cube_mesh_fragment_shader.glsl"
     },
     {
         "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/raw/chimedisconnect.wav",

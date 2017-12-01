@@ -48,13 +48,13 @@ public class Mk8BazeTestQuad extends OpMode {
             double horiz,
             double rot) {
 
-        double flp = vertL + rot + horiz;
+        double flp = vertL + rot - horiz;
         fl.setPower(Math.max(Math.min(flp, 1), -1));
-        double frp = vertR - rot - horiz;
+        double frp = vertR - rot + horiz;
         fr.setPower(Math.max(Math.min(frp, 1), -1));
-        double blp = vertL + rot - horiz;
+        double blp = vertL + rot + horiz;
         bl.setPower(Math.max(Math.min(blp, 1), -1));
-        double brp = vertR - rot + horiz;
+        double brp = vertR - rot - horiz;
         br.setPower(Math.max(Math.min(brp, 1), -1));
 
 

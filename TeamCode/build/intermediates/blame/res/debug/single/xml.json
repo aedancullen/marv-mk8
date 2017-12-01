@@ -4,6 +4,14 @@
         "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/xml/maxmodules.xml"
     },
     {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/xml/rev_scoot.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/xml/rev_scoot.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/xml/device_filter.xml",
+        "source": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/bundles/default/res/xml/device_filter.xml"
+    },
+    {
         "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/xml/pushbotsens.xml",
         "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/xml/pushbotsens.xml"
     },
@@ -12,8 +20,28 @@
         "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/xml/advanced_rc_settings.xml"
     },
     {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/xml/pushbot.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/xml/pushbot.xml"
+    },
+    {
         "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/xml/rev_scoot.xml",
         "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/xml/rev_scoot.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/xml/k9usbbot.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/xml/k9usbbot.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/xml/maxmodules.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/xml/maxmodules.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/xml/pushbotsens.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/xml/pushbotsens.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/xml/app_settings.xml",
+        "source": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/bundles/default/res/xml/app_settings.xml"
     },
     {
         "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/xml/preferences.xml",
@@ -22,6 +50,14 @@
     {
         "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/xml/squarebot.xml",
         "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/xml/squarebot.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/xml/advanced_rc_settings.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/xml/advanced_rc_settings.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/xml/k9legacybot.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/xml/k9legacybot.xml"
     },
     {
         "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/xml/k9legacybot.xml",
@@ -34,6 +70,10 @@
     {
         "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/xml/device_filter.xml",
         "source": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/bundles/default/res/xml/device_filter.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/TeamCode/build/intermediates/res/merged/debug/xml/squarebot.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/xml/squarebot.xml"
     },
     {
         "merged": "/home/aedan/ftc_app/TeamCode/build/intermediates/res/merged/debug/xml/app_settings.xml",
