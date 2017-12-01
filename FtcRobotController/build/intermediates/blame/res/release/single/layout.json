@@ -1,0 +1,462 @@
+[
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/legacy.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/legacy.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_inspection.xml",
+        "source": "/home/aedan/.android/build-cache/fb07ba222ccdc8eb9b0211916ab324b25f3cc8d6/output/res/layout/activity_inspection.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/analog_input_device.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/analog_input_device.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_swap_usb_devices.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/activity_swap_usb_devices.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/template_info.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/template_info.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module_configure_address_spin_item.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/lynx_module_configure_address_spin_item.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/pwm_device.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/pwm_device.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/file_info.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/file_info.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_configure_from_template.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/activity_configure_from_template.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/info_button.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/info_button.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/loading_indicator_overlay.xml",
+        "source": "/home/aedan/.android/build-cache/b604b7ab36e2b4cd78c6a6f892d0c45b6610384a/output/res/layout/loading_indicator_overlay.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/button_list.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/button_list.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/digital_devices.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/digital_devices.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/simple_device.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/simple_device.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/color_list_preference_line_item.xml",
+        "source": "/home/aedan/.android/build-cache/9344d9bd0ebabac7ea8165e2e31014f816d550b4/output/res/layout/color_list_preference_line_item.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_load.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/activity_load.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/item_list_parent.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/item_list_parent.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/servo.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/servo.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_config_wifi_direct.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/activity_config_wifi_direct.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/device_interface_module.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/device_interface_module.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/digital_device_lynx.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/digital_device_lynx.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/pwm_device.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/pwm_device.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/item_list_parent.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/item_list_parent.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_lynx_address_update.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/activity_ftc_lynx_address_update.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/digital_devices.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/digital_devices.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/legacy.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/legacy.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/simple_device.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/simple_device.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/analog_output_device.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/analog_output_device.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/loading_indicator_overlay.xml",
+        "source": "/home/aedan/.android/build-cache/9344d9bd0ebabac7ea8165e2e31014f816d550b4/output/res/layout/loading_indicator_overlay.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_generic_settings.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/activity_generic_settings.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/i2c_device.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/i2c_device.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/orange_warning.xml",
+        "source": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/exploded-aar/FtcCommon-release/res/layout/orange_warning.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/feedback.xml",
+        "source": "/home/aedan/.android/build-cache/b604b7ab36e2b4cd78c6a6f892d0c45b6610384a/output/res/layout/feedback.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_about.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/activity_about.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_load.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/activity_load.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/port_attached_row.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/port_attached_row.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/servo_list.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/servo_list.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/red_line.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/red_line.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/motor_list.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/motor_list.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/matrices.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/matrices.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/banner_parent.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/banner_parent.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_configuration.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/activity_ftc_configuration.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_programming_mode.xml",
+        "source": "/home/aedan/.android/build-cache/1b1c072d4d96557b648a2e3d7b1d983c405e3563/output/res/layout/activity_programming_mode.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_usb_device.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/lynx_usb_device.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module_configure_address_spin_item.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/lynx_module_configure_address_spin_item.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/digital_device.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/digital_device.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_blocks.xml",
+        "source": "/home/aedan/.android/build-cache/4fb36b0620dcc442b884a8e56991f18701fd0b65/output/res/layout/activity_blocks.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/i2cs.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/i2cs.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/i2c_device.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/i2c_device.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/analog_outputs.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/analog_outputs.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/analog_inputs.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/analog_inputs.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_lynx_fw_update.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/activity_ftc_lynx_fw_update.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/matrix_devices.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/matrix_devices.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_program_and_manage.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/activity_program_and_manage.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/motor.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/motor.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/motor_list.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/motor_list.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/servo.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/servo.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_about.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/activity_about.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_generic_settings.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/activity_generic_settings.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_wifi_channel_selector.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/activity_ftc_wifi_channel_selector.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/info_button.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/info_button.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/shape.xml",
+        "source": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/exploded-aar/FtcCommon-release/res/layout/shape.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/matrix_devices.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/matrix_devices.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/lynx_module.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_lynx_fw_update.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/activity_ftc_lynx_fw_update.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/servo_list.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/servo_list.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_inspection.xml",
+        "source": "/home/aedan/.android/build-cache/b5658543a315067a5b17826decf28f2f2a73b695/output/res/layout/activity_inspection.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/digital_device.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/digital_device.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/device_interface_module.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/device_interface_module.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module_configure_address.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/lynx_module_configure_address.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/motor.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/motor.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/button_list.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/button_list.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_wifi_channel_selector.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/activity_ftc_wifi_channel_selector.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_program_and_manage.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/activity_program_and_manage.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/gray_line.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/gray_line.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/file_info.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/file_info.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/i2cs.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/i2cs.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/matrices.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/matrices.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/red_line.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/red_line.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/header.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/header.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_view_logs.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/activity_view_logs.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_configuration.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/activity_ftc_configuration.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_swap_usb_devices.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/activity_swap_usb_devices.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/pwms.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/pwms.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/analog_output_device.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/analog_output_device.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/darker_gray_line.xml",
+        "source": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/exploded-aar/FtcCommon-release/res/layout/darker_gray_line.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/servo_controller_banner.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/servo_controller_banner.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_controller.xml",
+        "source": "/home/aedan/FTC/marv-mk8/FtcRobotController/src/main/res/layout/activity_ftc_controller.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/feedback.xml",
+        "source": "/home/aedan/.android/build-cache/9344d9bd0ebabac7ea8165e2e31014f816d550b4/output/res/layout/feedback.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/digital_device_lynx.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/digital_device_lynx.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/motor_controller_banner.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/motor_controller_banner.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_controller.xml",
+        "source": "/home/aedan/ftc_app/FtcRobotController/src/main/res/layout/activity_ftc_controller.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/color_list_preference_line_item.xml",
+        "source": "/home/aedan/.android/build-cache/b604b7ab36e2b4cd78c6a6f892d0c45b6610384a/output/res/layout/color_list_preference_line_item.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_wifi_remembered_groups.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/activity_ftc_wifi_remembered_groups.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/lynx_module.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_blocks.xml",
+        "source": "/home/aedan/.android/build-cache/1b1c072d4d96557b648a2e3d7b1d983c405e3563/output/res/layout/activity_blocks.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/gray_line.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/gray_line.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/template_info.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/template_info.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/analog_outputs.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/analog_outputs.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/banner_parent.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/banner_parent.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_programming_mode.xml",
+        "source": "/home/aedan/.android/build-cache/4fb36b0620dcc442b884a8e56991f18701fd0b65/output/res/layout/activity_programming_mode.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_lynx_address_update.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/activity_ftc_lynx_address_update.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_view_logs.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/activity_view_logs.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/analog_input_device.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/analog_input_device.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/header.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/header.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_ftc_wifi_remembered_groups.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/activity_ftc_wifi_remembered_groups.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/port_attached_row.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/port_attached_row.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/pwms.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/pwms.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/motor_controller_banner.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/motor_controller_banner.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/activity_configure_from_template.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/activity_configure_from_template.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/activity_config_wifi_direct.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/activity_config_wifi_direct.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/layout/analog_inputs.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/layout/analog_inputs.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_module_configure_address.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/lynx_module_configure_address.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/lynx_usb_device.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/lynx_usb_device.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/layout/servo_controller_banner.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/layout/servo_controller_banner.xml"
+    }
+]

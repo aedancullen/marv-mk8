@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/drawable/black_border.xml",
+        "source": "/home/aedan/.android/build-cache/1b1c072d4d96557b648a2e3d7b1d983c405e3563/output/res/drawable/black_border.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/drawable/button_shape.xml",
+        "source": "/home/aedan/.android/build-cache/49431e3935fcbbad86ca30099d2fda7fa5888da1/output/res/drawable/button_shape.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/drawable/icon_menu.png",
+        "source": "/home/aedan/.android/build-cache/fb07ba222ccdc8eb9b0211916ab324b25f3cc8d6/output/res/drawable/icon_menu.png"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/drawable/icon_robotcontroller.png",
+        "source": "/home/aedan/.android/build-cache/b5658543a315067a5b17826decf28f2f2a73b695/output/res/drawable/icon_robotcontroller.png"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/drawable/icon_robotcontroller.png",
+        "source": "/home/aedan/.android/build-cache/fb07ba222ccdc8eb9b0211916ab324b25f3cc8d6/output/res/drawable/icon_robotcontroller.png"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/drawable/icon_menu.png",
+        "source": "/home/aedan/.android/build-cache/b5658543a315067a5b17826decf28f2f2a73b695/output/res/drawable/icon_menu.png"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/drawable/button_shape.xml",
+        "source": "/home/aedan/.android/build-cache/e1a117db4ba3e31e4534c7bdf71d2eed8efcc80a/output/res/drawable/button_shape.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/drawable/black_border.xml",
+        "source": "/home/aedan/.android/build-cache/4fb36b0620dcc442b884a8e56991f18701fd0b65/output/res/drawable/black_border.xml"
+    },
+    {
+        "merged": "/home/aedan/FTC/marv-mk8/FtcRobotController/build/intermediates/res/merged/release/drawable/feedback_shape_orange.xml",
+        "source": "/home/aedan/.android/build-cache/9344d9bd0ebabac7ea8165e2e31014f816d550b4/output/res/drawable/feedback_shape_orange.xml"
+    },
+    {
+        "merged": "/home/aedan/ftc_app/FtcRobotController/build/intermediates/res/merged/release/drawable/feedback_shape_orange.xml",
+        "source": "/home/aedan/.android/build-cache/b604b7ab36e2b4cd78c6a6f892d0c45b6610384a/output/res/drawable/feedback_shape_orange.xml"
+    }
+]
