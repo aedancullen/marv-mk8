@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
  * Created by aedan on 5/27/17.
  */
 
-@Autonomous(name="VisionTest - Supercrypto")
+//@Autonomous(name="VisionTest - Supercrypto")
 public class VisionTestSupercrypto extends OpMode {
 
     VisionProcessor processor;

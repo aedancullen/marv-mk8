@@ -6,11 +6,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 /**
- * Created by aedan on 11/2/17.
+ * Created by aedan on 12/2/17.
  */
 
-//@TeleOp(name="Mk8BazeTest - Spinnn")
-public class Mk8BazeTestSpin extends OpMode {
+@TeleOp(name="Marv-Mk8C User Control")
+public class MarvMk8CUserControl  extends OpMode {
 
     DcMotor fl;
     DcMotor fr;
@@ -36,12 +36,12 @@ public class Mk8BazeTestSpin extends OpMode {
     public void loop() {
         double horiz;
         if (gamepad1.left_trigger > 0) {
-            horiz = -gamepad1.left_trigger/2;
+            horiz = -gamepad1.left_trigger/4;
         }
         else {
-            horiz = gamepad1.right_trigger/2;
+            horiz = gamepad1.right_trigger/4;
         }
-        driveBaze(0.2, 0.2, horiz, 0);
+        driveBaze(gamepad1.left_stick_y/3, gamepad1.right_stick_y/3, horiz, 0);
 
 
 

@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
  * Created by aedan on 5/27/17.
  */
 
-@Autonomous(name="VisionTest - Cryptobox")
+//@Autonomous(name="VisionTest - Cryptobox")
 public class VisionTestCryptobox extends OpMode {
 
     VisionProcessor processor;

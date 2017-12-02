@@ -20,7 +20,7 @@ import org.opencv.imgproc.Imgproc;
  * Created by aedan on 5/27/17.
  */
 
-@Autonomous(name="VisionTest - Pictograph")
+//@Autonomous(name="VisionTest - Pictograph")
 public class VisionTestPictograph extends OpMode {
 
     VisionProcessor processor;

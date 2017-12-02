@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
  * Created by aedan on 11/2/17.
  */
 
-@TeleOp(name="Mk8BazeTest - Differential")
+//@TeleOp(name="Mk8BazeTest - Differential")
 public class Mk8BazeTestDiff extends OpMode {
 
     DcMotor fl;

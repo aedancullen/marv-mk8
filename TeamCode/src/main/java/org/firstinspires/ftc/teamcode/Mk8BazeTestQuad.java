@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
  * Created by aedan on 11/2/17.
  */
 
-@TeleOp(name="Mk8BazeTest - Quad")
+//@TeleOp(name="Mk8BazeTest - Quad")
 public class Mk8BazeTestQuad extends OpMode {
 
     DcMotor fl;

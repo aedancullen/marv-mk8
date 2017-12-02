@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
  * Created by aedan on 5/27/17.
  */
 
-@Autonomous(name="VisionTest - Beacon")
+//@Autonomous(name="VisionTest - Beacon")
 public class VisionTest extends OpMode {
 
     VisionProcessor processor;

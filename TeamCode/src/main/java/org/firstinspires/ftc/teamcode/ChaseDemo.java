@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.opencv.core.Rect;
 
-@Autonomous(name="VisionChaseDemo")
+//@Autonomous(name="VisionChaseDemo")
 public class ChaseDemo extends OpMode {
 
     VisionProcessor processor;

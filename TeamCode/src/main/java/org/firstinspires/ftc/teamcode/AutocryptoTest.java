@@ -8,7 +8,7 @@ import com.evolutionftc.visionface.VisionProcessor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name="AutocryptoTest")
+//@TeleOp(name="AutocryptoTest")
 public class AutocryptoTest extends OpMode {
 
     VisionProcessor processor;

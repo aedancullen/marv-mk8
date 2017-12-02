@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
  * Created by aedan on 10/21/17.
  */
 
-@TeleOp(name="CRServoBopski")
+//@TeleOp(name="CRServoBopski")
 public class CRServoBopski extends OpMode {
 
     CRServo bopski1;
