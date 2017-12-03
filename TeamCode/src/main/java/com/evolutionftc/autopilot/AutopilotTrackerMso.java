@@ -12,7 +12,7 @@ package com.evolutionftc.autopilot;
 
 import com.qualcomm.robotcore.hardware.AnalogInput;
 
-public class AutopilotTrackerMso {
+public class AutopilotTrackerMso extends AutopilotTracker {
 
 	private AnalogInput MbX;
 	private AnalogInput MbY;
