@@ -39,7 +39,7 @@ public class MarvMk8CUserControl  extends OpMode {
         else {
             marv.convey(0);
         }
-        
+
 
         if (gamepad2.dpad_down) {
             marv.collect(1);
