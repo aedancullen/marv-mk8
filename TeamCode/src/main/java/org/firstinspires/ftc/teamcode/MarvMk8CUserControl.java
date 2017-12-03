@@ -31,7 +31,7 @@ public class MarvMk8CUserControl  extends OpMode {
 
 
         if (gamepad2.left_bumper) {
-            marv.convey(0.5);
+            marv.convey(-1);
         }
         else if (gamepad2.right_bumper) {
             marv.convey(1);
@@ -49,6 +49,9 @@ public class MarvMk8CUserControl  extends OpMode {
         }
         else if (gamepad2.dpad_right) {
             marv.counterR(1);
+        }
+        else if (gamepad2.dpad_up) {
+            marv.collect(-1);
         }
         else {
             marv.collect(0);
