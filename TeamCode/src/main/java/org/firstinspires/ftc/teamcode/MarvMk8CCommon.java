@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.AnalogInput;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 /**
@@ -14,6 +17,23 @@ public class MarvMk8CCommon {
     DcMotor fr;
     DcMotor bl;
     DcMotor br;
+
+    AnalogInput sonarL;
+    AnalogInput sonarR;
+    AnalogInput sonarB;
+
+    DcMotor collectorL;
+    DcMotor collectorR;
+
+    DcMotor winch;
+
+    CRServo conveyorA;
+    CRServo conveyorB;
+
+    DigitalChannel endstop;
+
+    boolean angleHoldIsEnabled;
+    double angleHoldAngle;
 
 
     public MarvMk8CCommon(HardwareMap hardwareMap){
@@ -30,13 +50,30 @@ public class MarvMk8CCommon {
 
         br = hardwareMap.dcMotor.get("br");
         br.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+
+        collectorL = hardwareMap.dcMotor.get("collectorL");
+        collectorR = hardwareMap.dcMotor.get("collectorR");
+
+        conveyorA = hardwareMap.crservo.get("conveyorA");
+        conveyorB = hardwareMap.crservo.get("conveyorB");
+
     }
+
+    public void setAngleHold(double angleRads){}
+
+    public void disableAngleHold() {}
 
     public void drive(
             double vertL,
             double vertR,
-            double horiz,
-            double rot) {
+            double horiz) {
+
+        double rot = 0;
+
+        if (angleHoldIsEnabled) {
+            // modify rot stuffs
+        }
 
         double flp = vertL + rot - horiz;
         fl.setPower(Math.max(Math.min(flp, 1), -1));
@@ -48,6 +85,26 @@ public class MarvMk8CCommon {
         br.setPower(Math.max(Math.min(brp, 1), -1));
 
 
+    }
+
+    public void convey(double speed) {
+        conveyorA.setPower(speed);
+        conveyorB.setPower(-speed);
+    }
+
+    public void collect(double speed) {
+        collectorL.setPower(speed);
+        collectorR.setPower(-speed);
+    }
+
+    public void counterR(double speed) {
+        collectorL.setPower(-speed);
+        collectorR.setPower(-speed);
+    }
+
+    public void counterL(double speed) {
+        collectorL.setPower(speed);
+        collectorR.setPower(speed);
     }
 
 

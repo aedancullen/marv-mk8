@@ -27,9 +27,32 @@ public class MarvMk8CUserControl  extends OpMode {
             horiz = gamepad1.right_trigger/4;
         }
 
-        marv.drive(gamepad1.left_stick_y/3, gamepad1.right_stick_y/3, horiz, 0);
+        marv.drive(gamepad1.left_stick_y/3, gamepad1.right_stick_y/3, horiz);
 
 
+        if (gamepad2.left_bumper) {
+            marv.convey(0.5);
+        }
+        else if (gamepad2.right_bumper) {
+            marv.convey(1);
+        }
+        else {
+            marv.convey(0);
+        }
+        
+
+        if (gamepad2.dpad_down) {
+            marv.collect(1);
+        }
+        else if (gamepad2.dpad_left){
+            marv.counterL(1);
+        }
+        else if (gamepad2.dpad_right) {
+            marv.counterR(1);
+        }
+        else {
+            marv.collect(0);
+        }
 
     }
 

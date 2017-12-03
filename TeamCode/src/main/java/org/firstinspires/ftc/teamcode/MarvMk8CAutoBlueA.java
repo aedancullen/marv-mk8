@@ -20,7 +20,7 @@ public class MarvMk8CAutoBlueA extends OpMode {
 
         marvAuto = new MarvMk8CAutopilotSystemCommon(/*stuffs*/);
         marvAuto.setMarvCommon(marv);
-        marvAuto.beginPathTravel("mk8c-auto-blue-a");
+        marvAuto.beginPathTravel("mk8c-auto-generic-a");
     }
 
     public void loop() {
