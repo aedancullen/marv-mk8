@@ -20,7 +20,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
         if (next.id.equals("__start__")){
             // Do vision sensing, drive off balancing stone and set angle hold
         }
-        else if (previous.id.equals("approach_crypto")){
+        else if (previous.id.equals("approach_crypto_a")){
             // Approach and glyph ejection routine
             // Can use 
             //
@@ -35,6 +35,11 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             //
             // to get to arbitrary coords for glyph ejection
             // Then can drop glyph and proceed
+            // The beauty of evolutionftc.autopilot is that we don't have to care which alliance we're on;
+            // just use the coordinate system
+        }
+        else if (previous.id.equals("approach_crypto_b")){
+            // Same as above - but the approach coordinates ARE different if we're doing the "B" cryptobox!
         }
     }
 
