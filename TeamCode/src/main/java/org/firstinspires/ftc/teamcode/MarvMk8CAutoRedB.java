@@ -13,6 +13,8 @@ public class MarvMk8CAutoRedB extends OpMode {
 
     MarvMk8CCommon marv;
     MarvMk8CAutopilotSystemCommon marvAuto;
+    
+    AutopilotTrackerMbx mbxTracker;
 
     public void init() {
          marv = new MarvMk8CCommon(hardwareMap);
