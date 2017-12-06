@@ -105,9 +105,14 @@ public class MarvMk8CCommon {
         this.winchLevel = level;
     }
     
-    public void setAngleHold(double angleRads){}
+    public void setAngleHold(double angleRads){
+        angleHoldIsEnabled = true;
+        angleHoldAngle = angleRads; 
+    }
 
-    public void disableAngleHold() {}
+    public void disableAngleHold() {
+        angleHoldIsEnabled = false;
+    }
 
     public void drive(
             double vertL,
