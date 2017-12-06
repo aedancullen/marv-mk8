@@ -56,6 +56,23 @@ public class MarvMk8CUserControl  extends OpMode {
         else {
             marv.collect(0);
         }
+        
+        
+        if (gamepad2.a) {
+            marv.setWinchLevel(0);
+        }
+        else if (gamepad2.b) {
+            marv.setWinchLevel(1);
+        }
+        else if (gamepad2.x) {
+            marv.setWinchLevel(2);
+        }
+        else if (gamepad2.y) {
+            marv.setWinchLevel(3);
+        }
+        
+        marv.winchTick();
+        
 
     }
 
