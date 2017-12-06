@@ -1,7 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.content.Context;
+
 import com.evolutionftc.autopilot.AutopilotSegment;
 import com.evolutionftc.autopilot.AutopilotSystem;
+import com.evolutionftc.autopilot.AutopilotTracker;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /**
  * Created by aedan on 12/3/17.
@@ -10,6 +15,10 @@ import com.evolutionftc.autopilot.AutopilotSystem;
 public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
 
     public MarvMk8CCommon marv;
+
+    public MarvMk8CAutopilotSystemCommon(AutopilotTracker tracker, Telemetry telemetry, Context appContext){
+        super(tracker, telemetry, appContext);
+    }
 
     public void setMarvCommon(MarvMk8CCommon marv){
         this.marv = marv;
