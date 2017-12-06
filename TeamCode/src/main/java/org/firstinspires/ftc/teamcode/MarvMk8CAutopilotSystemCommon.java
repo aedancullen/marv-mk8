@@ -27,6 +27,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             // this.host.setNavigationTarget(AutopilotSegment);
             // this.host.setNavigationStatus(NavigationStatus.RUNNING);
             // while (this.host.getNavigationStatus == NavigationStatus.RUNNING) {
+            //      this.host.communicate(this.tracker);
             //      double[2] power = this.host.navigationTickRaw();
             //      // marv.drive stuff
             // }
