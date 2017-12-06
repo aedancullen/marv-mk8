@@ -37,6 +37,8 @@ public class MarvMk8CCommon {
     
     double winchZeroPosition;
     
+    int winchMaxPosition = 400; /*set correctly*/
+    
     int winchLevel=0;
     int winchTolerance = 90; /*set reasonably*/
     int winchUpl = 100; /*set correctly*/
@@ -97,6 +99,13 @@ public class MarvMk8CCommon {
     }
     
     public void winchTick() {
+        if (winch.getPosition()-winchZeroPosition > winchMaxPosition) {
+            // Bailout for mechanical safety (protect the lift mechanism from damage)
+            winch.setPower(-0.1); // unique behavior for diagnostic detection
+            return;
+        }
+        
+        
         if (winchLevel == 0) {
             homeWinchTick();
         }
