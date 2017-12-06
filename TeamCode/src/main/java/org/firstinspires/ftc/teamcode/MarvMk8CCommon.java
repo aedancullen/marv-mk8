@@ -18,7 +18,6 @@ public class MarvMk8CCommon {
     DcMotor fr;
     DcMotor bl;
     DcMotor br;
-
     AnalogInput sonarL;
     AnalogInput sonarR;
     AnalogInput sonarB;
@@ -79,7 +78,7 @@ public class MarvMk8CCommon {
             winch.setPower(0);
         }
         else if (winch.getPosition() - targetPosition > 0) {
-            winch.setPower(-1);
+            winch.setPower(-0.5);
         }
         else if (winch.getPosition() - targetPosition < 0) {
             winch.setPower(1);
