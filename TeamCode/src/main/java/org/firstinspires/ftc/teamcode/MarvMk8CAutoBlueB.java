@@ -15,12 +15,14 @@ public class MarvMk8CAutoBlueB extends OpMode {
     MarvMk8CAutopilotSystemCommon marvAuto;
 
     public void init() {
-        marv = new MarvMk8CCommon(hardwareMap);
-        // blah autopilot setup stuffs
+         marv = new MarvMk8CCommon(hardwareMap);
 
-        marvAuto = new MarvMk8CAutopilotSystemCommon(/*stuffs*/);
+        mbxTracker = new AutopilotTrackerMbx(marv.sonarR, marv.sonarB, /*actual values*/0, 0);
+        
+        marvAuto = new MarvMk8CAutopilotSystemCommon(mbxTracker, telemetry, hardwareMap.appContext);
         marvAuto.setMarvCommon(marv);
-        marvAuto.beginPathTravel("mk8c-auto-generic-b");
+        // x-axis mirroring done implicitly by switch of R/L x coord sonar
+        marvAuto.beginPathTravel("mk8c-auto-generic-b"); 
     }
 
     public void loop() {
