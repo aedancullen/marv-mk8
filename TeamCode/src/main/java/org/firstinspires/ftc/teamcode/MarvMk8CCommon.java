@@ -66,6 +66,10 @@ public class MarvMk8CCommon {
         
         winch = hardwareMap.dcMotor.get("winch");
         winch.setZeroPowerBehavior(ZeroPowerBehavior.BRAKE);
+        
+        sonarL = hardwareMap.analogInput.get("sonarL");
+        sonarR = hardwareMap.analogInput.get("sonarR");
+        sonarB = hardwareMap.analogInput.get("sonarB");
 
     }
     
