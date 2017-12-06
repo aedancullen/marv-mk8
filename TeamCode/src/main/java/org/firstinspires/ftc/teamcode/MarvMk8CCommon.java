@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.AnalogInput;
+
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -34,6 +35,8 @@ public class MarvMk8CCommon {
 
     boolean angleHoldIsEnabled;
     double angleHoldAngle;
+    
+    double winchZeroPosition;
 
 
     public MarvMk8CCommon(HardwareMap hardwareMap){
@@ -59,7 +62,30 @@ public class MarvMk8CCommon {
         conveyorB = hardwareMap.crservo.get("conveyorB");
 
     }
-
+    
+    public void homeWinchTick() {
+        if (!endstop.read()) {
+            winch.setPower(-0.5);
+        }
+        else {
+            winch.setPower(0);
+            winchZeroPosition  = winch.getPosition();
+        }
+    }
+    
+    public void winchToHeightTick(int height, int tolerance){
+        int targetPosition = winchZeroPosition + 1/*units per level*/ * height;
+        if (Math.abs(winch.getPosition() - targetPosition) < tolerance) {
+            winch.setPower(0);
+        }
+        else if (winch.getPosition() - targetPosition > 0) {
+            winch.setPower(-1);
+        }
+        else if (winch.getPosition() - targetPosition < 0) {
+            winch.setPower(1);
+        }
+    }
+    
     public void setAngleHold(double angleRads){}
 
     public void disableAngleHold() {}
