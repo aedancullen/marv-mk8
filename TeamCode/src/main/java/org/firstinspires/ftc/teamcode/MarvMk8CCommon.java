@@ -36,6 +36,10 @@ public class MarvMk8CCommon {
     double angleHoldAngle;
     
     double winchZeroPosition;
+    
+    int winchLevel=0;
+    int winchTolerance = 90; /*set reasonably*/
+    int winchUpl = 100; /*set correctly*/
 
 
     public MarvMk8CCommon(HardwareMap hardwareMap){
@@ -59,6 +63,9 @@ public class MarvMk8CCommon {
 
         conveyorA = hardwareMap.crservo.get("conveyorA");
         conveyorB = hardwareMap.crservo.get("conveyorB");
+        
+        winch = hardwareMap.dcMotor.get("winch");
+        winch.setZeroPowerBehavior(ZeroPowerBehavior.BRAKE);
 
     }
     
@@ -72,9 +79,9 @@ public class MarvMk8CCommon {
         }
     }
     
-    public void winchToHeightTick(int height, int tolerance){
-        int targetPosition = winchZeroPosition + 1/*units per level*/ * height;
-        if (Math.abs(winch.getPosition() - targetPosition) < tolerance) {
+    public void winchToHeightTick(int height){
+        int targetPosition = winchZeroPosition + winchUpl * height;
+        if (Math.abs(winch.getPosition() - targetPosition) < winchTolerance) {
             winch.setPower(0);
         }
         else if (winch.getPosition() - targetPosition > 0) {
@@ -83,6 +90,19 @@ public class MarvMk8CCommon {
         else if (winch.getPosition() - targetPosition < 0) {
             winch.setPower(1);
         }
+    }
+    
+    public void winchTick() {
+        if (winchLevel == 0) {
+            homeWinchTick();
+        }
+        else {
+            winchToHeightTick(winchLevel);
+        }
+    }
+    
+    public void setWinchLevel(int level) {
+        this.winchLevel = level;
     }
     
     public void setAngleHold(double angleRads){}
