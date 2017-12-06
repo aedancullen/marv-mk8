@@ -81,13 +81,13 @@ public class MarvMk8CCommon {
     
     public void winchToHeightTick(int height){
         int targetPosition = winchZeroPosition + winchUpl * height;
-        if (Math.abs(winch.getPosition() - targetPosition) < winchTolerance) {
+        if (Math.abs(winch.getPosition()-winchZeroPosition - targetPosition) < winchTolerance) {
             winch.setPower(0);
         }
-        else if (winch.getPosition() - targetPosition > 0) {
+        else if (winch.getPosition()-winchZeroPosition - targetPosition > 0) {
             winch.setPower(-0.5);
         }
-        else if (winch.getPosition() - targetPosition < 0) {
+        else if (winch.getPosition()-winchZeroPosition - targetPosition < 0) {
             winch.setPower(1);
         }
     }
