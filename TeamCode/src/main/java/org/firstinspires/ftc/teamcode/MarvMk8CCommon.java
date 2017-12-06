@@ -80,7 +80,7 @@ public class MarvMk8CCommon {
     }
     
     public void winchToHeightTick(int height){
-        int targetPosition = winchZeroPosition + winchUpl * height;
+        int targetPosition = winchUpl * height;
         if (Math.abs(winch.getPosition()-winchZeroPosition - targetPosition) < winchTolerance) {
             winch.setPower(0);
         }
