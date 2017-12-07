@@ -46,17 +46,17 @@ public class MarvMk8CCommon {
 
     public MarvMk8CCommon(HardwareMap hardwareMap){
         fl = hardwareMap.dcMotor.get("fl");
-        fl.setDirection(DcMotorSimple.Direction.REVERSE);
         fl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         fr = hardwareMap.dcMotor.get("fr");
+        fr.setDirection(DcMotorSimple.Direction.REVERSE);
         fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         bl = hardwareMap.dcMotor.get("bl");
-        bl.setDirection(DcMotorSimple.Direction.REVERSE);
         bl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         br = hardwareMap.dcMotor.get("br");
+        br.setDirection(DcMotorSimple.Direction.REVERSE);
         br.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
@@ -138,13 +138,13 @@ public class MarvMk8CCommon {
             // modify rot stuffs
         }
 
-        double flp = vertL + rot - horiz;
+        double flp = vertL + rot + horiz;
         fl.setPower(Math.max(Math.min(flp, 1), -1));
-        double frp = vertR - rot + horiz;
+        double frp = vertR - rot - horiz;
         fr.setPower(Math.max(Math.min(frp, 1), -1));
-        double blp = vertL + rot + horiz;
+        double blp = vertL + rot - horiz;
         bl.setPower(Math.max(Math.min(blp, 1), -1));
-        double brp = vertR - rot - horiz;
+        double brp = vertR - rot + horiz;
         br.setPower(Math.max(Math.min(brp, 1), -1));
 
 
