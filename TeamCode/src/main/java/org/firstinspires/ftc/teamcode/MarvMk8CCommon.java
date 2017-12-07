@@ -40,7 +40,7 @@ public class MarvMk8CCommon {
     int winchMaxPosition = 400; /*set correctly*/
     
     int winchLevel=0;
-    int winchTolerance = 90; /*set reasonably*/
+    int winchTolerance = 10; /*set reasonably*/
     int winchUpl = 100; /*set correctly*/
 
 
@@ -73,10 +73,13 @@ public class MarvMk8CCommon {
         sonarR = hardwareMap.analogInput.get("sonarR");
         sonarB = hardwareMap.analogInput.get("sonarB");
 
+        endstop = hardwareMap.digitalChannel.get("endstop");
+        endstop.setMode(DigitalChannel.Mode.INPUT);
+
     }
     
     public void homeWinchTick() {
-        if (!endstop.getState()) {
+        if (endstop.getState()) { // the rev endstop is not intuitive
             winch.setPower(-0.5);
         }
         else {
@@ -101,7 +104,7 @@ public class MarvMk8CCommon {
     public void winchTick() {
         if (winch.getCurrentPosition()-winchZeroPosition > winchMaxPosition) {
             // Bailout for mechanical safety (protect the lift mechanism from damage)
-            winch.setPower(-0.1); // unique behavior for diagnostic detection
+            winch.setPower(-0.5); // unique behavior for diagnostic detection
             return;
         }
         
@@ -156,8 +159,8 @@ public class MarvMk8CCommon {
     }
 
     public void collect(double speed) {
-        collectorL.setPower(-speed);
-        collectorR.setPower(speed);
+        collectorL.setPower(speed);
+        collectorR.setPower(-speed);
     }
 
     public void counterR(double speed) {
