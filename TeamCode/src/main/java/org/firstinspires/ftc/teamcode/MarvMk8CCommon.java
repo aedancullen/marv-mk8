@@ -67,7 +67,7 @@ public class MarvMk8CCommon {
         conveyorB = hardwareMap.crservo.get("conveyorB");
         
         winch = hardwareMap.dcMotor.get("winch");
-        winch.setZeroPowerBehavior(ZeroPowerBehavior.BRAKE);
+        winch.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         
         sonarL = hardwareMap.analogInput.get("sonarL");
         sonarR = hardwareMap.analogInput.get("sonarR");
@@ -76,30 +76,30 @@ public class MarvMk8CCommon {
     }
     
     public void homeWinchTick() {
-        if (!endstop.read()) {
+        if (!endstop.getState()) {
             winch.setPower(-0.5);
         }
         else {
             winch.setPower(0);
-            winchZeroPosition  = winch.getPosition();
+            winchZeroPosition  = winch.getCurrentPosition();
         }
     }
     
     public void winchToHeightTick(int height){
         int targetPosition = winchUpl * height;
-        if (Math.abs(winch.getPosition()-winchZeroPosition - targetPosition) < winchTolerance) {
+        if (Math.abs(winch.getCurrentPosition()-winchZeroPosition - targetPosition) < winchTolerance) {
             winch.setPower(0);
         }
-        else if (winch.getPosition()-winchZeroPosition - targetPosition > 0) {
+        else if (winch.getCurrentPosition()-winchZeroPosition - targetPosition > 0) {
             winch.setPower(-0.5);
         }
-        else if (winch.getPosition()-winchZeroPosition - targetPosition < 0) {
+        else if (winch.getCurrentPosition()-winchZeroPosition - targetPosition < 0) {
             winch.setPower(1);
         }
     }
     
     public void winchTick() {
-        if (winch.getPosition()-winchZeroPosition > winchMaxPosition) {
+        if (winch.getCurrentPosition()-winchZeroPosition > winchMaxPosition) {
             // Bailout for mechanical safety (protect the lift mechanism from damage)
             winch.setPower(-0.1); // unique behavior for diagnostic detection
             return;
@@ -156,8 +156,8 @@ public class MarvMk8CCommon {
     }
 
     public void collect(double speed) {
-        collectorL.setPower(speed);
-        collectorR.setPower(-speed);
+        collectorL.setPower(-speed);
+        collectorR.setPower(speed);
     }
 
     public void counterR(double speed) {
