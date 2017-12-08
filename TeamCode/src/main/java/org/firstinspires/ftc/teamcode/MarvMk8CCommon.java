@@ -37,10 +37,10 @@ public class MarvMk8CCommon {
     
     double winchZeroPosition;
     
-    int winchMaxPosition = 3220; /*set correctly*/
+    int winchMaxPosition = 4350; /*set correctly*/
     
     int winchLevel=0;
-    int winchTolerance = 50; /*set reasonably*/
+    int winchTolerance = 100; /*set reasonably*/
     int winchUpl = winchMaxPosition / 3;
 
 
@@ -67,6 +67,7 @@ public class MarvMk8CCommon {
         conveyorB = hardwareMap.crservo.get("conveyorB");
         
         winch = hardwareMap.dcMotor.get("winch");
+        winch.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         winch.setDirection(DcMotorSimple.Direction.REVERSE);
         winch.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         
@@ -81,7 +82,7 @@ public class MarvMk8CCommon {
     
     public void homeWinchTick() {
         if (endstop.getState()) { // the rev endstop is not intuitive
-            winch.setPower(-0.15);
+            winch.setPower(-0.25);
         }
         else {
             winch.setPower(0);
@@ -95,17 +96,17 @@ public class MarvMk8CCommon {
             winch.setPower(0);
         }
         else if (winch.getCurrentPosition()-winchZeroPosition - targetPosition > 0) {
-            winch.setPower(-0.15);
+            winch.setPower(-0.25);
         }
         else if (winch.getCurrentPosition()-winchZeroPosition - targetPosition < 0) {
-            winch.setPower(0.25);
+            winch.setPower(0.50);
         }
     }
     
     public void winchTick() {
         if (winch.getCurrentPosition()-winchZeroPosition > winchMaxPosition) {
             // Bailout for mechanical safety (protect the lift mechanism from damage)
-            winch.setPower(-0.15); // unique behavior for diagnostic detection
+            winch.setPower(-0.25); // unique behavior for diagnostic detection
             return;
         }
         
