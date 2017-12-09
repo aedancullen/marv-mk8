@@ -19,6 +19,14 @@ public class MarvMk8CUserControl  extends OpMode {
     }
 
     public void loop() {
+
+        if (gamepad1.left_bumper || gamepad1.right_bumper) {
+            marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        }
+        else{
+            marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        }
+
         double horiz;
         if (gamepad1.left_trigger > 0) {
             horiz = -gamepad1.left_trigger/3;

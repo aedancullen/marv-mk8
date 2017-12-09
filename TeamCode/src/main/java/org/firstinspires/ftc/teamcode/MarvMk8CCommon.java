@@ -43,6 +43,8 @@ public class MarvMk8CCommon {
     int winchTolerance = 100; /*set reasonably*/
     int winchUpl = winchMaxPosition / 3;
 
+    DcMotor.ZeroPowerBehavior lastZeroPowerBehavior = DcMotor.ZeroPowerBehavior.FLOAT;
+
 
     public MarvMk8CCommon(HardwareMap hardwareMap){
         fl = hardwareMap.dcMotor.get("fl");
@@ -78,6 +80,16 @@ public class MarvMk8CCommon {
         endstop = hardwareMap.digitalChannel.get("endstop");
         endstop.setMode(DigitalChannel.Mode.INPUT);
 
+    }
+
+    public void setZeroPowerBehavior(DcMotor.ZeroPowerBehavior behavior) {
+        if (behavior != lastZeroPowerBehavior) {
+            lastZeroPowerBehavior = behavior;
+            fl.setZeroPowerBehavior(behavior);
+            fr.setZeroPowerBehavior(behavior);
+            bl.setZeroPowerBehavior(behavior);
+            br.setZeroPowerBehavior(behavior);
+        }
     }
     
     public void homeWinchTick() {
