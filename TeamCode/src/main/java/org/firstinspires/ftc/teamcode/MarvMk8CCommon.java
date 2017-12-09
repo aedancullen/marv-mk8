@@ -99,7 +99,7 @@ public class MarvMk8CCommon {
             winch.setPower(-0.25);
         }
         else if (winch.getCurrentPosition()-winchZeroPosition - targetPosition < 0) {
-            winch.setPower(0.50);
+            winch.setPower(0.70);
         }
     }
     
