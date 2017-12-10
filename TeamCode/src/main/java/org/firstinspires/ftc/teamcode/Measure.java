@@ -11,7 +11,7 @@ public class Measure extends OpMode {
 
     DcMotor winch;
 
-    double VperMM = (3.3) / (1024.0 * 5.0);
+    double VperMM = 0.000644531;
 
     AnalogInput mbR;
     AnalogInput mbL;
