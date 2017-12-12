@@ -1,10 +1,13 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.AnalogInput;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.Servo;
 
 
 @TeleOp(name="Measure")
@@ -20,6 +23,11 @@ public class Measure extends OpMode {
 
     DigitalChannel endstop;
 
+    Servo dropski;
+
+    ColorSensor dropskiColor;
+
+    double dropskiPos = 0;
 
 
     public void init() {
@@ -28,6 +36,9 @@ public class Measure extends OpMode {
         mbR = hardwareMap.analogInput.get("sonarR");
         mbB = hardwareMap.analogInput.get("sonarB");
         mbL = hardwareMap.analogInput.get("sonarL");
+
+        dropski = hardwareMap.servo.get("dropski");
+        dropskiColor = hardwareMap.colorSensor.get("dropskiColor");
 
         endstop = hardwareMap.digitalChannel.get("endstop");
         endstop.setMode(DigitalChannel.Mode.INPUT);
@@ -43,6 +54,18 @@ public class Measure extends OpMode {
     }
 
     public void loop() {
+
+        if (gamepad1.a) {
+            dropskiPos += 0.05;
+        }
+        else if (gamepad1.b) {
+            dropskiPos -= 0.05;
+        }
+
+        dropski.setPosition(dropskiPos);
+
+        telemetry.addData("color", dropskiColor.argb());
+
         telemetry.addData("endstop", endstop.getState());
         telemetry.addData("winch", winch.getCurrentPosition());
 
