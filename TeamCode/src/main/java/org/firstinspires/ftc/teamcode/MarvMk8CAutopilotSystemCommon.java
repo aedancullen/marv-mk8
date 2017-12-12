@@ -28,6 +28,16 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
         
         if (next.id.equals("__start__")){
             // Do vision sensing, drive off balancing stone and set angle hold
+
+            marv.setDropskiDown();
+
+            if (marv.dropskiIsRed() && marv.isOnRedSide || !marv.dropskiIsRed() && !marv.isOnRedSide) {
+                // go THE OTHER way
+            }
+            else {
+                // go THE way
+            }
+
         }
         else if (previous.id.equals("approach_crypto_a")){
             // Approach and glyph ejection routine

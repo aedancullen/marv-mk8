@@ -3,16 +3,20 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.AnalogInput;
 
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 /**
  * Created by aedan on 12/3/17.
  */
 
 public class MarvMk8CCommon {
+
+    public boolean isOnRedSide; // used by AutopilotSystemCommon
 
     DcMotor fl;
     DcMotor fr;
@@ -31,6 +35,9 @@ public class MarvMk8CCommon {
     CRServo conveyorB;
 
     DigitalChannel endstop;
+
+    Servo dropski;
+    ColorSensor dropskiColor;
 
     boolean angleHoldIsEnabled;
     double angleHoldAngle;
@@ -80,6 +87,23 @@ public class MarvMk8CCommon {
         endstop = hardwareMap.digitalChannel.get("endstop");
         endstop.setMode(DigitalChannel.Mode.INPUT);
 
+        dropski = hardwareMap.servo.get("dropski");
+        dropskiColor = hardwareMap.colorSensor.get("dropskiColor");
+
+        setDropskiUp();
+
+    }
+
+    public void setDropskiUp() {
+        dropski.setPosition(0.75);
+    }
+
+    public void setDropskiDown() {
+        dropski.setPosition(0.2);
+    }
+
+    public boolean dropskiIsRed() {
+        return (dropskiColor.red() > dropskiColor.blue());
     }
 
     public void setZeroPowerBehavior(DcMotor.ZeroPowerBehavior behavior) {

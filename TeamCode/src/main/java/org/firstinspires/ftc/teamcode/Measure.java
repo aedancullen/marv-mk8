@@ -29,9 +29,13 @@ public class Measure extends OpMode {
 
     double dropskiPos = 0;
 
+    DcMotor fr;
+
 
     public void init() {
 
+
+        fr = hardwareMap.dcMotor.get("fr");
         winch = hardwareMap.dcMotor.get("winch");
         mbR = hardwareMap.analogInput.get("sonarR");
         mbB = hardwareMap.analogInput.get("sonarB");
@@ -64,7 +68,11 @@ public class Measure extends OpMode {
 
         dropski.setPosition(dropskiPos);
 
-        telemetry.addData("color", dropskiColor.argb());
+        telemetry.addData("r", dropskiColor.red());
+        telemetry.addData("b", dropskiColor.blue());
+        telemetry.addData("dropskiPos", dropskiPos);
+
+        telemetry.addData("enc fr", fr.getCurrentPosition());
 
         telemetry.addData("endstop", endstop.getState());
         telemetry.addData("winch", winch.getCurrentPosition());

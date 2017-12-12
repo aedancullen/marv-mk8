@@ -20,6 +20,7 @@ public class MarvMk8CAutoRedA extends LinearOpMode {
 
     public void runOpMode() {
          marv = new MarvMk8CCommon(hardwareMap);
+        marv.isOnRedSide = true;
 
         mbxTracker = new AutopilotTrackerMso(marv.sonarL, marv.sonarB, /*actual values*/0, 0);
         
