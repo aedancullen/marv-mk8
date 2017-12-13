@@ -19,20 +19,15 @@ public class AutopilotTrackerMso extends AutopilotTracker {
 	
 	double MbXOffset;
 	double MbYOffset;
-	
-	double VperMM = (3.3) / (1024.0 * 5.0); // HRLV series with 3.3V supply
+
+	// HRLV series with 3.3V supply on REV Robotics ADC, from experimental data gathered
+	double inchesPerVolt = 73.123; // 123 tis the magic number! linreg tis the magic sauce!
   
         private double[] robotPosition = new double[3];
 	private double[] robotAttitude = new double[3];
 
-	private double compRevVoltage(double voltage, double max){
-		// rev ADCs are super trashy, so do some hacky compensation (actually makes it relatively good)
-		double half = max / 2;
-		double distanceFromHalf = half - voltage;
-		double compAmount = distanceFromHalf / half;
-		double compVolts = 0.04 * compAmount;
-
-		return voltage + compVolts;
+	private double voltageToInches(double voltage){
+		return voltage * inchesPerVolt;
 	}
 	
 
@@ -47,8 +42,8 @@ public class AutopilotTrackerMso extends AutopilotTracker {
 
 	public void update() {
 
-		double distMbX = (compRevVoltage(MbX.getVoltage(), 3.3) / VperMM + MbXOffset) / 10.0; // to cm
-		double distMbY = (compRevVoltage(MbY.getVoltage(), 3.3) / VperMM + MbYOffset) / 10.0;
+		double distMbX = voltageToInches(MbX.getVoltage()) + MbXOffset;
+		double distMbY = voltageToInches(MbY.getVoltage()) + MbYOffset;
 		
 		robotPosition [0] = distMbX;
 		robotPosition [1] = distMbY;

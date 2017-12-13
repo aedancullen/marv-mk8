@@ -48,13 +48,10 @@ public class Measure extends OpMode {
         endstop.setMode(DigitalChannel.Mode.INPUT);
     }
 
-    public double compRevVoltage(double voltage, double max){
-        double half = max / 2;
-        double distanceFromHalf = half - voltage;
-        double compAmount = distanceFromHalf / half;
-        double compVolts = 0.04 * compAmount;
+    double inchesPerVolt = 73.123;
 
-        return voltage + compVolts;
+    private double voltageToInches(double voltage){
+        return voltage * inchesPerVolt;
     }
 
     public void loop() {
@@ -77,9 +74,9 @@ public class Measure extends OpMode {
         telemetry.addData("endstop", endstop.getState());
         telemetry.addData("winch", winch.getCurrentPosition());
 
-        double distMbR = (compRevVoltage(mbR.getVoltage(), 3.3) / VperMM + 0) / 10.0; // to cm
-        double distMbL = (compRevVoltage(mbL.getVoltage(), 3.3) / VperMM + 0) / 10.0; // to cm
-        double distMbB = (compRevVoltage(mbB.getVoltage(), 3.3) / VperMM + 0) / 10.0; // to cm
+        double distMbR = voltageToInches(mbR.getVoltage());
+        double distMbL = voltageToInches(mbL.getVoltage());
+        double distMbB = voltageToInches(mbB.getVoltage());
 
         telemetry.addData("distMbR", distMbR);
         telemetry.addData("distMbL", distMbL);
