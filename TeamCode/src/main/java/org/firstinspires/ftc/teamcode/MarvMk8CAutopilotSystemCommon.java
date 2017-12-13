@@ -31,15 +31,70 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
 
             marv.setDropskiDown();
 
-            if (marv.dropskiIsRed() && marv.isOnRedSide || !marv.dropskiIsRed() && !marv.isOnRedSide) {
-                // go THE OTHER way
-            }
-            else {
-                // go THE way
+            long time = System.currentTimeMillis();
+            while (System.currentTimeMillis() < time + 1500) {
             }
 
+
+            if ((marv.dropskiIsRed() && marv.isOnRedSide) || (!marv.dropskiIsRed() && !marv.isOnRedSide)) {
+                double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
+                while ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 < frZero + 75) {
+                    marv.fr.setPower(0.15);
+                    marv.br.setPower(0.15);
+                    marv.fl.setPower(-0.15);
+                    marv.bl.setPower(-0.15);
+                }
+
+                marv.fr.setPower(0);
+                marv.br.setPower(0);
+                marv.fl.setPower(0);
+                marv.bl.setPower(0);
+            }
+            else {
+                double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
+                while ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 > frZero - 75) {
+                    marv.fr.setPower(-0.15);
+                    marv.br.setPower(-0.15);
+                    marv.fl.setPower(0.15);
+                    marv.bl.setPower(0.15);
+                }
+
+                marv.fr.setPower(0);
+                marv.br.setPower(0);
+                marv.fl.setPower(0);
+                marv.bl.setPower(0);
+            }
+
+            //time = System.currentTimeMillis();
+            //while (System.currentTimeMillis() < time + 1500) {
+            //}
+
+            marv.setDropskiUp();
+
+            time = System.currentTimeMillis();
+            while (System.currentTimeMillis() < time + 2000) {
+            }
+
+            if (marv.isOnRedSide) {
+                if (marv.isOnBSide) {
+                    marv.setAngleHold(180);
+                }
+                else { // marv.isOnASide
+                    marv.setAngleHold(270);
+                }
+            }
+            else { // marv.isOnBlueSide
+                if (marv.isOnBSide) {
+                    marv.setAngleHold(0);
+                }
+                else { // marv.isOnASide
+                    marv.setAngleHold(270);
+                }
+            }
+
+
         }
-        else if (previous.id.equals("approach_crypto_a")){
+        else if (previous.id.equals("approach_crypto")){
             // Approach and glyph ejection routine
             // Can use 
             //
@@ -56,9 +111,6 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             // Then can drop glyph and proceed
             // The beauty of evolutionftc.autopilot is that we don't have to care which alliance we're on;
             // just use the coordinate system
-        }
-        else if (previous.id.equals("approach_crypto_b")){
-            // Same as above - but the approach coordinates ARE different if we're doing the "B" cryptobox!
         }
     }
 

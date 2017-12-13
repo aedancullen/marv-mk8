@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -8,6 +9,11 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 
 @TeleOp(name="Measure")
@@ -31,9 +37,17 @@ public class Measure extends OpMode {
 
     DcMotor fr;
 
+    BNO055IMU imu;
+
 
     public void init() {
 
+        imu = (BNO055IMU)hardwareMap.i2cDevice.get("imu");
+
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+
+        imu.initialize(parameters);
 
         fr = hardwareMap.dcMotor.get("fr");
         winch = hardwareMap.dcMotor.get("winch");
@@ -63,7 +77,11 @@ public class Measure extends OpMode {
             dropskiPos -= 0.05;
         }
 
+
         dropski.setPosition(dropskiPos);
+
+        Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.RADIANS);
+        telemetry.addData("angle", angles.firstAngle);
 
         telemetry.addData("r", dropskiColor.red());
         telemetry.addData("b", dropskiColor.blue());

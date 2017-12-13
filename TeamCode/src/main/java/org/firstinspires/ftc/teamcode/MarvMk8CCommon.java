@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.AnalogInput;
 
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -10,6 +11,11 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+
 /**
  * Created by aedan on 12/3/17.
  */
@@ -17,6 +23,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class MarvMk8CCommon {
 
     public boolean isOnRedSide; // used by AutopilotSystemCommon
+    public boolean isOnBSide;
 
     DcMotor fl;
     DcMotor fr;
@@ -49,6 +56,8 @@ public class MarvMk8CCommon {
     int winchLevel=0;
     int winchTolerance = 100; /*set reasonably*/
     int winchUpl = winchMaxPosition / 3;
+
+    BNO055IMU imu;
 
     DcMotor.ZeroPowerBehavior lastZeroPowerBehavior = DcMotor.ZeroPowerBehavior.FLOAT;
 
@@ -90,8 +99,20 @@ public class MarvMk8CCommon {
         dropski = hardwareMap.servo.get("dropski");
         dropskiColor = hardwareMap.colorSensor.get("dropskiColor");
 
+        imu = (BNO055IMU)hardwareMap.i2cDevice.get("imu");
+
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+
+        imu.initialize(parameters);
+
         setDropskiUp();
 
+    }
+
+    public double imuGetHeadingDegs() {
+        Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.RADIANS);
+        return angles.firstAngle;
     }
 
     public void setDropskiUp() {
@@ -159,9 +180,9 @@ public class MarvMk8CCommon {
         this.winchLevel = level;
     }
     
-    public void setAngleHold(double angleRads){
+    public void setAngleHold(double angleDegs){
         angleHoldIsEnabled = true;
-        angleHoldAngle = angleRads; 
+        angleHoldAngle = angleDegs;
     }
 
     public void disableAngleHold() {
@@ -176,7 +197,11 @@ public class MarvMk8CCommon {
         double rot = 0;
 
         if (angleHoldIsEnabled) {
-            // modify rot stuffs
+            double heading = imuGetHeadingDegs();
+            if (Math.abs(heading - angleHoldAngle) > 1) {
+                rot += 0.01 * (heading - angleHoldAngle);
+                rot = Math.max(Math.min(rot, 1), -1);
+            }
         }
 
         double flp = vertL + rot + horiz;
