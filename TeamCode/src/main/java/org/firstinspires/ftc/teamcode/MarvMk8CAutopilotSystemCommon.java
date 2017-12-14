@@ -5,6 +5,7 @@ import android.content.Context;
 import com.evolutionftc.autopilot.AutopilotSegment;
 import com.evolutionftc.autopilot.AutopilotSystem;
 import com.evolutionftc.autopilot.AutopilotTracker;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -22,6 +23,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
 
     public void setMarvCommon(MarvMk8CCommon marv){
         this.marv = marv;
+        marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     public void onSegmentTransition(AutopilotSegment previous, AutopilotSegment next, boolean wasOkayToContinue) {
@@ -75,17 +77,29 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             while (System.currentTimeMillis() < time + 3000) {
             }
 
-            marv.setAngleHold(0);
 
-            while (!marv.angleHoldHasSettled()) {
-                marv.drive(0,0,0); // allow angle snapping to run
+
+            if (marv.isOnRedSide) {
+                double frZero = (marv.fr.getCurrentPosition()+marv.fl.getCurrentPosition())/2.0;
+                while ((marv.fr.getCurrentPosition()+marv.fl.getCurrentPosition())/2.0 < frZero + 800) {
+                    marv.drive(0.1, 0.1, 0);
+                }
+
+                marv.drive(0, 0, 0);
+            }
+            else { // marv.isOnBlueSide
+                double frZero = (marv.fr.getCurrentPosition()+marv.fl.getCurrentPosition())/2.0;
+                while ((marv.fr.getCurrentPosition()+marv.fl.getCurrentPosition())/2.0 > frZero - 800) {
+                    marv.drive(-0.1, -0.1, 0);
+                }
+
+                marv.drive(0, 0, 0);
             }
 
+            time = System.currentTimeMillis();
+            while (System.currentTimeMillis() < time + 3000) {
+            }
 
-            // drive off balanacy bird
-
-
-            /*
             if (marv.isOnRedSide) {
                 if (marv.isOnBSide) {
                     marv.setAngleHold(180);
@@ -107,7 +121,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
                 marv.drive(0,0,0); // allow angle snapping to run
             }
 
-            */
+
 
         }
         else if (previous.id.equals("approach_crypto")){

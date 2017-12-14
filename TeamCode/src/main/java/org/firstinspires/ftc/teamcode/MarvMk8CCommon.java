@@ -48,6 +48,8 @@ public class MarvMk8CCommon {
 
     boolean angleHoldIsEnabled;
     double angleHoldAngle;
+
+    double angleHoldPowerCap = 0.3;
     
     double winchZeroPosition;
     
@@ -189,6 +191,10 @@ public class MarvMk8CCommon {
         angleHoldAngle = angleDegs;
     }
 
+    public void setAngleHoldPowerCap(double powerCap) {
+        angleHoldPowerCap = powerCap;
+    }
+
     public void disableAngleHold() {
         angleHoldIsEnabled = false;
     }
@@ -212,8 +218,8 @@ public class MarvMk8CCommon {
             EssentialHeading heading = EssentialHeading.fromInvertedOrientation(imuGetOrientation());
             double degreesError = new EssentialHeading(angleHoldAngle).subtract(heading).getAngleDegrees();
             if (Math.abs(degreesError) > 1) {
-                rot += 0.04 * (degreesError);
-                rot = Math.max(Math.min(rot, 0.2), -0.2);
+                rot += 0.03 * (degreesError);
+                rot = Math.max(Math.min(rot, angleHoldPowerCap), -angleHoldPowerCap);
             }
         }
 
