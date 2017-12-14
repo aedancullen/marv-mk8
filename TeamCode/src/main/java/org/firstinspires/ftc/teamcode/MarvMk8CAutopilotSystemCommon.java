@@ -81,16 +81,16 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
 
             if (marv.isOnRedSide) {
                 double frZero = (marv.fr.getCurrentPosition()+marv.fl.getCurrentPosition())/2.0;
-                while ((marv.fr.getCurrentPosition()+marv.fl.getCurrentPosition())/2.0 < frZero + 800) {
-                    marv.drive(0.1, 0.1, 0);
+                while ((marv.fr.getCurrentPosition()+marv.fl.getCurrentPosition())/2.0 < frZero + 1000) {
+                    marv.drive(0.15, 0.15, 0);
                 }
 
                 marv.drive(0, 0, 0);
             }
             else { // marv.isOnBlueSide
                 double frZero = (marv.fr.getCurrentPosition()+marv.fl.getCurrentPosition())/2.0;
-                while ((marv.fr.getCurrentPosition()+marv.fl.getCurrentPosition())/2.0 > frZero - 800) {
-                    marv.drive(-0.1, -0.1, 0);
+                while ((marv.fr.getCurrentPosition()+marv.fl.getCurrentPosition())/2.0 > frZero - 1000) {
+                    marv.drive(-0.15, -0.15, 0);
                 }
 
                 marv.drive(0, 0, 0);
