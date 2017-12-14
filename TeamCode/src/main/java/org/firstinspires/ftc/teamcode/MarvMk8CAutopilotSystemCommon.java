@@ -108,7 +108,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             }
 
             */
-            
+
         }
         else if (previous.id.equals("approach_crypto")){
             // Approach and glyph ejection routine

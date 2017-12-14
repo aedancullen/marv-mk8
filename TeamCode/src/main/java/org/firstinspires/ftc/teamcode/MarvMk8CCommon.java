@@ -212,8 +212,8 @@ public class MarvMk8CCommon {
             EssentialHeading heading = EssentialHeading.fromInvertedOrientation(imuGetOrientation());
             double degreesError = new EssentialHeading(angleHoldAngle).subtract(heading).getAngleDegrees();
             if (Math.abs(degreesError) > 1) {
-                rot += 0.05 * (degreesError);
-                rot = Math.max(Math.min(rot, 0.25), -0.25);
+                rot += 0.04 * (degreesError);
+                rot = Math.max(Math.min(rot, 0.2), -0.2);
             }
         }
 
