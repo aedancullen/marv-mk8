@@ -193,6 +193,12 @@ public class MarvMk8CCommon {
         angleHoldIsEnabled = false;
     }
 
+    public boolean angleHoldHasSettled() {
+        EssentialHeading heading = EssentialHeading.fromInvertedOrientation(imuGetOrientation());
+        double degreesError = new EssentialHeading(angleHoldAngle).subtract(heading).getAngleDegrees();
+        return (Math.abs(degreesError) <= 1);
+    }
+
     public void drive(
             double vertL,
             double vertR,
@@ -206,8 +212,8 @@ public class MarvMk8CCommon {
             EssentialHeading heading = EssentialHeading.fromInvertedOrientation(imuGetOrientation());
             double degreesError = new EssentialHeading(angleHoldAngle).subtract(heading).getAngleDegrees();
             if (Math.abs(degreesError) > 1) {
-                rot += 0.01 * (degreesError);
-                rot = Math.max(Math.min(rot, 0.2), -0.2);
+                rot += 0.05 * (degreesError);
+                rot = Math.max(Math.min(rot, 0.25), -0.25);
             }
         }
 

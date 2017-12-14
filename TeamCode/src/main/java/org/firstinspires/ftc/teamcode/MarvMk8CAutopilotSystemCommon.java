@@ -32,7 +32,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             marv.setDropskiDown();
 
             long time = System.currentTimeMillis();
-            while (System.currentTimeMillis() < time + 1500) {
+            while (System.currentTimeMillis() < time + 3000) {
             }
 
 
@@ -72,15 +72,26 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             marv.setDropskiUp();
 
             time = System.currentTimeMillis();
-            while (System.currentTimeMillis() < time + 2000) {
+            while (System.currentTimeMillis() < time + 3000) {
             }
 
+            marv.setAngleHold(0);
+
+            while (!marv.angleHoldHasSettled()) {
+                marv.drive(0,0,0); // allow angle snapping to run
+            }
+
+
+            // drive off balanacy bird
+
+
+            /*
             if (marv.isOnRedSide) {
                 if (marv.isOnBSide) {
                     marv.setAngleHold(180);
                 }
                 else { // marv.isOnASide
-                    marv.setAngleHold(270);
+                    marv.setAngleHold(-90);
                 }
             }
             else { // marv.isOnBlueSide
@@ -88,11 +99,16 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
                     marv.setAngleHold(0);
                 }
                 else { // marv.isOnASide
-                    marv.setAngleHold(270);
+                    marv.setAngleHold(-90);
                 }
             }
 
+            while (!marv.angleHoldHasSettled()) {
+                marv.drive(0,0,0); // allow angle snapping to run
+            }
 
+            */
+            
         }
         else if (previous.id.equals("approach_crypto")){
             // Approach and glyph ejection routine
