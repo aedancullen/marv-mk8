@@ -111,8 +111,12 @@ public class MarvMk8CCommon {
     }
 
     public double imuGetHeadingDegs() {
-        Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.RADIANS);
+        Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         return angles.firstAngle;
+    }
+
+    public Orientation imuGetOrientation() {
+        return imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
     }
 
     public void setDropskiUp() {
@@ -197,10 +201,13 @@ public class MarvMk8CCommon {
         double rot = 0;
 
         if (angleHoldIsEnabled) {
-            double heading = imuGetHeadingDegs();
-            if (Math.abs(heading - angleHoldAngle) > 1) {
-                rot += 0.01 * (heading - angleHoldAngle);
-                rot = Math.max(Math.min(rot, 1), -1);
+            // it always comes in handy, dat EssentialHeading
+            // much less annoying than the ftc_app "Orientation"
+            EssentialHeading heading = EssentialHeading.fromInvertedOrientation(imuGetOrientation());
+            double degreesError = new EssentialHeading(angleHoldAngle).subtract(heading).getAngleDegrees();
+            if (Math.abs(degreesError) > 1) {
+                rot += 0.01 * (degreesError);
+                rot = Math.max(Math.min(rot, 0.2), -0.2);
             }
         }
 
