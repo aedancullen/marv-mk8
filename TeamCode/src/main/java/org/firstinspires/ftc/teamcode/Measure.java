@@ -42,7 +42,7 @@ public class Measure extends OpMode {
 
     public void init() {
 
-        imu = (BNO055IMU)hardwareMap.i2cDevice.get("imu");
+        imu = hardwareMap.get(BNO055IMU.class, "imu");
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
