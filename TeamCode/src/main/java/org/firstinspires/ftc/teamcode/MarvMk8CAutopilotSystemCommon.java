@@ -37,35 +37,38 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             while (System.currentTimeMillis() < time + 3000) {
             }
 
+            if (marv.dropskiIsConfident()) {
+                if ((marv.dropskiIsRed() && marv.isOnRedSide) || (!marv.dropskiIsRed() && !marv.isOnRedSide)) {
+                    double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
+                    while ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 < frZero + 75) {
+                        marv.fr.setPower(0.15);
+                        marv.br.setPower(0.15);
+                        marv.fl.setPower(-0.15);
+                        marv.bl.setPower(-0.15);
+                    }
 
-            if ((marv.dropskiIsRed() && marv.isOnRedSide) || (!marv.dropskiIsRed() && !marv.isOnRedSide)) {
-                double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
-                while ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 < frZero + 75) {
-                    marv.fr.setPower(0.15);
-                    marv.br.setPower(0.15);
-                    marv.fl.setPower(-0.15);
-                    marv.bl.setPower(-0.15);
+                    marv.fr.setPower(0);
+                    marv.br.setPower(0);
+                    marv.fl.setPower(0);
+                    marv.bl.setPower(0);
                 }
+                else {
+                    double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
+                    while ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 > frZero - 75) {
+                        marv.fr.setPower(-0.15);
+                        marv.br.setPower(-0.15);
+                        marv.fl.setPower(0.15);
+                        marv.bl.setPower(0.15);
+                    }
 
-                marv.fr.setPower(0);
-                marv.br.setPower(0);
-                marv.fl.setPower(0);
-                marv.bl.setPower(0);
-            }
-            else {
-                double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
-                while ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 > frZero - 75) {
-                    marv.fr.setPower(-0.15);
-                    marv.br.setPower(-0.15);
-                    marv.fl.setPower(0.15);
-                    marv.bl.setPower(0.15);
+                    marv.fr.setPower(0);
+                    marv.br.setPower(0);
+                    marv.fl.setPower(0);
+                    marv.bl.setPower(0);
                 }
-
-                marv.fr.setPower(0);
-                marv.br.setPower(0);
-                marv.fl.setPower(0);
-                marv.bl.setPower(0);
             }
+
+
 
             //time = System.currentTimeMillis();
             //while (System.currentTimeMillis() < time + 1500) {
@@ -121,6 +124,11 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
                 marv.drive(0,0,0); // allow angle snapping to run
             }
 
+            marv.drive(0, 0, 0); // ensure motors off
+
+            time = System.currentTimeMillis();
+            while (System.currentTimeMillis() < time + 3000) {
+            }
 
 
         }

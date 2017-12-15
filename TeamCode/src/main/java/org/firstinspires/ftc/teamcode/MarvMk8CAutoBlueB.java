@@ -23,7 +23,7 @@ public class MarvMk8CAutoBlueB extends LinearOpMode {
         marv.isOnRedSide = false;
         marv.isOnBSide = true;
 
-        mbxTracker = new AutopilotTrackerMso(marv.sonarR, marv.sonarB, 7.25, 2.25);
+        mbxTracker = new AutopilotTrackerMso(marv.sonarR, marv.sonarB, 7, 2);
 
         marvAuto = new MarvMk8CAutopilotSystemCommon(mbxTracker, telemetry, hardwareMap.appContext);
         marvAuto.setMarvCommon(marv);

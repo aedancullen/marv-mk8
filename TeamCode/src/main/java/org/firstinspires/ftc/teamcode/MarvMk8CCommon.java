@@ -133,6 +133,10 @@ public class MarvMk8CCommon {
         return (dropskiColor.red() > dropskiColor.blue());
     }
 
+    public boolean dropskiIsConfident() {
+        return (dropskiColor.red() != 0 || dropskiColor.blue() != 0);
+    }
+
     public void setZeroPowerBehavior(DcMotor.ZeroPowerBehavior behavior) {
         if (behavior != lastZeroPowerBehavior) {
             lastZeroPowerBehavior = behavior;
