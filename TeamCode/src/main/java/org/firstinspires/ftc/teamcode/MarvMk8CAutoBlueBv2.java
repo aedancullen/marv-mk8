@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
  * Created by aedan on 12/3/17.
  */
 
-@Autonomous(name="Marv-Mk8C Auto Blue B V2")
+//@Autonomous(name="Marv-Mk8C Auto Blue B V2")
 public class MarvMk8CAutoBlueBv2 extends LinearOpMode {
 
     MarvMk8CCommon marv;
