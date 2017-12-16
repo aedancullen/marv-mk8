@@ -5,6 +5,7 @@ import android.content.Context;
 import com.evolutionftc.autopilot.AutopilotSegment;
 import com.evolutionftc.autopilot.AutopilotSystem;
 import com.evolutionftc.autopilot.AutopilotTracker;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -17,8 +18,11 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
 
     public MarvMk8CCommon marv;
 
-    public MarvMk8CAutopilotSystemCommon(AutopilotTracker tracker, Telemetry telemetry, Context appContext){
+    LinearOpMode mode;
+
+    public MarvMk8CAutopilotSystemCommon(LinearOpMode mode, AutopilotTracker tracker, Telemetry telemetry, Context appContext){
         super(tracker, telemetry, appContext);
+        this.mode = mode;
     }
 
     public void setMarvCommon(MarvMk8CCommon marv){
@@ -34,11 +38,11 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             marv.setDropskiDown();
 
             long time = System.currentTimeMillis();
-            while (System.currentTimeMillis() < time + 3000) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000) {
             }
 
             if (marv.dropskiIsConfident()) {
-                if ((marv.dropskiIsRed() && marv.isOnRedSide) || (!marv.dropskiIsRed() && !marv.isOnRedSide)) {
+                if (mode.opModeIsActive() && ((marv.dropskiIsRed() && marv.isOnRedSide) || (!marv.dropskiIsRed() && !marv.isOnRedSide))) {
                     double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
                     while ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 < frZero + 75) {
                         marv.fr.setPower(0.15);
@@ -54,7 +58,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
                 }
                 else {
                     double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
-                    while ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 > frZero - 75) {
+                    while (mode.opModeIsActive() && ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 > frZero - 75)) {
                         marv.fr.setPower(-0.15);
                         marv.br.setPower(-0.15);
                         marv.fl.setPower(0.15);
@@ -77,14 +81,14 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             marv.setDropskiUp();
 
             time = System.currentTimeMillis();
-            while (System.currentTimeMillis() < time + 3000) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000) {
             }
 
 
 
             if (marv.isOnRedSide) {
                 double frZero = marv.fr.getCurrentPosition();
-                while (marv.fr.getCurrentPosition() > frZero - 1000) {
+                while (mode.opModeIsActive() && marv.fr.getCurrentPosition() < frZero + 1100) {
                     marv.drive(0.15, 0.15, 0);
                 }
 
@@ -92,7 +96,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             }
             else { // marv.isOnBlueSide
                 double frZero = marv.fr.getCurrentPosition();
-                while (marv.fr.getCurrentPosition() < frZero + 1000) {
+                while (mode.opModeIsActive() && marv.fr.getCurrentPosition() > frZero - 1100) {
                     marv.drive(-0.15, -0.15, 0);
                 }
 
@@ -100,7 +104,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             }
 
             time = System.currentTimeMillis();
-            while (System.currentTimeMillis() < time + 3000) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000) {
             }
 
             if (marv.isOnRedSide) {
@@ -121,7 +125,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             }
 
             time = System.currentTimeMillis();
-            while (System.currentTimeMillis() < time + 3000) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000) {
                 marv.drive(0,0,0); // allow angle snapping to run
             }
 
@@ -129,7 +133,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
 
 
         }
-        else if (previous != null && previous.id.equals("approach_crypto")){
+        else if (previous != null && previous.id.equals("__start__")){
             // Approach and glyph ejection routine
             // Can use 
             //
@@ -146,6 +150,13 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             // Then can drop glyph and proceed
             // The beauty of evolutionftc.autopilot is that we don't have to care which alliance we're on;
             // just use the coordinate system
+
+            long time = System.currentTimeMillis();
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000) {
+                marv.drive(0,0,0);
+                marv.convey(1);
+            }
+            marv.convey(0);
         }
     }
 

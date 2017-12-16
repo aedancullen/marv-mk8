@@ -126,7 +126,7 @@ public class MarvMk8CCommon {
     }
 
     public void setDropskiDown() {
-        dropski.setPosition(0.17);
+        dropski.setPosition(0.18);
     }
 
     public boolean dropskiIsRed() {
