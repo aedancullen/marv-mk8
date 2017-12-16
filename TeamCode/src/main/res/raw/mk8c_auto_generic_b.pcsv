@@ -1,2 +1,2 @@
 id,success,fail,targetx,targety,targetz,targetorientation,steeringgain,accuracyx,accuracyy,accuracyz,accuracyorientation,basepower,lowestpower,powergain,rampup,rampdown,useorientation
-__start__,none,none,35.6,15.0,0,-1,-1,2,2,999,-1,0.2,0.2,-1,false,false,false
+__start__,none,none,35.6,15.0,0,-1,-1,2,2,999,-1,0.15,0.15,-1,false,false,false
