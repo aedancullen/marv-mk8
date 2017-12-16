@@ -120,15 +120,12 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
                 }
             }
 
-            while (!marv.angleHoldHasSettled()) {
+            time = System.currentTimeMillis();
+            while (System.currentTimeMillis() < time + 3000) {
                 marv.drive(0,0,0); // allow angle snapping to run
             }
 
             marv.drive(0, 0, 0); // ensure motors off
-
-            time = System.currentTimeMillis();
-            while (System.currentTimeMillis() < time + 3000) {
-            }
 
 
         }

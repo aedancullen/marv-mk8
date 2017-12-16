@@ -92,8 +92,8 @@ public class AutopilotHost {
         navigationHalfway = dist / 2;
         navigationHalfwayX = Math.abs(distX) / 2.0;
         navigationHalfwayY = Math.abs(distY) / 2.0;
-        if (powerGain <= 0) {
-            powerGain = (basePower - lowestPower) / navigationHalfway;
+        if (this.powerGain <= 0) {
+            this.powerGain = (basePower - lowestPower) / navigationHalfway;
         }
 
     }

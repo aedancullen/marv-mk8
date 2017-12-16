@@ -35,7 +35,7 @@ public class MarvMk8CAutoBlueA extends LinearOpMode {
         while(opModeIsActive()) {
             telemetry.update();
             double[] power = marvAuto.systemTickRaw();
-            marv.drive(power[1], power[1], -power[0]);
+            marv.drive(power[1], power[1], -power[0] * 1.5);
             // drive stuffs, marvAuto knows the common routines so that's done
         }
     }
