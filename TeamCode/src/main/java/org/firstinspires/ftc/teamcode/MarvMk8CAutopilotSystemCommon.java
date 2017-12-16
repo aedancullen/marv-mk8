@@ -28,7 +28,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
 
     public void onSegmentTransition(AutopilotSegment previous, AutopilotSegment next, boolean wasOkayToContinue) {
         
-        if (next.id.equals("__start__")){
+        if (next != null && next.id.equals("__start__")){
             // Do vision sensing, drive off balancing stone and set angle hold
 
             marv.setDropskiDown();
@@ -132,7 +132,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
 
 
         }
-        else if (previous.id.equals("approach_crypto")){
+        else if (previous != null && previous.id.equals("approach_crypto")){
             // Approach and glyph ejection routine
             // Can use 
             //
