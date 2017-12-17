@@ -87,7 +87,9 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
 
 
             if (marv.isOnRedSide) {
-                double frZero = marv.fr.getCurrentPosition();
+                marv.fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                marv.fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                int frZero = marv.fr.getCurrentPosition();
                 while (mode.opModeIsActive() && marv.fr.getCurrentPosition() < frZero + 1100) {
                     marv.drive(0.15, 0.15, 0);
                 }
@@ -95,7 +97,9 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
                 marv.drive(0, 0, 0);
             }
             else { // marv.isOnBlueSide
-                double frZero = marv.fr.getCurrentPosition();
+                marv.fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                marv.fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                int frZero = marv.fr.getCurrentPosition();
                 while (mode.opModeIsActive() && marv.fr.getCurrentPosition() > frZero - 1100) {
                     marv.drive(-0.15, -0.15, 0);
                 }
@@ -105,6 +109,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
 
             time = System.currentTimeMillis();
             while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000) {
+                marv.drive(0, 0, 0);
             }
 
             if (marv.isOnRedSide) {
@@ -134,6 +139,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
 
         }
         else if (previous != null && previous.id.equals("__start__")){
+            marv.drive(0, 0, 0);
             // Approach and glyph ejection routine
             // Can use 
             //
@@ -156,7 +162,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
                 marv.drive(0,0,0);
                 marv.convey(1);
             }
-            marv.convey(0);
+            //marv.convey(0);
         }
     }
 

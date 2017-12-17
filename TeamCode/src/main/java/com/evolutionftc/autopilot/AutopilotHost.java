@@ -297,7 +297,7 @@ public class AutopilotHost {
                 
 	    }
 	    else {
-		powerX = Math.max((-basePower + powerAdjX), -lowestPower);
+		powerX = Math.min((-basePower + powerAdjX), -lowestPower);
 	    }
 		
 	    if (distY > 0) {
@@ -305,7 +305,7 @@ public class AutopilotHost {
                 
 	    }
 	    else {
-		powerY = Math.max((-basePower + powerAdjY), -lowestPower);
+		powerY = Math.min((-basePower + powerAdjY), -lowestPower);
 	    }
 	
 	    powerX = Math.min(powerX, 1);
