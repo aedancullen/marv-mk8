@@ -49,7 +49,7 @@ public class MarvMk8CCommon {
     boolean angleHoldIsEnabled;
     double angleHoldAngle;
 
-    double angleHoldPowerCap = 0.25;
+    double angleHoldPowerCap = 0.33;
     
     double winchZeroPosition;
     

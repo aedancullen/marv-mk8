@@ -90,7 +90,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
                 marv.fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 marv.fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 int frZero = marv.fr.getCurrentPosition();
-                while (mode.opModeIsActive() && marv.fr.getCurrentPosition() < frZero + 1100) {
+                while (mode.opModeIsActive() && marv.fr.getCurrentPosition() < 1100) {
                     marv.drive(0.15, 0.15, 0);
                 }
 
@@ -100,7 +100,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
                 marv.fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 marv.fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 int frZero = marv.fr.getCurrentPosition();
-                while (mode.opModeIsActive() && marv.fr.getCurrentPosition() > frZero - 1100) {
+                while (mode.opModeIsActive() && marv.fr.getCurrentPosition() > -1100) {
                     marv.drive(-0.15, -0.15, 0);
                 }
 
