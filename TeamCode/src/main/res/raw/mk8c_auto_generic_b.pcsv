@@ -1,3 +1,3 @@
 id,success,fail,targetx,targety,targetz,targetorientation,steeringgain,accuracyx,accuracyy,accuracyz,accuracyorientation,basepower,lowestpower,powergain,rampup,rampdown,useorientation
-__start__,reverse,none,34.6,16.0,0,-1,-1,2,2,999,-1,0.15,0.15,0.02,false,true,false
-reverse,none,none,34.6,20.0,0,-1,-1,2,2,999,-1,0.15,0.15,0.02,false,true,false
+__start__,reverse,none,33.6,16.0,0,-1,-1,1.5,1.5,999,-1,0.15,0.15,0.02,false,true,false
+reverse,none,none,33.6,20.0,0,-1,-1,1.5,1.5,999,-1,0.15,0.15,0.02,false,true,false

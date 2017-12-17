@@ -88,9 +88,12 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
 
             if (marv.isOnRedSide) {
                 marv.fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                while (marv.fr.getCurrentPosition() != 0) {}
                 marv.fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                int frZero = marv.fr.getCurrentPosition();
-                while (mode.opModeIsActive() && marv.fr.getCurrentPosition() < 1100) {
+                marv.fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                while (marv.fl.getCurrentPosition() != 0) {}
+                marv.fl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                while (mode.opModeIsActive() && Math.abs((marv.fr.getCurrentPosition()+marv.fl.getCurrentPosition())/2.0) < 1100) {
                     marv.drive(0.15, 0.15, 0);
                 }
 
@@ -98,9 +101,12 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             }
             else { // marv.isOnBlueSide
                 marv.fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                while (marv.fr.getCurrentPosition() != 0) {}
                 marv.fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                int frZero = marv.fr.getCurrentPosition();
-                while (mode.opModeIsActive() && marv.fr.getCurrentPosition() > -1100) {
+                marv.fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                while (marv.fl.getCurrentPosition() != 0) {}
+                marv.fl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                while (mode.opModeIsActive() && Math.abs((marv.fr.getCurrentPosition()+marv.fl.getCurrentPosition())/2.0) < 1100) {
                     marv.drive(-0.15, -0.15, 0);
                 }
 
@@ -108,7 +114,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             }
 
             time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 1000) {
                 marv.drive(0, 0, 0);
             }
 
@@ -130,7 +136,7 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             }
 
             time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 5000 && !marv.angleHoldHasSettled()) {
                 marv.drive(0,0,0); // allow angle snapping to run
             }
 
