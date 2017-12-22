@@ -33,6 +33,8 @@ public class MarvMk8CCommon {
     AnalogInput sonarR;
     AnalogInput sonarB;
 
+    DigitalChannel sonarRx;
+
     DcMotor collectorL;
     DcMotor collectorR;
 
@@ -94,6 +96,9 @@ public class MarvMk8CCommon {
         sonarL = hardwareMap.analogInput.get("sonarL");
         sonarR = hardwareMap.analogInput.get("sonarR");
         sonarB = hardwareMap.analogInput.get("sonarB");
+
+        sonarRx = hardwareMap.digitalChannel.get("sonarRx");
+        sonarRx.setMode(DigitalChannel.Mode.OUTPUT);
 
         endstop = hardwareMap.digitalChannel.get("endstop");
         endstop.setMode(DigitalChannel.Mode.INPUT);
