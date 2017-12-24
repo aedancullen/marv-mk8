@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
  * Created by aedan on 12/2/17.
  */
 
-@TeleOp(name="Marv-Mk8C User Control")
+//@TeleOp(name="Marv-Mk8C User Control")
 public class MarvMk8CUserControl  extends OpMode {
 
     MarvMk8CCommon marv;
@@ -18,14 +18,7 @@ public class MarvMk8CUserControl  extends OpMode {
         marv = new MarvMk8CCommon(hardwareMap);
     }
 
-    public void loop() {
-
-        if (gamepad1.left_bumper || gamepad1.right_bumper) {
-            marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        }
-        else{
-            marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        }
+    public void wheelDriveTick() {
 
         double horiz;
         if (gamepad1.left_trigger > 0) {
@@ -36,6 +29,18 @@ public class MarvMk8CUserControl  extends OpMode {
         }
 
         marv.drive(-gamepad1.left_stick_y/2, -gamepad1.right_stick_y/2, horiz);
+    }
+
+    public void loop() {
+        telemetry.update();
+        wheelDriveTick();
+
+        if (gamepad1.left_bumper || gamepad1.right_bumper) {
+            marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        }
+        else{
+            marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        }
 
 
         if (gamepad2.left_bumper) {
