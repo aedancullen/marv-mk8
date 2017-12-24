@@ -55,6 +55,7 @@ public class MarvMk8CUserBlueB extends MarvMk8CUserControl {
         else {
             // Condition to stop navigation
             isNavigating = false;
+            marvAuto.host.setNavigationStatus(AutopilotHost.NavigationStatus.STOPPED);
             marv.disableAngleHold();
         }
 
