@@ -44,6 +44,7 @@ public class MarvMk8CCommon {
     CRServo conveyorB;
 
     DigitalChannel endstop;
+    DigitalChannel endstopTop;
 
     Servo dropski;
     ColorSensor dropskiColor;
@@ -104,6 +105,8 @@ public class MarvMk8CCommon {
 
         endstop = hardwareMap.digitalChannel.get("endstop");
         endstop.setMode(DigitalChannel.Mode.INPUT);
+        endstopTop = hardwareMap.digitalChannel.get("endstopTop");
+        endstopTop.setMode(DigitalChannel.Mode.INPUT);
 
         dropski = hardwareMap.servo.get("dropski");
         dropskiColor = hardwareMap.colorSensor.get("dropskiColor");
@@ -172,6 +175,15 @@ public class MarvMk8CCommon {
             winchZeroPosition  = winch.getCurrentPosition();
         }
     }
+
+    public void maxWinchTick() {
+        if (endstopTop.getState()) { // the rev endstop is not intuitive
+            winch.setPower(0.25);
+        }
+        else {
+            winch.setPower(0);
+        }
+    }
     
     public void winchToHeightTick(int height){
         int targetPosition = winchUpl * height;
@@ -187,15 +199,12 @@ public class MarvMk8CCommon {
     }
     
     public void winchTick() {
-        if (winch.getCurrentPosition()-winchZeroPosition > winchMaxPosition) {
-            // Bailout for mechanical safety (protect the lift mechanism from damage)
-            winch.setPower(-0.25); // unique behavior for diagnostic detection
-            return;
-        }
-        
-        
+
         if (winchLevel == 0) {
             homeWinchTick();
+        }
+        else if (winchLevel == 3) {
+            maxWinchTick();
         }
         else {
             winchToHeightTick(winchLevel);
