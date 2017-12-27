@@ -68,18 +68,20 @@ public class MarvMk8CCommon {
 
     public MarvMk8CCommon(HardwareMap hardwareMap){
         fl = hardwareMap.dcMotor.get("fl");
+        fl.setDirection(DcMotorSimple.Direction.REVERSE);
         fl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         fr = hardwareMap.dcMotor.get("fr");
-        fr.setDirection(DcMotorSimple.Direction.REVERSE);
+        //fr.setDirection(DcMotorSimple.Direction.REVERSE);
         fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         bl = hardwareMap.dcMotor.get("bl");
+        bl.setDirection(DcMotorSimple.Direction.REVERSE);
         bl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         br = hardwareMap.dcMotor.get("br");
         br.setDirection(DcMotorSimple.Direction.REVERSE);
-        br.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //br.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
         collectorL = hardwareMap.dcMotor.get("collectorL");
