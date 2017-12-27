@@ -115,6 +115,8 @@ public class MarvMk8CCommon {
 
         setDropskiUp();
 
+        setEncoderBehavior(DcMotor.RunMode.RUN_USING_ENCODER);
+
     }
 
     public double imuGetHeadingDegs() {
@@ -150,6 +152,13 @@ public class MarvMk8CCommon {
             bl.setZeroPowerBehavior(behavior);
             br.setZeroPowerBehavior(behavior);
         }
+    }
+
+    public void setEncoderBehavior(DcMotor.RunMode behavior) {
+        fl.setMode(behavior);
+        fr.setMode(behavior);
+        bl.setMode(behavior);
+        br.setMode(behavior);
     }
     
     public void homeWinchTick() {
