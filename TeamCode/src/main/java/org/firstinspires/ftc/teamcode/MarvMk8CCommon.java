@@ -43,6 +43,9 @@ public class MarvMk8CCommon {
     CRServo conveyorA;
     CRServo conveyorB;
 
+    Servo flippoA;
+    Servo flippoB;
+
     DigitalChannel endstop;
     DigitalChannel endstopTop;
 
@@ -61,6 +64,9 @@ public class MarvMk8CCommon {
     int winchLevel=0;
     int winchTolerance = 100; /*set reasonably*/
     int winchUpl = winchMaxPosition / 3;
+
+
+    double flippoMax = 0; // set properly
 
     BNO055IMU imu;
 
@@ -90,6 +96,9 @@ public class MarvMk8CCommon {
 
         conveyorA = hardwareMap.crservo.get("conveyorA");
         conveyorB = hardwareMap.crservo.get("conveyorB");
+
+        flippoA = hardwareMap.servo.get("flippoA");
+        flippoB = hardwareMap.servo.get("flippoB");
         
         winch = hardwareMap.dcMotor.get("winch");
         winch.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

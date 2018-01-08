@@ -93,10 +93,10 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             if (marv.isOnRedSide) {
                 marv.fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 while (marv.fr.getCurrentPosition() != 0) {}
-                marv.fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                marv.fr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 marv.fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 while (marv.fl.getCurrentPosition() != 0) {}
-                marv.fl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                marv.fl.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 1200) {
                     marv.drive(0.15, 0.15, 0);
                     try{Thread.sleep(1);} catch (Exception e) {}
@@ -107,10 +107,10 @@ public class MarvMk8CAutopilotSystemCommon extends AutopilotSystem {
             else { // marv.isOnBlueSide
                 marv.fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 while (marv.fr.getCurrentPosition() != 0) {}
-                marv.fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                marv.fr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 marv.fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 while (marv.fl.getCurrentPosition() != 0) {}
-                marv.fl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                marv.fl.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 1200) {
                     marv.drive(-0.15, -0.15, 0);
                     try{Thread.sleep(1);} catch (Exception e) {}
