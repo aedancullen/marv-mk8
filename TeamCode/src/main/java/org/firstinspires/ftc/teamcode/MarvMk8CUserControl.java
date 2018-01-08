@@ -21,12 +21,13 @@ public class MarvMk8CUserControl  extends OpMode {
     public void wheelDriveTick() {
 
         double horiz;
-        if (gamepad1.left_trigger > 0) {
+        /*if (gamepad1.left_trigger > 0) {
             horiz = -gamepad1.left_trigger/2;
         }
         else {
             horiz = gamepad1.right_trigger/2;
-        }
+        }*/
+        horiz = (gamepad1.right_trigger / 2) - (gamepad1.left_trigger / 2);
 
         marv.drive(-gamepad1.left_stick_y/2, -gamepad1.right_stick_y/2, horiz);
     }
@@ -52,6 +53,8 @@ public class MarvMk8CUserControl  extends OpMode {
         else {
             marv.convey(0);
         }
+
+        marv.setFlippoPos((gamepad2.left_trigger+gamepad2.right_trigger) / 2.0);
 
 
         if (gamepad2.dpad_down) {

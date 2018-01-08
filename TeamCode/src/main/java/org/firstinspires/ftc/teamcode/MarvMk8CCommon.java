@@ -150,6 +150,11 @@ public class MarvMk8CCommon {
         dropski.setPosition(0.18);
     }
 
+    public void setFlippoPos(double pos) {
+        flippoA.setPosition(flippoMax * pos);
+        flippoB.setPosition(-flippoMax * pos);
+    }
+
     public boolean dropskiIsRed() {
         return (dropskiColor.red() > dropskiColor.blue());
     }
