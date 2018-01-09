@@ -59,8 +59,9 @@ public class MarvMk8CUserRedA extends MarvMk8CUserControl {
             marv.disableAngleHold();
         }
 
+        double[] power = marvAuto.systemTickRaw();
+
         if (isNavigating) {
-            double[] power = marvAuto.systemTickRaw();
             marv.drive(power[1], power[1], power[0]);
         }
         else {
