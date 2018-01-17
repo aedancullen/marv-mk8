@@ -32,6 +32,7 @@ class JewelOverlayVisionProcessor extends VisionProcessor {
     }
 
     private boolean isRedBlueInThatOrder; // descriptive name much
+    private boolean isConfident;
 
     public boolean getIsRedBlueInThatOrder() {
         return isRedBlueInThatOrder; // java ridiculousness at its finest
@@ -58,15 +59,24 @@ class JewelOverlayVisionProcessor extends VisionProcessor {
 
             if (rLeft > rRight && bLeft < bRight) {
                 isRedBlueInThatOrder = true;
-
+                isConfident = true;
                 Imgproc.rectangle(output, locLeft.tl(), locLeft.br(), new Scalar(255, 0, 0, 128), FILLED);
                 Imgproc.rectangle(output, locRight.tl(), locRight.br(), new Scalar(0, 0, 255, 128), FILLED);
             }
-            else {
+            else if (rLeft < rRight && bLeft > bRight){
                 isRedBlueInThatOrder = false;
+                isConfident = true;
                 Imgproc.rectangle(output, locLeft.tl(), locLeft.br(), new Scalar(0, 0, 255, 128), FILLED);
                 Imgproc.rectangle(output, locRight.tl(), locRight.br(), new Scalar(255, 0, 0, 128), FILLED);
             }
+            else {
+                isConfident = false;
+                Imgproc.rectangle(output, loc.tl(), loc.br(), new Scalar(255, 255, 0, 128), FILLED);
+            }
+        }
+        else {
+            // as the ftc_app devs would say, "PARANOIA!!!!!!"
+            isConfident = false;
         }
 
         return output;
@@ -75,7 +85,7 @@ class JewelOverlayVisionProcessor extends VisionProcessor {
 
 }
 
-@Autonomous(name="JewelTester")
+@Autonomous(name="Jewel Finder")
 public class VisionTestJewels extends OpMode {
 
     VisionProcessor processor;
