@@ -217,9 +217,9 @@ public class MarvMk8CCommon {
         if (winchLevel == 0) {
             homeWinchTick();
         }
-        else if (winchLevel == 3) {
+        /*else if (winchLevel == 3) {
             maxWinchTick();
-        }
+        }*/
         else {
             winchToHeightTick(winchLevel);
         }
