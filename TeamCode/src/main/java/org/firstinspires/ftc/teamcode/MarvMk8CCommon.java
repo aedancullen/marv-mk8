@@ -66,7 +66,7 @@ public class MarvMk8CCommon {
     int winchUpl = winchMaxPosition / 3;
 
 
-    double flippoMax = 0; // set properly
+    double flippoMax = 0.07; // set properly
 
     BNO055IMU imu;
 
