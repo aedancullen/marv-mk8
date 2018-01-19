@@ -284,18 +284,18 @@ public class MarvMk8CCommon {
     }
 
     public void collect(double speed) {
-        collectorL.setPower(speed);
-        collectorR.setPower(-speed);
+        collectorL.setPower(-speed);
+        collectorR.setPower(speed);
     }
 
     public void counterR(double speed) {
-        collectorL.setPower(-speed);
-        collectorR.setPower(-speed);
+        collectorL.setPower(speed);
+        collectorR.setPower(speed);
     }
 
     public void counterL(double speed) {
-        collectorL.setPower(speed);
-        collectorR.setPower(speed);
+        collectorL.setPower(-speed);
+        collectorR.setPower(-speed);
     }
 
 
