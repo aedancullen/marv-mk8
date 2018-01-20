@@ -151,8 +151,8 @@ public class MarvMk8CCommon {
     }
 
     public void setFlippoPos(double pos) {
-        flippoA.setPosition(flippoMax * pos);
-        flippoB.setPosition(-flippoMax * pos);
+        flippoA.setPosition(0.5+ (flippoMax * pos));
+        flippoB.setPosition(0.5+ (-flippoMax * pos));
     }
 
     public boolean dropskiIsRed() {
