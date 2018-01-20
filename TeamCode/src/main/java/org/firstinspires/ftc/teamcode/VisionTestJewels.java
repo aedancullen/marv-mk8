@@ -39,6 +39,10 @@ class JewelOverlayVisionProcessor extends VisionProcessor {
         return isRedBlueInThatOrder; // java ridiculousness at its finest
     }
 
+    public boolean getIsConfident() {
+        return isConfident;
+    }
+
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         Mat output = super.onCameraFrame(inputFrame);
 
@@ -99,7 +103,7 @@ class JewelOverlayVisionProcessor extends VisionProcessor {
 @Autonomous(name="Jewel Finder")
 public class VisionTestJewels extends OpMode {
 
-    VisionProcessor processor;
+    JewelOverlayVisionProcessor processor;
 
     public void init() {
         CameraSpec zteSpeedCameraLandscape = new CameraSpec(0.9799, Math.PI / 2); // nobody cares about positioning stuff
@@ -113,7 +117,18 @@ public class VisionTestJewels extends OpMode {
     }
 
     public void loop() {
-        //Nothing
+        if (processor.getIsConfident()) {
+            telemetry.addData("Detected currently", "YES");
+        }
+        else {
+            telemetry.addData("Detected currently", "NO");
+        }
+        if (processor.getIsRedBlueInThatOrder()) {
+            telemetry.addData("Most recently detected order", "RED - BLUE");
+        }
+        else {
+            telemetry.addData("Most recently detected order", "BLUE - RED");
+        }
     }
 
     public void stop() {
