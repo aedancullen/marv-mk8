@@ -58,8 +58,8 @@ class JewelOverlayVisionProcessor extends VisionProcessor {
             Scalar avgRight;
 
             try {
-                avgLeft = mean(output.submat(locLeft));
-                avgRight = mean(output.submat(locRight));
+                avgLeft = mean(lastFrame.submat(locLeft));
+                avgRight = mean(lastFrame.submat(locRight));
             }
             catch (CvException e) {
                 // locLeft and/or locRight overlap frame border; ignore
