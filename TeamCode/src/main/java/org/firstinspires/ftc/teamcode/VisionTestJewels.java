@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.core.Core;
+import org.opencv.core.CvException;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -49,8 +50,18 @@ class JewelOverlayVisionProcessor extends VisionProcessor {
             Rect locLeft = new Rect(new Point(loc.tl().x, loc.tl().y), new Point(loc.br().x - (loc.width / 2.0), loc.br().y));
             Rect locRight = new Rect(new Point(loc.tl().x + (loc.width / 2.0), loc.tl().y), new Point(loc.br().x, loc.br().y));
 
-            Scalar avgLeft = mean(output.submat(locLeft));
-            Scalar avgRight = mean(output.submat(locRight));
+            Scalar avgLeft;
+            Scalar avgRight;
+
+            try {
+                avgLeft = mean(output.submat(locLeft));
+                avgRight = mean(output.submat(locRight));
+            }
+            catch (CvException e) {
+                // locLeft and/or locRight overlap frame border; ignore
+                isConfident = false;
+                return output;
+            }
 
             double rLeft = avgLeft.val[0];
             double rRight = avgRight.val[0];
