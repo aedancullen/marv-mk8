@@ -46,7 +46,7 @@ class JewelOverlayVisionProcessor extends VisionProcessor {
         if (getIsSeen()) {
             Rect loc = getRawDetections()[0];
 
-            Rect locLeft = new Rect(new Point(loc.tl().x, loc.tl().y), new Point(loc.br().x / 2.0, loc.br().y));
+            Rect locLeft = new Rect(new Point(loc.tl().x, loc.tl().y), new Point(loc.br().x - (loc.width / 2.0), loc.br().y));
             Rect locRight = new Rect(new Point(loc.tl().x + (loc.width / 2.0), loc.tl().y), new Point(loc.br().x, loc.br().y));
 
             Scalar avgLeft = mean(output.submat(locLeft));
@@ -97,7 +97,7 @@ public class VisionTestJewels extends OpMode {
 
     public void start() {
         processor.start();
-        ObjectSpec joules = new ObjectSpec(hardwareMap.appContext, "haarcascade_evolution_joules_2k3k_20st", 6.1); // again - nobody cares
+        ObjectSpec joules = new ObjectSpec(hardwareMap.appContext, "haarcascade_evolution_jewels_2k3k_20st", 6.1); // again - nobody cares
         processor.loadObject(joules);
     }
 
