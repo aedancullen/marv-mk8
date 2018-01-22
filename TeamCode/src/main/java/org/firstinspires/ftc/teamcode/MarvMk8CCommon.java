@@ -94,7 +94,9 @@ public class MarvMk8CCommon {
 
 
         collectorL = hardwareMap.dcMotor.get("collectorL");
+        collectorL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         collectorR = hardwareMap.dcMotor.get("collectorR");
+        collectorR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         conveyorA = hardwareMap.crservo.get("conveyorA");
         conveyorB = hardwareMap.crservo.get("conveyorB");
