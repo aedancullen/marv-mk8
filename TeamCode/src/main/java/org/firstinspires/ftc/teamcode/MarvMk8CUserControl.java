@@ -58,16 +58,16 @@ public class MarvMk8CUserControl  extends OpMode {
 
 
         if (gamepad2.dpad_down) {
-            marv.collect(0.4);
+            marv.collect(0.28);
         }
         else if (gamepad2.dpad_left) {
-            marv.counterL(0.4);
+            marv.counterL(0.28);
         }
         else if (gamepad2.dpad_right) {
-            marv.counterR(0.4);
+            marv.counterR(0.28);
         }
         else if (gamepad2.dpad_up) {
-            marv.collect(-0.4);
+            marv.collect(-0.28);
         }
         else {
             marv.collect(0);
