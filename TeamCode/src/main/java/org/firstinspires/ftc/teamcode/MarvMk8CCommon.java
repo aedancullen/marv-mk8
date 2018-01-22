@@ -188,7 +188,7 @@ public class MarvMk8CCommon {
     
     public void homeWinchTick() {
         if (endstop.getState()) { // the rev endstop is not intuitive
-            winch.setPower(-0.25);
+            winch.setPower(-0.50);
         }
         else {
             winch.setPower(0);
@@ -198,7 +198,7 @@ public class MarvMk8CCommon {
 
     public void maxWinchTick() {
         if (endstopTop.getState()) { // the rev endstop is not intuitive
-            winch.setPower(0.25);
+            winch.setPower(0.75);
         }
         else {
             winch.setPower(0);
@@ -211,10 +211,10 @@ public class MarvMk8CCommon {
             winch.setPower(0);
         }
         else if (winch.getCurrentPosition()-winchZeroPosition - targetPosition > 0) {
-            winch.setPower(-0.25);
+            winch.setPower(-0.50);
         }
         else if (winch.getCurrentPosition()-winchZeroPosition - targetPosition < 0) {
-            winch.setPower(0.50);
+            winch.setPower(0.75);
         }
     }
     
