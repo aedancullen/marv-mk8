@@ -77,19 +77,17 @@ public class MarvMk8CCommon {
 
     public MarvMk8CCommon(HardwareMap hardwareMap){
         fl = hardwareMap.dcMotor.get("fl");
-        if (!MOTORCONTROL_RAW) { fl.setDirection(DcMotorSimple.Direction.REVERSE);}
         fl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         fr = hardwareMap.dcMotor.get("fr");
-        if (MOTORCONTROL_RAW) { fr.setDirection(DcMotorSimple.Direction.REVERSE);}
+        fr.setDirection(DcMotorSimple.Direction.REVERSE);
         fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         bl = hardwareMap.dcMotor.get("bl");
-        if (!MOTORCONTROL_RAW) { bl.setDirection(DcMotorSimple.Direction.REVERSE);}
         bl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         br = hardwareMap.dcMotor.get("br");
-        if (MOTORCONTROL_RAW) { br.setDirection(DcMotorSimple.Direction.REVERSE);}
+        br.setDirection(DcMotorSimple.Direction.REVERSE);
         br.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
@@ -136,6 +134,8 @@ public class MarvMk8CCommon {
         if (!MOTORCONTROL_RAW) {
             setEncoderBehavior(DcMotor.RunMode.RUN_USING_ENCODER);
         }
+
+        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
     }
 
