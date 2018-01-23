@@ -37,6 +37,7 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
         if (next != null && next.id.equals("__start__")){
             // Do vision sensing, drive off balancing stone and set angle hold
 
+            marv.setDropskiDown();
 
             CameraSpec zteSpeedCameraLandscape = new CameraSpec(0.9799, Math.PI / 2); // nobody cares about positioning stuff
             JewelOverlayVisionProcessor jewelVisionProcessor = new JewelOverlayVisionProcessor(mode.hardwareMap.appContext, zteSpeedCameraLandscape);
@@ -46,7 +47,7 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             jewelVisionProcessor.loadObject(joules);
 
             long time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000 && !jewelVisionProcessor.getIsConfident()) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000) {
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
 
@@ -55,8 +56,6 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             // voo-foria start here
 
             if (jewelVisionProcessor.getIsConfident()) {
-
-                marv.setDropskiDown();
 
                 if (mode.opModeIsActive() && ((marv.dropskiIsRed() && marv.isOnRedSide) || (!marv.dropskiIsRed() && !marv.isOnRedSide))) {
                     double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
@@ -89,10 +88,10 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
                     marv.bl.setPower(0);
                 }
 
-                marv.setDropskiUp();
             }
 
-            // use as voo-foria run timeout
+            marv.setDropskiUp();
+            
             time = System.currentTimeMillis();
             while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000) {
                 try{Thread.sleep(1);} catch (Exception e) {}
