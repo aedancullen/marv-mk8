@@ -68,7 +68,7 @@ public class MarvMk8CCommon {
 
     double flippoMax = 0.07; // set properly
 
-    final private boolean MOTORCONTROL_RAW = true;
+    final private boolean MOTORCONTROL_RAW = false;
 
     BNO055IMU imu;
 
