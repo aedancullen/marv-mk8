@@ -10,7 +10,12 @@ import com.evolutionftc.visionface.ObjectSpec;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 /**
  * Created by aedan on 12/3/17.
@@ -22,9 +27,25 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
 
     LinearOpMode mode;
 
+    VuforiaLocalizer vooforia;
+    VuforiaTrackables vooforGarbage;
+    VuforiaTrackable vooforRubbish;
+
+    RelicRecoveryVuMark detectedTrashMark;
+
     public MarvMk8CAutopilotSystemCommonV2(LinearOpMode mode, AutopilotTracker tracker, Telemetry telemetry, Context appContext){
         super(tracker, telemetry, appContext);
         this.mode = mode;
+
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+
+        parameters.vuforiaLicenseKey = "AQaSz0//////AAAAmWK7mLvLWUvPmqojdrAEgctDNGkihSVvah2Cd2y7iGo8Bg6dQUJLVoguaAqG4QYpI/87Ccb0wO4nd+jcVrzX8tF8rS4UPhr3bXkKHYtqwUjlpSvKKJzSsFGIe+MGpmmSK824Ja7JVikVoJO/u5ubCkYjm9Fyi+87T2qdjS/+RdNELgLJSDVS3Hp3nbCII6JGutHNROuLOclZCFARI1djpNJu6YNzlvCr+AJQd4Q+i0ZYv378aWnasQYifKGA8KafQMLMmNZmghljMNPDnlfFqZmn4BhItnyrBS1dbXG7BnU7xOw8DIIRq0VjEzSMiikBaUxWXxQn+K+KWahXDwchjL193WpriOF8ovjcGbeGnzJU";
+
+        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+        this.vooforia = ClassFactory.createVuforiaLocalizer(parameters);
+
+        vooforGarbage = this.vooforia.loadTrackablesFromAsset("RelicVuMark");
+        vooforRubbish = vooforGarbage.get(0);
     }
 
     public void setMarvCommon(MarvMk8CCommon marv){
@@ -54,6 +75,7 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             jewelVisionProcessor.stop();
 
             // voo-foria start here
+            vooforGarbage.activate();
 
             if (jewelVisionProcessor.getIsConfident()) {
 
@@ -97,7 +119,8 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
 
-
+            this.detectedTrashMark = RelicRecoveryVuMark.from(vooforRubbish);
+            vooforGarbage.deactivate();
 
             if (marv.isOnRedSide) {
                 marv.fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
