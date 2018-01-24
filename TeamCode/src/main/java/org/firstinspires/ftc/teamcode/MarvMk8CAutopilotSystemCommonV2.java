@@ -36,16 +36,6 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
     public MarvMk8CAutopilotSystemCommonV2(LinearOpMode mode, AutopilotTracker tracker, Telemetry telemetry, Context appContext){
         super(tracker, telemetry, appContext);
         this.mode = mode;
-
-        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
-
-        parameters.vuforiaLicenseKey = "AQaSz0//////AAAAmWK7mLvLWUvPmqojdrAEgctDNGkihSVvah2Cd2y7iGo8Bg6dQUJLVoguaAqG4QYpI/87Ccb0wO4nd+jcVrzX8tF8rS4UPhr3bXkKHYtqwUjlpSvKKJzSsFGIe+MGpmmSK824Ja7JVikVoJO/u5ubCkYjm9Fyi+87T2qdjS/+RdNELgLJSDVS3Hp3nbCII6JGutHNROuLOclZCFARI1djpNJu6YNzlvCr+AJQd4Q+i0ZYv378aWnasQYifKGA8KafQMLMmNZmghljMNPDnlfFqZmn4BhItnyrBS1dbXG7BnU7xOw8DIIRq0VjEzSMiikBaUxWXxQn+K+KWahXDwchjL193WpriOF8ovjcGbeGnzJU";
-
-        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
-        this.vooforia = ClassFactory.createVuforiaLocalizer(parameters);
-
-        vooforGarbage = this.vooforia.loadTrackablesFromAsset("RelicVuMark");
-        vooforRubbish = vooforGarbage.get(0);
     }
 
     public void setMarvCommon(MarvMk8CCommon marv){
@@ -58,8 +48,6 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
         if (next != null && next.id.equals("__start__")){
             // Do vision sensing, drive off balancing stone and set angle hold
 
-            marv.setDropskiDown();
-
             CameraSpec zteSpeedCameraLandscape = new CameraSpec(0.9799, Math.PI / 2); // nobody cares about positioning stuff
             JewelOverlayVisionProcessor jewelVisionProcessor = new JewelOverlayVisionProcessor(mode.hardwareMap.appContext, zteSpeedCameraLandscape);
 
@@ -68,20 +56,49 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             jewelVisionProcessor.loadObject(joules);
 
             long time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 5000) {
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
 
             jewelVisionProcessor.stop();
 
-            // voo-foria start here
+            marv.setDropskiDown();
+
+            VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+
+            parameters.vuforiaLicenseKey = "AQaSz0//////AAAAmWK7mLvLWUvPmqojdrAEgctDNGkihSVvah2Cd2y7iGo8Bg6dQUJLVoguaAqG4QYpI/87Ccb0wO4nd+jcVrzX8tF8rS4UPhr3bXkKHYtqwUjlpSvKKJzSsFGIe+MGpmmSK824Ja7JVikVoJO/u5ubCkYjm9Fyi+87T2qdjS/+RdNELgLJSDVS3Hp3nbCII6JGutHNROuLOclZCFARI1djpNJu6YNzlvCr+AJQd4Q+i0ZYv378aWnasQYifKGA8KafQMLMmNZmghljMNPDnlfFqZmn4BhItnyrBS1dbXG7BnU7xOw8DIIRq0VjEzSMiikBaUxWXxQn+K+KWahXDwchjL193WpriOF8ovjcGbeGnzJU";
+
+            parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+            this.vooforia = ClassFactory.createVuforiaLocalizer(parameters);
+
+            vooforGarbage = this.vooforia.loadTrackablesFromAsset("RelicVuMark");
+            vooforRubbish = vooforGarbage.get(0);
+
             vooforGarbage.activate();
+
+            time = System.currentTimeMillis();
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 5000) {
+                detectedTrashMark = RelicRecoveryVuMark.from(vooforRubbish);
+                try{Thread.sleep(1);} catch (Exception e) {}
+            }
+
+            mode.telemetry.addData("Voofor Say", detectedTrashMark);
+            mode.telemetry.update();
+
+            vooforGarbage.deactivate();
+
 
             if (jewelVisionProcessor.getIsConfident()) {
 
-                if (mode.opModeIsActive() && ((marv.dropskiIsRed() && marv.isOnRedSide) || (!marv.dropskiIsRed() && !marv.isOnRedSide))) {
+                boolean shouldTurnLeft = (
+                        (!jewelVisionProcessor.getIsRedBlueInThatOrder() && marv.isOnRedSide)
+                                ||
+                        (jewelVisionProcessor.getIsRedBlueInThatOrder() && !marv.isOnRedSide)
+                );
+
+                if (shouldTurnLeft) {
                     double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
-                    while ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 < frZero + 75) {
+                    while (mode.opModeIsActive() && ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 < frZero + 75)) {
                         marv.fr.setPower(0.15);
                         marv.br.setPower(0.15);
                         marv.fl.setPower(-0.15);
@@ -115,12 +132,9 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             marv.setDropskiUp();
             
             time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 1000) {
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
-
-            this.detectedTrashMark = RelicRecoveryVuMark.from(vooforRubbish);
-            vooforGarbage.deactivate();
 
             if (marv.isOnRedSide) {
                 marv.fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

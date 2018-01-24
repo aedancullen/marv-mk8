@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 public class MarvMk8CAutoRedA extends LinearOpMode {
 
     MarvMk8CCommon marv;
-    MarvMk8CAutopilotSystemCommon marvAuto;
+    MarvMk8CAutopilotSystemCommonV2 marvAuto;
     
     AutopilotTrackerMso mbxTracker;
 
@@ -25,7 +25,7 @@ public class MarvMk8CAutoRedA extends LinearOpMode {
 
         mbxTracker = new AutopilotTrackerMso(marv.sonarRx, marv.sonarL, marv.sonarB, MarvNavConstants.MbXOffset, MarvNavConstants.MbYOffset);
         
-        marvAuto = new MarvMk8CAutopilotSystemCommon(this, mbxTracker, telemetry, hardwareMap.appContext);
+        marvAuto = new MarvMk8CAutopilotSystemCommonV2(this, mbxTracker, telemetry, hardwareMap.appContext);
         marvAuto.setMarvCommon(marv);
         // x-axis mirroring done implicitly by switch of R/L x coord sonar
         marvAuto.beginPathTravel("mk8c_auto_generic_a");
