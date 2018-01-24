@@ -33,9 +33,14 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
 
     RelicRecoveryVuMark detectedTrashMark;
 
+    JewelOverlayVisionProcessor jewelVisionProcessor;
+
     public MarvMk8CAutopilotSystemCommonV2(LinearOpMode mode, AutopilotTracker tracker, Telemetry telemetry, Context appContext){
         super(tracker, telemetry, appContext);
         this.mode = mode;
+
+        CameraSpec zteSpeedCameraLandscape = new CameraSpec(0.9799, Math.PI / 2); // nobody cares about positioning stuff
+        jewelVisionProcessor = new JewelOverlayVisionProcessor(mode.hardwareMap.appContext, zteSpeedCameraLandscape);
     }
 
     public void setMarvCommon(MarvMk8CCommon marv){
@@ -47,9 +52,6 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
 
         if (next != null && next.id.equals("__start__")){
             // Do vision sensing, drive off balancing stone and set angle hold
-
-            CameraSpec zteSpeedCameraLandscape = new CameraSpec(0.9799, Math.PI / 2); // nobody cares about positioning stuff
-            JewelOverlayVisionProcessor jewelVisionProcessor = new JewelOverlayVisionProcessor(mode.hardwareMap.appContext, zteSpeedCameraLandscape);
 
             jewelVisionProcessor.start();
             ObjectSpec joules = new ObjectSpec(mode.hardwareMap.appContext, "haarcascade_evolution_jewels_2k3k_20st", 6.1); // again - nobody cares
@@ -146,9 +148,6 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
 
-            if (true) {
-                return;
-            }
 
             if (marv.isOnRedSide) {
                 marv.fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
