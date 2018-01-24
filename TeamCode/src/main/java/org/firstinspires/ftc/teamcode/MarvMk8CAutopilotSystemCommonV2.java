@@ -34,6 +34,7 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
     RelicRecoveryVuMark detectedTrashMark;
 
     JewelOverlayVisionProcessor jewelVisionProcessor;
+    ObjectSpec joules;
 
     public MarvMk8CAutopilotSystemCommonV2(LinearOpMode mode, AutopilotTracker tracker, Telemetry telemetry, Context appContext){
         super(tracker, telemetry, appContext);
@@ -41,6 +42,8 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
 
         CameraSpec zteSpeedCameraLandscape = new CameraSpec(0.9799, Math.PI / 2); // nobody cares about positioning stuff
         jewelVisionProcessor = new JewelOverlayVisionProcessor(mode.hardwareMap.appContext, zteSpeedCameraLandscape);
+
+        joules = new ObjectSpec(mode.hardwareMap.appContext, "haarcascade_evolution_jewels_2k3k_20st", 6.1); // again - nobody cares
     }
 
     public void setMarvCommon(MarvMk8CCommon marv){
@@ -54,7 +57,6 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             // Do vision sensing, drive off balancing stone and set angle hold
 
             jewelVisionProcessor.start();
-            ObjectSpec joules = new ObjectSpec(mode.hardwareMap.appContext, "haarcascade_evolution_jewels_2k3k_20st", 6.1); // again - nobody cares
             jewelVisionProcessor.loadObject(joules);
 
             long time = System.currentTimeMillis();
@@ -142,11 +144,6 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             }
 
             marv.setDropskiUp();
-            
-            time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 1000) {
-                try{Thread.sleep(1);} catch (Exception e) {}
-            }
 
 
             if (marv.isOnRedSide) {
