@@ -56,9 +56,17 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             jewelVisionProcessor.loadObject(joules);
 
             long time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 5000) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 5000 && !jewelVisionProcessor.getIsConfident()) {
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
+
+            if (jewelVisionProcessor.getIsConfident()) {
+                mode.telemetry.addData("Is 'RED - BLUE'", jewelVisionProcessor.getIsRedBlueInThatOrder());
+            }
+            else {
+                mode.telemetry.addData("Is 'RED - BLUE'", "Not sure");
+            }
+            mode.telemetry.update();
 
             jewelVisionProcessor.stop();
 
@@ -76,8 +84,10 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
 
             vooforGarbage.activate();
 
+            detectedTrashMark = RelicRecoveryVuMark.from(vooforRubbish);
+
             time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 5000) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 5000 && detectedTrashMark == RelicRecoveryVuMark.UNKNOWN) {
                 detectedTrashMark = RelicRecoveryVuMark.from(vooforRubbish);
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
@@ -134,6 +144,10 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             time = System.currentTimeMillis();
             while (mode.opModeIsActive() && System.currentTimeMillis() < time + 1000) {
                 try{Thread.sleep(1);} catch (Exception e) {}
+            }
+
+            if (true) {
+                return;
             }
 
             if (marv.isOnRedSide) {
