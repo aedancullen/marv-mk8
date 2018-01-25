@@ -207,32 +207,53 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
 
 
         }
-        else if (previous != null && previous.id.equals("__start__")){
+        
+        if (next != null && next.id.toLowerCase().contains("todropkey")) {
+            // modify coords of next accordingly
+            if (detectedTrashMark == RelicRecoveryVuMark.LEFT) {
+                // go left
+            }
+            else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
+                // go right
+            }
+            else {
+                // go center/unknown bundle
+            }
+        }
+        
+        if (next != null && next.id.toLowerCase().contains("todropadd1")) {
+            if (detectedTrashMark == RelicRecoveryVuMark.LEFT) {
+                // go center
+            }
+            else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
+                // go left
+            }
+            else {
+                // go left
+            }
+        }
+        
+        if (next != null && next.id.toLowerCase().contains("todropadd2")) {
+            if (detectedTrashMark == RelicRecoveryVuMark.LEFT) {
+                // go right
+            }
+            else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
+                // go center
+            }
+            else {
+                // go right
+            }
+        }
+        
+        if (previous != null && previous.id.toLowerCase().contains("todrop")){
             marv.drive(0, 0, 0);
-            // Approach and glyph ejection routine
-            // Can use
-            //
-            // this.host.setNavigationTarget(AutopilotSegment);
-            // this.host.setNavigationStatus(NavigationStatus.RUNNING);
-            // while (this.host.getNavigationStatus == NavigationStatus.RUNNING) {
-            //      this.host.communicate(this.tracker);
-            //      double[] power = this.host.navigationTickRaw();
-            //      // marv.drive stuff
-            // }
-            // // marv.drive stop the robot
-            //
-            // to get to arbitrary coords for glyph ejection
-            // Then can drop glyph and proceed
-            // The beauty of evolutionftc.autopilot is that we don't have to care which alliance we're on;
-            // just use the coordinate system
 
+            marv.setFlippoPos(1);
             long time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000) {
-                marv.drive(0,0,0);
-                marv.convey(1);
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 500) {
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
-            //marv.convey(0);
+            marv.setFlippoPos(0);
         }
     }
 
