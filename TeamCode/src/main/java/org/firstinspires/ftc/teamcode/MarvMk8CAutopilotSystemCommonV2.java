@@ -213,15 +213,19 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             if (detectedTrashMark == RelicRecoveryVuMark.LEFT) {
                 // go left
                 if (marv.isOnRedSide) {
+                    next.navigationTarget[0] -= MarvNavConstants.CryptOffsetXRed;
                 }
                 else {
+                    next.navigationTarget[0] -= MarvNavConstants.CryptOffsetXBlue;
                 }
             }
             else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
                 // go right
                 if (marv.isOnRedSide) {
+                    next.navigationTarget[0] += MarvNavConstants.CryptOffsetXRed;
                 }
                 else {
+                    next.navigationTarget[0] += MarvNavConstants.CryptOffsetXBlue;
                 }
             }
             else {
@@ -236,15 +240,19 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
                 // go left
                 if (marv.isOnRedSide) {
+                    next.navigationTarget[0] -= MarvNavConstants.CryptOffsetXRed;
                 }
                 else {
+                    next.navigationTarget[0] -= MarvNavConstants.CryptOffsetXBlue;
                 }
             }
             else {
                 // go left
                 if (marv.isOnRedSide) {
+                    next.navigationTarget[0] -= MarvNavConstants.CryptOffsetXRed;
                 }
                 else {
+                    next.navigationTarget[0] -= MarvNavConstants.CryptOffsetXBlue;
                 }
             }
         }
@@ -253,8 +261,10 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             if (detectedTrashMark == RelicRecoveryVuMark.LEFT) {
                 // go right
                 if (marv.isOnRedSide) {
+                    next.navigationTarget[0] += MarvNavConstants.CryptOffsetXRed;
                 }
                 else {
+                    next.navigationTarget[0] += MarvNavConstants.CryptOffsetXBlue;
                 }
             }
             else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
@@ -263,8 +273,10 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             else {
                 // go right
                 if (marv.isOnRedSide) {
+                    next.navigationTarget[0] += MarvNavConstants.CryptOffsetXRed;
                 }
                 else {
+                    next.navigationTarget[0] += MarvNavConstants.CryptOffsetXBlue;
                 }
             }
         }
