@@ -10,6 +10,9 @@ public class MarvNavConstants {
 
     public static double MbYOffset = 2;
     
-    public static double CryptXOffset = 5; // set appropriately!
+    public static double CryptXOffsetBlue = 5; // set appropriately!
+    
+    // x axis always reversed on red side (no matter which crypto A/B)
+    public static double CryptXOffsetRed =  -CryptXOffsetBlue;
 
 }
