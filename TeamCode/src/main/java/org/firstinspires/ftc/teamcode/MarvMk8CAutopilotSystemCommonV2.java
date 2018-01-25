@@ -212,9 +212,17 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             // modify coords of next accordingly
             if (detectedTrashMark == RelicRecoveryVuMark.LEFT) {
                 // go left
+                if (marv.isOnRedSide) {
+                }
+                else {
+                }
             }
             else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
                 // go right
+                if (marv.isOnRedSide) {
+                }
+                else {
+                }
             }
             else {
                 // go center/unknown bundle
@@ -227,21 +235,37 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             }
             else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
                 // go left
+                if (marv.isOnRedSide) {
+                }
+                else {
+                }
             }
             else {
                 // go left
+                if (marv.isOnRedSide) {
+                }
+                else {
+                }
             }
         }
         
         if (next != null && next.id.toLowerCase().contains("todropadd2")) {
             if (detectedTrashMark == RelicRecoveryVuMark.LEFT) {
                 // go right
+                if (marv.isOnRedSide) {
+                }
+                else {
+                }
             }
             else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
                 // go center
             }
             else {
                 // go right
+                if (marv.isOnRedSide) {
+                }
+                else {
+                }
             }
         }
         
