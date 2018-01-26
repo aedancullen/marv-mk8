@@ -48,6 +48,7 @@ public class MarvMk8CCommon {
 
     DigitalChannel endstop;
     DigitalChannel endstopTop;
+    DigitalChannel endstop2;
 
     Servo dropski;
     ColorSensor dropskiColor;
@@ -68,7 +69,7 @@ public class MarvMk8CCommon {
 
     double flippoMax = 0.07; // set properly
 
-    final private boolean MOTORCONTROL_RAW = false;
+    final private boolean MOTORCONTROL_RAW = true;
 
     BNO055IMU imu;
 
@@ -116,6 +117,8 @@ public class MarvMk8CCommon {
 
         endstop = hardwareMap.digitalChannel.get("endstop");
         endstop.setMode(DigitalChannel.Mode.INPUT);
+        endstop2 = hardwareMap.digitalChannel.get("endstop2");
+        endstop2.setMode(DigitalChannel.Mode.INPUT);
         endstopTop = hardwareMap.digitalChannel.get("endstopTop");
         endstopTop.setMode(DigitalChannel.Mode.INPUT);
 
@@ -187,7 +190,7 @@ public class MarvMk8CCommon {
     }
     
     public void homeWinchTick() {
-        if (endstop.getState()) { // the rev endstop is not intuitive
+        if (endstop.getState() && endstop2.getState()) { // if either is triggered, then stop
             winch.setPower(-0.50);
         }
         else {
