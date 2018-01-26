@@ -62,7 +62,7 @@ public class MarvMk8CUserBlueA extends MarvMk8CUserControl {
         double[] power = marvAuto.systemTickRaw();
         
         if (isNavigating) {
-            marv.drive(power[1], power[1], -power[0]);
+            marv.drive(power[1], power[1], -power[0] * 1.5);
         }
         else {
             super.wheelDriveTick();

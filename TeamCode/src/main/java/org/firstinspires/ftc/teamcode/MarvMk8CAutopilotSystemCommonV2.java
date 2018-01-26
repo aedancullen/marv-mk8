@@ -17,6 +17,11 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
+import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_USING_ENCODER;
+import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_WITHOUT_ENCODER;
+import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_WITHOUT_ENCODERS;
+import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENCODER;
+
 /**
  * Created by aedan on 12/3/17.
  */
@@ -49,6 +54,7 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
     public void setMarvCommon(MarvMk8CCommon marv){
         this.marv = marv;
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        marv.setEncoderBehavior(RUN_USING_ENCODER);
     }
 
     public void onSegmentTransition(AutopilotSegment previous, AutopilotSegment next, boolean wasOkayToContinue) {
@@ -113,10 +119,10 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
                 if (shouldTurnLeft) {
                     double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
                     while (mode.opModeIsActive() && ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 < frZero + 75)) {
-                        marv.fr.setPower(0.15);
-                        marv.br.setPower(0.15);
-                        marv.fl.setPower(-0.15);
-                        marv.bl.setPower(-0.15);
+                        marv.fr.setPower(0.20);
+                        marv.br.setPower(0.20);
+                        marv.fl.setPower(-0.20);
+                        marv.bl.setPower(-0.20);
                         try{Thread.sleep(1);} catch (Exception e) {}
                     }
 
@@ -128,10 +134,10 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
                 else {
                     double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
                     while (mode.opModeIsActive() && ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 > frZero - 75)) {
-                        marv.fr.setPower(-0.15);
-                        marv.br.setPower(-0.15);
-                        marv.fl.setPower(0.15);
-                        marv.bl.setPower(0.15);
+                        marv.fr.setPower(-0.20);
+                        marv.br.setPower(-0.20);
+                        marv.fl.setPower(0.20);
+                        marv.bl.setPower(0.20);
                         try{Thread.sleep(1);} catch (Exception e) {}
                     }
 
@@ -147,28 +153,24 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
 
 
             if (marv.isOnRedSide) {
-                marv.fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
                 while (marv.fr.getCurrentPosition() != 0) {}
-                marv.fr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                marv.fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 while (marv.fl.getCurrentPosition() != 0) {}
-                marv.fl.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                marv.setEncoderBehavior(RUN_USING_ENCODER);
                 while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 1500) {
-                    marv.drive(0.15, 0.15, 0);
+                    marv.drive(0.20, 0.20, 0);
                     try{Thread.sleep(1);} catch (Exception e) {}
                 }
 
                 marv.drive(0, 0, 0);
             }
             else { // marv.isOnBlueSide
-                marv.fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
                 while (marv.fr.getCurrentPosition() != 0) {}
-                marv.fr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                marv.fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 while (marv.fl.getCurrentPosition() != 0) {}
-                marv.fl.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                marv.setEncoderBehavior(RUN_USING_ENCODER);
                 while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 1500) {
-                    marv.drive(-0.15, -0.15, 0);
+                    marv.drive(-0.20, -0.20, 0);
                     try{Thread.sleep(1);} catch (Exception e) {}
                 }
 
@@ -198,7 +200,7 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             }
 
             time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 5000 && !marv.angleHoldHasSettled()) {
+            while (mode.opModeIsActive()/* && System.currentTimeMillis() < time + 5000 */&& !marv.angleHoldHasSettled()) {
                 marv.drive(0,0,0); // allow angle snapping to run
                 try{Thread.sleep(1);} catch (Exception e) {}
             }

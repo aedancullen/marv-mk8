@@ -68,7 +68,7 @@ public class MarvMk8CCommon {
 
     double flippoMax = 0.07; // set properly
 
-    final private boolean MOTORCONTROL_RAW = true;
+    final private boolean MOTORCONTROL_RAW = false;
 
     BNO055IMU imu;
 
@@ -266,12 +266,9 @@ public class MarvMk8CCommon {
             // much less annoying than the ftc_app "Orientation"
             EssentialHeading heading = EssentialHeading.fromInvertedOrientation(imuGetOrientation());
             double degreesError = new EssentialHeading(angleHoldAngle).subtract(heading).getAngleDegrees();
-            if (degreesError > 1) {
-                rot += angleHoldPowerCap;
-                //rot = Math.max(Math.min(rot, angleHoldPowerCap), -angleHoldPowerCap);
-            }
-            else if (degreesError < 1) {
-                rot += -angleHoldPowerCap;
+            if (Math.abs(degreesError) > 2) {
+                rot += 0.02 * degreesError;
+                rot = Math.max(Math.min(rot, angleHoldPowerCap), -angleHoldPowerCap);
             }
         }
 

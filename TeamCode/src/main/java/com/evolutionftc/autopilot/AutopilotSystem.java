@@ -53,10 +53,13 @@ public class AutopilotSystem {
         host.telemetryUpdate();
 
         if (pathFollower == null) {
+            telemetry.update();
             return new double[2];
         }
 
         pathFollower.telemetryUpdate();
+
+        telemetry.update();
 
         double[] res = host.navigationTickDifferential();
 		
@@ -101,10 +104,13 @@ public class AutopilotSystem {
         host.telemetryUpdate();
 
         if (pathFollower == null) {
+            telemetry.update();
             return new double[2];
         }
 
         pathFollower.telemetryUpdate();
+
+        telemetry.update();
 
         double[] res = host.navigationTickRaw();
 
