@@ -28,7 +28,7 @@ public class MarvMk8CAutoRedA extends LinearOpMode {
         marvAuto = new MarvMk8CAutopilotSystemCommonV2(this, mbxTracker, telemetry, hardwareMap.appContext);
         marvAuto.setMarvCommon(marv);
         // x-axis mirroring done implicitly by switch of R/L x coord sonar
-        marvAuto.beginPathTravel("mk8c_auto_generic_a");
+        marvAuto.beginPathTravel("mk8c_auto_generic_a_v2");
 
         waitForStart();
 
