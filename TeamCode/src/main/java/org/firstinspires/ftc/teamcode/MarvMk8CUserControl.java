@@ -27,9 +27,9 @@ public class MarvMk8CUserControl  extends OpMode {
         else {
             horiz = gamepad1.right_trigger/2;
         }*/
-        horiz = (gamepad1.right_trigger / 2) - (gamepad1.left_trigger / 2);
+        horiz = (gamepad1.right_trigger / 1.75) - (gamepad1.left_trigger / 1.75);
 
-        marv.drive(-gamepad1.left_stick_y/2, -gamepad1.right_stick_y/2, horiz);
+        marv.drive(-gamepad1.left_stick_y/1.75, -gamepad1.right_stick_y/1.75, horiz);
     }
 
     public void loop() {
@@ -58,16 +58,16 @@ public class MarvMk8CUserControl  extends OpMode {
 
 
         if (gamepad2.dpad_down) {
-            marv.collect(0.28);
+            marv.collect(0.3);
         }
         else if (gamepad2.dpad_left) {
-            marv.counterL(0.28);
+            marv.counterL(0.3);
         }
         else if (gamepad2.dpad_right) {
-            marv.counterR(0.28);
+            marv.counterR(0.3);
         }
         else if (gamepad2.dpad_up) {
-            marv.collect(-0.28);
+            marv.collect(-0.3);
         }
         else {
             marv.collect(0);
