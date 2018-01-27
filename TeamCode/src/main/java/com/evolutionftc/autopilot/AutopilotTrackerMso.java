@@ -70,7 +70,7 @@ public class AutopilotTrackerMso extends AutopilotTracker {
 	public void update() {
 
 		//if (System.currentTimeMillis() > msAtLastRxKick + rxKickIntervalMs) {
-			//msAtLastRxKick = System.currentTimeMillis();
+		//	msAtLastRxKick = System.currentTimeMillis();
 			MbRx.setState(true);
 			MbRx.setState(false);
 		//}

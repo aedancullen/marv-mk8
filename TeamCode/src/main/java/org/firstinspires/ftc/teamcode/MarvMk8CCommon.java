@@ -269,7 +269,7 @@ public class MarvMk8CCommon {
             // much less annoying than the ftc_app "Orientation"
             EssentialHeading heading = EssentialHeading.fromInvertedOrientation(imuGetOrientation());
             double degreesError = new EssentialHeading(angleHoldAngle).subtract(heading).getAngleDegrees();
-            if (Math.abs(degreesError) > 1) {
+            if (Math.abs(degreesError) > 0) {
                 rot += 0.02 * degreesError;
                 rot = Math.max(Math.min(rot, angleHoldPowerCap), -angleHoldPowerCap);
             }

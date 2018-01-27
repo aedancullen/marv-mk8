@@ -162,7 +162,7 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
                 marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
                 marv.setEncoderBehavior(RUN_USING_ENCODER);
                 while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 1500) {
-                    marv.drive(0.20, 0.20, 0);
+                    marv.drive(0.10, 0.10, 0);
                     try{Thread.sleep(1);} catch (Exception e) {}
                 }
 
@@ -172,7 +172,7 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
                 marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
                 marv.setEncoderBehavior(RUN_USING_ENCODER);
                 while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 1500) {
-                    marv.drive(-0.20, -0.20, 0);
+                    marv.drive(-0.10, -0.10, 0);
                     try{Thread.sleep(1);} catch (Exception e) {}
                 }
 
@@ -290,17 +290,18 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
         if (previous != null && previous.id.toLowerCase().contains("todrop")){
             marv.drive(0, 0, 0);
 
-            marv.setFlippoPos(0.5);
+            marv.setFlippoPos(0.50);
             long time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 1000) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 2000) {
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
             marv.setFlippoPos(0);
 
             marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
             marv.setEncoderBehavior(RUN_USING_ENCODER);
-            while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 500) {
-                marv.drive(-0.12, -0.12, 0);
+            time = System.currentTimeMillis();
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000 && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 500) {
+                marv.drive(-0.15, -0.15, 0);
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
 
@@ -309,7 +310,7 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
             marv.setEncoderBehavior(RUN_USING_ENCODER);
             while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 500) {
-                marv.drive(0.12, 0.12, 0);
+                marv.drive(0.15, 0.15, 0);
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
 
