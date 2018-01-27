@@ -292,6 +292,28 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
             marv.setFlippoPos(0);
+
+            marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
+            while (marv.fr.getCurrentPosition() != 0) {}
+            while (marv.fl.getCurrentPosition() != 0) {}
+            marv.setEncoderBehavior(RUN_USING_ENCODER);
+            while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 200) {
+                marv.drive(-0.08, -0.08, 0);
+                try{Thread.sleep(1);} catch (Exception e) {}
+            }
+
+            marv.drive(0, 0, 0);
+
+            marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
+            while (marv.fr.getCurrentPosition() != 0) {}
+            while (marv.fl.getCurrentPosition() != 0) {}
+            marv.setEncoderBehavior(RUN_USING_ENCODER);
+            while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 200) {
+                marv.drive(0.08, 0.08, 0);
+                try{Thread.sleep(1);} catch (Exception e) {}
+            }
+
+            marv.drive(0, 0, 0);
         }
     }
 
