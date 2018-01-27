@@ -71,6 +71,12 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             }
 
             if (jewelVisionProcessor.getIsConfident()) {
+                time = System.currentTimeMillis();
+                while (mode.opModeIsActive() && System.currentTimeMillis() < time + 500) {
+                    try{Thread.sleep(1);} catch (Exception e) {} // extra time to account for possible false first detection
+                }
+            }
+            if (jewelVisionProcessor.getIsConfident()) {
                 mode.telemetry.addData("Is 'RED - BLUE'", jewelVisionProcessor.getIsRedBlueInThatOrder());
             }
             else {
@@ -154,8 +160,6 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
 
             if (marv.isOnRedSide) {
                 marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
-                while (marv.fr.getCurrentPosition() != 0) {}
-                while (marv.fl.getCurrentPosition() != 0) {}
                 marv.setEncoderBehavior(RUN_USING_ENCODER);
                 while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 1500) {
                     marv.drive(0.20, 0.20, 0);
@@ -166,8 +170,6 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
             }
             else { // marv.isOnBlueSide
                 marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
-                while (marv.fr.getCurrentPosition() != 0) {}
-                while (marv.fl.getCurrentPosition() != 0) {}
                 marv.setEncoderBehavior(RUN_USING_ENCODER);
                 while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 1500) {
                     marv.drive(-0.20, -0.20, 0);
@@ -176,11 +178,6 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
 
                 marv.drive(0, 0, 0);
             }
-
-            /*time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 1000) {
-                marv.drive(0, 0, 0);
-            }*/
 
             if (marv.isOnRedSide) {
                 if (marv.isOnBSide) {
@@ -205,7 +202,14 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
 
-            marv.drive(0, 0, 0); // ensure motors off
+            time = System.currentTimeMillis();
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 1000) {
+                marv.drive(0, 0, 0);
+                host.communicate(tracker);
+                host.telemetryUpdate();
+                mode.telemetry.update();
+                try{Thread.sleep(1);} catch (Exception e) {}
+            }
 
 
         }
@@ -286,30 +290,26 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
         if (previous != null && previous.id.toLowerCase().contains("todrop")){
             marv.drive(0, 0, 0);
 
-            marv.setFlippoPos(1);
+            marv.setFlippoPos(0.5);
             long time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 500) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 1000) {
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
             marv.setFlippoPos(0);
 
             marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
-            while (marv.fr.getCurrentPosition() != 0) {}
-            while (marv.fl.getCurrentPosition() != 0) {}
             marv.setEncoderBehavior(RUN_USING_ENCODER);
-            while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 200) {
-                marv.drive(-0.08, -0.08, 0);
+            while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 500) {
+                marv.drive(-0.12, -0.12, 0);
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
 
             marv.drive(0, 0, 0);
 
             marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
-            while (marv.fr.getCurrentPosition() != 0) {}
-            while (marv.fl.getCurrentPosition() != 0) {}
             marv.setEncoderBehavior(RUN_USING_ENCODER);
-            while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 200) {
-                marv.drive(0.08, 0.08, 0);
+            while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 500) {
+                marv.drive(0.12, 0.12, 0);
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
 

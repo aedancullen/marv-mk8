@@ -56,7 +56,7 @@ public class MarvMk8CCommon {
     boolean angleHoldIsEnabled;
     double angleHoldAngle;
 
-    double angleHoldPowerCap = 0.33;
+    double angleHoldPowerCap = 0.50;
     
     double winchZeroPosition;
     
@@ -269,7 +269,7 @@ public class MarvMk8CCommon {
             // much less annoying than the ftc_app "Orientation"
             EssentialHeading heading = EssentialHeading.fromInvertedOrientation(imuGetOrientation());
             double degreesError = new EssentialHeading(angleHoldAngle).subtract(heading).getAngleDegrees();
-            if (Math.abs(degreesError) > 2) {
+            if (Math.abs(degreesError) > 1) {
                 rot += 0.02 * degreesError;
                 rot = Math.max(Math.min(rot, angleHoldPowerCap), -angleHoldPowerCap);
             }

@@ -69,11 +69,11 @@ public class AutopilotTrackerMso extends AutopilotTracker {
 
 	public void update() {
 
-		if (System.currentTimeMillis() > msAtLastRxKick + rxKickIntervalMs) {
-			msAtLastRxKick = System.currentTimeMillis();
+		//if (System.currentTimeMillis() > msAtLastRxKick + rxKickIntervalMs) {
+			//msAtLastRxKick = System.currentTimeMillis();
 			MbRx.setState(true);
 			MbRx.setState(false);
-		}
+		//}
 
 		double distMbX = voltageToInches(MbX.getVoltage()) + MbXOffset;
 		double distMbY = voltageToInches(MbY.getVoltage()) + MbYOffset;

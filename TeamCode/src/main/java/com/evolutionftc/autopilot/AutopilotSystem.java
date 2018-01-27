@@ -18,7 +18,7 @@ public class AutopilotSystem {
 
 	private Telemetry telemetry;
     private Context appContext;
-	private AutopilotTracker tracker;
+	public AutopilotTracker tracker;
 	
 	public AutopilotHost host;
 	public AutopilotPath pathFollower;
@@ -70,6 +70,7 @@ public class AutopilotSystem {
             if (currentSegment != null) {
                 host.setNavigationTarget(currentSegment);
                 host.setNavigationStatus(AutopilotHost.NavigationStatus.RUNNING);
+                host.communicate(tracker);
                 return host.navigationTickDifferential();
             }
             else {
@@ -86,6 +87,7 @@ public class AutopilotSystem {
             if (currentSegment != null) {
                 host.setNavigationTarget(currentSegment);
                 host.setNavigationStatus(AutopilotHost.NavigationStatus.RUNNING);
+                host.communicate(tracker);
                 return host.navigationTickDifferential();
             }
             else {
@@ -121,6 +123,7 @@ public class AutopilotSystem {
             if (currentSegment != null) {
                 host.setNavigationTarget(currentSegment);
                 host.setNavigationStatus(AutopilotHost.NavigationStatus.RUNNING);
+                host.communicate(tracker);
                 return host.navigationTickRaw();
             }
             else {
@@ -137,6 +140,7 @@ public class AutopilotSystem {
             if (currentSegment != null) {
                 host.setNavigationTarget(currentSegment);
                 host.setNavigationStatus(AutopilotHost.NavigationStatus.RUNNING);
+                host.communicate(tracker);
                 return host.navigationTickRaw();
             }
             else {
