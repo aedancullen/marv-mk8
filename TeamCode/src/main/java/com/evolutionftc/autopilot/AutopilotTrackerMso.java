@@ -28,7 +28,7 @@ public class AutopilotTrackerMso extends AutopilotTracker {
 	long lastTimeSaneX = -1;
 	long lastTimeSaneY = -1;
 
-	int INSANITY_TIMEOUT = 500; // max. number of ms of insane readings before we give in
+	int INSANITY_TIMEOUT = 1000; // max. number of ms of insane readings before we give in
 
 	double SANE_INCHES_PER_TICK = 15; // generous, but good enough for filtering outliers
 
