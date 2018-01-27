@@ -138,8 +138,8 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
                     compositeIsConfident = true;
                 }
                 else {
-                    composite = false;
-                    compositeIsConfident = false;
+                    composite = dropskiShouldTurnLeft;
+                    compositeIsConfident = true;
                 }
             }
             else {
