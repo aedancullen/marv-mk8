@@ -113,16 +113,43 @@ public class MarvMk8CAutopilotSystemCommonV2 extends AutopilotSystem {
 
             vooforGarbage.deactivate();
 
+            boolean dropskiShouldTurnLeft = ((marv.dropskiIsRed() && marv.isOnRedSide) || (!marv.dropskiIsRed() && !marv.isOnRedSide));
 
-            if (jewelVisionProcessor.getIsConfident()) {
+            boolean shouldTurnLeft = (
+                    (!jewelVisionProcessor.getIsRedBlueInThatOrder() && marv.isOnRedSide)
+                            ||
+                            (jewelVisionProcessor.getIsRedBlueInThatOrder() && !marv.isOnRedSide)
+            );
 
-                boolean shouldTurnLeft = (
-                        (!jewelVisionProcessor.getIsRedBlueInThatOrder() && marv.isOnRedSide)
-                                ||
-                        (jewelVisionProcessor.getIsRedBlueInThatOrder() && !marv.isOnRedSide)
-                );
+            boolean compositeIsConfident;
+            boolean composite;
 
-                if (shouldTurnLeft) {
+            if (jewelVisionProcessor.getIsConfident() && !marv.dropskiIsConfident()) {
+                composite = shouldTurnLeft;
+                compositeIsConfident = true;
+            }
+            else if (!jewelVisionProcessor.getIsConfident() && marv.dropskiIsConfident()) {
+                composite = dropskiShouldTurnLeft;
+                compositeIsConfident = true;
+            }
+            else if (jewelVisionProcessor.getIsConfident() && marv.dropskiIsConfident()) {
+                if (dropskiShouldTurnLeft == shouldTurnLeft) {
+                    composite = shouldTurnLeft;
+                    compositeIsConfident = true;
+                }
+                else {
+                    composite = false;
+                    compositeIsConfident = false;
+                }
+            }
+            else {
+                composite = false;
+                compositeIsConfident = false;
+            }
+
+            if (compositeIsConfident) {
+
+                if (composite) {
                     double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
                     while (mode.opModeIsActive() && ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 < frZero + 75)) {
                         marv.fr.setPower(0.20);
