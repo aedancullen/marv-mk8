@@ -164,6 +164,10 @@ public class MarvMk8CCommon {
         flippoB.setPosition(0.5+ (-flippoMax * pos));
     }
 
+    public boolean flippoIsRaised() {
+        return flippoA.getPosition() != 0.5 && flippoB.getPosition() != 0.5;
+    }
+
     public boolean dropskiIsRed() {
         return (dropskiColor.red() > dropskiColor.blue());
     }
@@ -188,14 +192,36 @@ public class MarvMk8CCommon {
         bl.setMode(behavior);
         br.setMode(behavior);
     }
+
+    public boolean liftIsRaised() {
+        return endstop.getState() && endstop2.getState();
+    }
     
     public void homeWinchTick() {
-        if (endstop.getState() && endstop2.getState()) { // if either is triggered, then stop
+        if (liftIsRaised()) { // if either is triggered, then stop
             winch.setPower(-0.50);
         }
         else {
             winch.setPower(0);
             winchZeroPosition  = winch.getCurrentPosition();
+        }
+    }
+
+    public void autoConveyTick() {
+        if (!liftIsRaised() && !flippoIsRaised()) {
+            convey(1);
+        }
+        else {
+            convey(0);
+        }
+    }
+
+    public void autoCollectTick() {
+        if (!liftIsRaised() && !flippoIsRaised()) {
+            collect(0.5);
+        }
+        else {
+            collect(0);
         }
     }
 
