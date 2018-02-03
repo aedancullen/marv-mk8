@@ -1,71 +1,99 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.evolutionftc.autopilot.AutopilotHost;
-import com.evolutionftc.autopilot.AutopilotSystem;
-import com.evolutionftc.autopilot.AutopilotTrackerMso;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 /**
- * Created by aedan on 12/24/17.
+ * Created by aedan on 12/2/17.
  */
 
-@TeleOp(name="PYRO User")
-public class MarvMk8CUserPyro extends MarvMk8CUserControl {
+@TeleOp(name="Marv-Mk8C User PYRO")
+public class MarvMk8CUserPyro  extends OpMode {
 
-    public AutopilotSystem marvAuto;
+    MarvMk8CCommon marv;
 
-    AutopilotTrackerMso mbxTracker;
-
-    boolean isNavigating = false;
-
-    @Override
     public void init() {
-        super.init();
-        mbxTracker = new AutopilotTrackerMso(marv.sonarRx, marv.sonarR, marv.sonarB, MarvNavConstants.MbXOffset, MarvNavConstants.MbYOffset);
-
-        marvAuto = new AutopilotSystem(mbxTracker, telemetry, hardwareMap.appContext);
+        marv = new MarvMk8CCommon(hardwareMap);
     }
 
-    @Override
     public void wheelDriveTick() {
-        if (gamepad1.x) {
-            marv.setAngleHold(-90);
-            if (marv.angleHoldHasSettled() && !isNavigating) {
-                // Condition to begin navigation
-                marvAuto.beginPathTravel("mk8c_cryptassist_generic_al");
-                isNavigating = true;
-            }
-        }
-        else if (gamepad1.a) {
-            marv.setAngleHold(-90);
-            if (marv.angleHoldHasSettled() && !isNavigating) {
-                // Condition to begin navigation
-                marvAuto.beginPathTravel("mk8c_cryptassist_generic_ac");
-                isNavigating = true;
-            }
-        }
-        else if (gamepad1.b) {
-            marv.setAngleHold(-90);
-            if (marv.angleHoldHasSettled() && !isNavigating) {
-                // Condition to begin navigation
-                marvAuto.beginPathTravel("mk8c_cryptassist_generic_ar");
-                isNavigating = true;
-            }
+
+        double horiz;
+        /*if (gamepad1.left_trigger > 0) {
+            horiz = -gamepad1.left_trigger/2;
         }
         else {
-            // Condition to stop navigation
-            isNavigating = false;
-            marvAuto.host.setNavigationStatus(AutopilotHost.NavigationStatus.STOPPED);
-            marv.disableAngleHold();
+            horiz = gamepad1.right_trigger/2;
+        }*/
+        horiz = (gamepad1.right_trigger / 1.75) - (gamepad1.left_trigger / 1.75);
+
+        marv.drive(-gamepad1.left_stick_y/1.75, -gamepad1.right_stick_y/1.75, horiz);
+    }
+
+    public void loop() {
+        telemetry.update();
+        wheelDriveTick();
+
+        if (gamepad1.left_bumper || gamepad1.right_bumper) {
+            marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        }
+        else{
+            marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         }
 
-        double[] power = marvAuto.systemTickRaw();
-        
-        if (isNavigating) {
-            marv.drive(power[1], power[1], -power[0] * 1.5);
+
+        if (gamepad2.left_bumper) {
+            marv.convey(-1);
+        }
+        else if (gamepad2.right_bumper) {
+            marv.convey(0);
         }
         else {
-            super.wheelDriveTick();
+            marv.autoConveyTick();
         }
+
+
+        marv.setFlippoPos((gamepad2.left_trigger+gamepad2.right_trigger) / 2.0);
+
+
+        if (gamepad2.dpad_down) {
+            marv.collect(0);
+        }
+        else if (gamepad2.dpad_left) {
+            marv.counterL(0.5);
+        }
+        else if (gamepad2.dpad_right) {
+            marv.counterR(0.5);
+        }
+        else if (gamepad2.dpad_up) {
+            marv.collect(-0.5);
+        }
+        else {
+            marv.autoCollectTick();
+        }
+
+
+        if (gamepad2.a) {
+            marv.setWinchLevel(0);
+        }
+        else if (gamepad2.b) {
+            marv.setWinchLevel(1);
+        }
+        else if (gamepad2.x) {
+            marv.setWinchLevel(2);
+        }
+        else if (gamepad2.y) {
+            marv.setWinchLevel(3);
+        }
+
+        marv.winchTick();
+
+
     }
+
+
+
+
 }
