@@ -207,18 +207,18 @@ public class MarvMk8CCommon {
         }
     }
 
-    public void autoConveyTick() {
+    public void autoConveyTick(double power) {
         if (!liftIsRaised() && !flippoIsRaised()) {
-            convey(1);
+            convey(power);
         }
         else {
             convey(0);
         }
     }
 
-    public void autoCollectTick() {
+    public void autoCollectTick(double power) {
         if (!liftIsRaised() && !flippoIsRaised()) {
-            collect(0.5);
+            collect(power);
         }
         else {
             collect(0);

@@ -14,6 +14,8 @@ public class MarvMk8CUserPyro  extends OpMode {
 
     MarvMk8CCommon marv;
 
+    double collectspeed = 0.5;
+
     public void init() {
         marv = new MarvMk8CCommon(hardwareMap);
     }
@@ -51,7 +53,7 @@ public class MarvMk8CUserPyro  extends OpMode {
             marv.convey(0);
         }
         else {
-            marv.autoConveyTick();
+            marv.autoConveyTick(1);
         }
 
 
@@ -62,17 +64,18 @@ public class MarvMk8CUserPyro  extends OpMode {
             marv.collect(0);
         }
         else if (gamepad2.dpad_left) {
-            marv.counterL(0.5);
+            marv.counterL(collectspeed);
         }
         else if (gamepad2.dpad_right) {
-            marv.counterR(0.5);
+            marv.counterR(collectspeed);
         }
         else if (gamepad2.dpad_up) {
-            marv.collect(-0.5);
+            marv.collect(-collectspeed);
         }
         else {
-            marv.autoCollectTick();
+            marv.autoCollectTick(collectspeed);
         }
+
 
 
         if (gamepad2.a) {

@@ -51,7 +51,7 @@ public class MarvMk8CUserControl  extends OpMode {
             marv.convey(0);
         }
         else {
-            marv.autoConveyTick();
+            marv.autoConveyTick(1);
         }
 
 
@@ -71,7 +71,7 @@ public class MarvMk8CUserControl  extends OpMode {
             marv.collect(-0.5);
         }
         else {
-            marv.autoCollectTick();
+            marv.autoCollectTick(0.5);
         }
         
         
