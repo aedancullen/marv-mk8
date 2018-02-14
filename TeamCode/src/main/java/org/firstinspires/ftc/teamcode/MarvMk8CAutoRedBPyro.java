@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.evolutionftc.autopilot.AutopilotTrackerEnc;
+import com.evolutionftc.autopilot.AutopilotTrackerEncMec;
 import com.evolutionftc.autopilot.AutopilotTrackerMso;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -15,14 +15,14 @@ public class MarvMk8CAutoRedBPyro extends LinearOpMode {
     MarvMk8CCommon marv;
     MarvMk8CAutopilotSystemCommonPyro marvAuto;
 
-    AutopilotTrackerEnc mecTracker;
+    AutopilotTrackerEncMec mecTracker;
 
     public void runOpMode() {
         marv = new MarvMk8CCommon(hardwareMap);
         marv.isOnRedSide = true;
         marv.isOnBSide = true;
 
-        mecTracker = new AutopilotTrackerEnc(marv.fl, marv.fr, marv.bl, marv.br, MarvNavConstants.ticksPerUnit, marv.imu, MarvNavConstants.nSubsteps);
+        mecTracker = new AutopilotTrackerEncMec(marv.fl, marv.fr, marv.bl, marv.br, MarvNavConstants.ticksPerUnit, marv.imu, MarvNavConstants.nSubsteps);
 
         marvAuto = new MarvMk8CAutopilotSystemCommonPyro(this, mecTracker, telemetry, hardwareMap.appContext);
         marvAuto.setMarvCommon(marv);
