@@ -17,6 +17,8 @@ public class MarvMk8CAutopilotDeadreckonTest extends LinearOpMode {
 
     AutopilotTrackerEncMec mecTracker;
 
+    long lastTime;
+
     public void runOpMode() {
         marv = new MarvMk8CCommon(hardwareMap);
 
@@ -24,10 +26,16 @@ public class MarvMk8CAutopilotDeadreckonTest extends LinearOpMode {
 
         waitForStart();
 
+        lastTime = System.currentTimeMillis();
+
         while(opModeIsActive()) {
+            long time = System.currentTimeMillis();
+            double elapsedS = (time - lastTime) / 1000.0;
+            lastTime = time;
             mecTracker.update();
             telemetry.addData("x", mecTracker.getRobotPosition()[0]);
             telemetry.addData("y", mecTracker.getRobotPosition()[1]);
+            telemetry.addData("Substeps per second", MarvNavConstants.nSubsteps / elapsedS);
             telemetry.update();
         }
     }
