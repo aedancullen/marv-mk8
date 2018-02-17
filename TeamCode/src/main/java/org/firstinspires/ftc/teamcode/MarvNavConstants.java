@@ -15,7 +15,7 @@ public class MarvNavConstants {
     // x axis always reversed on red side (no matter which crypto A/B)
     public static double CryptXOffsetRed =  -CryptXOffsetBlue;
 
-    public static int ticksPerUnit = 360;
+    public static int ticksPerUnit = 42;
 
     public static int nSubsteps = 10;
 

@@ -40,6 +40,7 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
     public void setMarvCommon(MarvMk8CCommon marv){
         this.marv = marv;
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
         marv.setEncoderBehavior(RUN_USING_ENCODER);
     }
 
@@ -55,44 +56,44 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
             // modify coords of next accordingly
             if (detectedTrashMark == RelicRecoveryVuMark.LEFT) {
                 // go left
-                next.populateFromOther(this.pathFollower.getSegment("parkL"));
+                next.populateFromOther(this.pathFollower.getSegment("flipL"));
             }
             else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
                 // go right
-                next.populateFromOther(this.pathFollower.getSegment("parkR"));
+                next.populateFromOther(this.pathFollower.getSegment("flipR"));
             }
             else {
-                next.populateFromOther(this.pathFollower.getSegment("parkC"));
+                next.populateFromOther(this.pathFollower.getSegment("flipC"));
             }
         }
         
         if (next != null && next.id.toLowerCase().contains("toadd1")) {
             if (detectedTrashMark == RelicRecoveryVuMark.LEFT) {
                 // go center
-                next.populateFromOther(this.pathFollower.getSegment("parkC"));
+                next.populateFromOther(this.pathFollower.getSegment("flipC"));
             }
             else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
                 // go left
-                next.populateFromOther(this.pathFollower.getSegment("parkL"));
+                next.populateFromOther(this.pathFollower.getSegment("flipL"));
             }
             else {
                 // go left
-                next.populateFromOther(this.pathFollower.getSegment("parkL"));
+                next.populateFromOther(this.pathFollower.getSegment("flipL"));
             }
         }
         
         if (next != null && next.id.toLowerCase().contains("toadd2")) {
             if (detectedTrashMark == RelicRecoveryVuMark.LEFT) {
                 // go right
-                next.populateFromOther(this.pathFollower.getSegment("parkR"));
+                next.populateFromOther(this.pathFollower.getSegment("flipR"));
             }
             else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
                 // go center
-                next.populateFromOther(this.pathFollower.getSegment("parkC"));
+                next.populateFromOther(this.pathFollower.getSegment("flipC"));
             }
             else {
                 // go right
-                next.populateFromOther(this.pathFollower.getSegment("parkR"));
+                next.populateFromOther(this.pathFollower.getSegment("flipR"));
             }
         }
         
@@ -106,14 +107,6 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
             }
             marv.setFlippoPos(0);
 
-        }
-        if (next != null && next.id.toLowerCase().contains("collectstart")) {
-            marv.autoCollectTick(0.5);
-            marv.autoConveyTick(1);
-        }
-        if (previous != null && previous.id.toLowerCase().contains("collectend")) {
-            marv.autoCollectTick(0);
-            marv.autoConveyTick(0);
         }
     }
 
