@@ -107,6 +107,14 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
             marv.setFlippoPos(0);
 
         }
+        if (next != null && next.id.toLowerCase().contains("collectstart")) {
+            marv.autoCollectTick(0.5);
+            marv.autoConveyTick(1);
+        }
+        if (previous != null && previous.id.toLowerCase().contains("collectend")) {
+            marv.autoCollectTick(0);
+            marv.autoConveyTick(0);
+        }
     }
 
 }
