@@ -100,9 +100,9 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
         if (previous != null && previous.id.toLowerCase().contains("to")){
             marv.drive(0, 0, 0);
 
-            marv.setFlippoPos(0.5);
+            marv.setFlippoPos(1);
             long time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 2000) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 1000) {
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
             marv.setFlippoPos(0);
