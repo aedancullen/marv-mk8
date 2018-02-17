@@ -30,6 +30,8 @@ public class MarvMk8CAutoBlueAPyro extends LinearOpMode {
         // x-axis mirroring done implicitly by switch of R/L x coord sonar
         marvAuto.beginPathTravel("mk8c_auto_blue_a_pyro");
 
+        marvAuto.host.setRobotPosition(new double[]{0, 12, 0});
+
         waitForStart();
 
         while(opModeIsActive()) {
