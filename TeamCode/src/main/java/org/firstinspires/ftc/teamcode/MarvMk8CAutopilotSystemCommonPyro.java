@@ -55,48 +55,48 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
             // modify coords of next accordingly
             if (detectedTrashMark == RelicRecoveryVuMark.LEFT) {
                 // go left
-                next.populateFromOther(this.pathFollower.getSegment("dropL"));
+                next.populateFromOther(this.pathFollower.getSegment("parkL"));
             }
             else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
                 // go right
-                next.populateFromOther(this.pathFollower.getSegment("dropR"));
+                next.populateFromOther(this.pathFollower.getSegment("parkR"));
             }
             else {
-                next.populateFromOther(this.pathFollower.getSegment("dropC"));
+                next.populateFromOther(this.pathFollower.getSegment("parkC"));
             }
         }
         
         if (next != null && next.id.toLowerCase().contains("toadd1")) {
             if (detectedTrashMark == RelicRecoveryVuMark.LEFT) {
                 // go center
-                next.populateFromOther(this.pathFollower.getSegment("dropC"));
+                next.populateFromOther(this.pathFollower.getSegment("parkC"));
             }
             else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
                 // go left
-                next.populateFromOther(this.pathFollower.getSegment("dropL"));
+                next.populateFromOther(this.pathFollower.getSegment("parkL"));
             }
             else {
                 // go left
-                next.populateFromOther(this.pathFollower.getSegment("dropL"));
+                next.populateFromOther(this.pathFollower.getSegment("parkL"));
             }
         }
         
         if (next != null && next.id.toLowerCase().contains("toadd2")) {
             if (detectedTrashMark == RelicRecoveryVuMark.LEFT) {
                 // go right
-                next.populateFromOther(this.pathFollower.getSegment("dropR"));
+                next.populateFromOther(this.pathFollower.getSegment("parkR"));
             }
             else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
                 // go center
-                next.populateFromOther(this.pathFollower.getSegment("dropC"));
+                next.populateFromOther(this.pathFollower.getSegment("parkC"));
             }
             else {
                 // go right
-                next.populateFromOther(this.pathFollower.getSegment("dropR"));
+                next.populateFromOther(this.pathFollower.getSegment("parkR"));
             }
         }
         
-        if (previous != null && previous.id.toLowerCase().contains("drop")){
+        if (previous != null && previous.id.toLowerCase().contains("flip")){
             marv.drive(0, 0, 0);
 
             marv.setFlippoPos(1);
