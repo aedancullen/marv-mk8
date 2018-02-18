@@ -31,14 +31,19 @@ public class MarvMk8CUserPyro  extends OpMode {
         }*/
         horiz = (gamepad1.right_trigger / 1.25) - (gamepad1.left_trigger / 1.25);
 
-        marv.drive(-gamepad1.left_stick_y/1.25, -gamepad1.right_stick_y/1.25, horiz);
+        if (gamepad1.left_bumper) {
+            marv.drive(-gamepad1.left_stick_y / 1.25, -gamepad1.right_stick_y / 1.25, horiz / 3);
+        }
+        else {
+            marv.drive(-gamepad1.left_stick_y / 1.25, -gamepad1.right_stick_y / 1.25, horiz);
+        }
     }
 
     public void loop() {
         telemetry.update();
         wheelDriveTick();
 
-        if (gamepad1.left_bumper || gamepad1.right_bumper) {
+        if (gamepad1.right_bumper) {
             marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         }
         else{
