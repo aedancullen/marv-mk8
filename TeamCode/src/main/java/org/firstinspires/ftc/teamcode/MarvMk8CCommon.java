@@ -53,6 +53,9 @@ public class MarvMk8CCommon {
     Servo dropski;
     ColorSensor dropskiColor;
 
+    Servo gateL;
+    Servo gateR;
+
     boolean angleHoldIsEnabled;
     double angleHoldAngle;
 
@@ -125,6 +128,9 @@ public class MarvMk8CCommon {
         dropski = hardwareMap.servo.get("dropski");
         dropskiColor = hardwareMap.colorSensor.get("dropskiColor");
 
+        gateL = hardwareMap.servo.get("gateL");
+        gateR = hardwareMap.servo.get("gateR");
+
         imu = hardwareMap.get(BNO055IMU.class, "imu");
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -140,6 +146,13 @@ public class MarvMk8CCommon {
 
         setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
+        setGatesPosition(0);
+
+    }
+
+    public void setGatesPosition(double pos) {
+        gateL.setPosition(pos * 0.6);
+        gateR.setPosition(pos * 0.6);
     }
 
     public double imuGetHeadingDegs() {
