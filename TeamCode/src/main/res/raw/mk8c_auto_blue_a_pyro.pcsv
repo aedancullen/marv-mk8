@@ -1,10 +1,10 @@
 id,success,fail,targetx,targety,targetz,targetorientation,steeringgain,accuracyx,accuracyy,accuracyz,accuracyorientation,basepower,lowestpower,powergain,rampup,rampdown,useorientation
-__start__,collect1,none,0,36,0,1.571,1.35,2,2,999,0.02,0.4,0.1,-9,false,true,true
-collect1,tokey,none,-24,36,0,1.571,1.35,2,2,999,0.02,0.4,0.1,-9,false,true,false
+__start__,collect1,none,0,36,0,1.571,1.0,2,2,999,0.02,0.4,0.1,-9,false,true,true
+collect1,tokey,none,-24,36,0,1.571,1.0,2,2,999,0.02,0.4,0.1,-9,false,true,false
 tokey,collect2,none,-1,-1,-1,-1,-1,999,999,999,999,-1,-1,-1,false,true,false
-collect2,toadd1,none,-24,36,0,1.571,1.35,2,2,999,0.02,0.4,0.1,-9,false,true,false
+collect2,toadd1,none,-24,36,0,1.571,1.0,2,2,999,0.02,0.4,0.1,-9,false,true,false
 toadd1,collect3,none,-1,-1,-1,-1,-1,999,999,999,999,-1,-1,-1,false,true,false
-collect3,toadd2,none,-24,36,0,1.571,1.35,2,2,999,0.02,0.4,0.1,-9,false,true,false
+collect3,toadd2,none,-24,36,0,1.571,1.0,2,2,999,0.02,0.4,0.1,-9,false,true,false
 toadd2,none,none,-1,-1,-1,-1,-1,999,999,999,999,-1,-1,-1,false,true,false
 flipL,none,none,10,43.5,0,1.571,1.35,0.25,0.25,999,0.01,0.4,0.1,-9,false,true,true
 flipC,none,none,10,36,0,1.571,1.35,0.25,0.25,999,0.01,0.4,0.1,-9,false,true,true
