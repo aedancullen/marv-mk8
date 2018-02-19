@@ -61,8 +61,9 @@ public class MarvMk8CUserPyro  extends OpMode {
             marv.autoConveyTick(1);
         }
 
+        marv.setGatesPosition(gamepad2.left_trigger);
 
-        marv.setFlippoPos((gamepad2.left_trigger+gamepad2.right_trigger) / 2.0);
+        marv.setFlippoPos(gamepad2.right_trigger);
 
 
         if (gamepad2.dpad_down) {
