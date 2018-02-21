@@ -29,14 +29,9 @@ public class MarvMk8CUserPyro  extends OpMode {
         else {
             horiz = gamepad1.right_trigger/2;
         }*/
-        horiz = (gamepad1.right_trigger / 1.25) - (gamepad1.left_trigger / 1.25);
+        horiz = (gamepad1.right_trigger / 2) - (gamepad1.left_trigger / 2);
 
-        if (gamepad1.left_bumper) {
-            marv.drive(-gamepad1.left_stick_y / 1.25, -gamepad1.right_stick_y / 1.25, horiz / 2.25);
-        }
-        else {
-            marv.drive(-gamepad1.left_stick_y / 1.25, -gamepad1.right_stick_y / 1.25, horiz);
-        }
+        marv.drive(-gamepad1.left_stick_y / 1.25, -gamepad1.right_stick_y / 1.25, horiz);
     }
 
     public void loop() {
@@ -55,10 +50,10 @@ public class MarvMk8CUserPyro  extends OpMode {
             marv.convey(-1);
         }
         else if (gamepad2.right_bumper) {
-            marv.convey(0);
+            marv.convey(1);
         }
         else {
-            marv.autoConveyTick(1);
+            marv.convey(0);
         }
 
         marv.setGatesPosition(gamepad2.left_trigger);
