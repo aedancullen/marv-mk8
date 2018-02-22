@@ -18,7 +18,7 @@ public class MarvMk8CUserPyro  extends OpMode {
 
     public void init() {
         marv = new MarvMk8CCommon(hardwareMap);
-        marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     public void wheelDriveTick() {
@@ -39,12 +39,12 @@ public class MarvMk8CUserPyro  extends OpMode {
         telemetry.update();
         wheelDriveTick();
 
-        /*if (gamepad1.right_bumper) {
+        if (gamepad1.right_bumper || gamepad2.back) {
             marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         }
         else{
             marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        }*/
+        }
 
 
         if (gamepad2.left_bumper) {
