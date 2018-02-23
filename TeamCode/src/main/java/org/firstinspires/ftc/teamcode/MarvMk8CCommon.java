@@ -151,8 +151,8 @@ public class MarvMk8CCommon {
     }
 
     public void setGatesPosition(double pos) {
-        gateL.setPosition(pos * 0.6);
-        gateR.setPosition(1 - (pos * 0.6));
+        gateL.setPosition(1 - (pos * 0.6));
+        gateR.setPosition(pos * 0.6);
     }
 
     public double imuGetHeadingDegs() {
