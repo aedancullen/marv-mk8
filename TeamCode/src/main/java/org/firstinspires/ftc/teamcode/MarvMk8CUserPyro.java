@@ -30,7 +30,7 @@ public class MarvMk8CUserPyro  extends OpMode {
         else {
             horiz = gamepad1.right_trigger/2;
         }*/
-        horiz = (gamepad1.right_trigger / 1.5) - (gamepad1.left_trigger / 1.5);
+        horiz = (gamepad1.right_trigger / 2) - (gamepad1.left_trigger / 2);
 
         marv.drive(-gamepad1.left_stick_y / 1.25, -gamepad1.right_stick_y / 1.25, horiz);
     }
