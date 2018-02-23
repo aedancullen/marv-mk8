@@ -16,6 +16,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
+import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_WITHOUT_ENCODER;
+import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENCODER;
+
 /**
  * Created by aedan on 12/3/17.
  */
@@ -71,7 +74,7 @@ public class MarvMk8CCommon {
     double winchZeroPosition;
     
     int winchMaxPosition = 3189; /*set correctly*/
-    int relicSlideMaxPosition = 999999; /*set correctly*/
+    int relicSlideMaxPosition = 4600; /*set correctly*/
     
     int winchLevel=0;
     int winchTolerance = 100; /*set reasonably*/
@@ -115,6 +118,10 @@ public class MarvMk8CCommon {
         flippoB = hardwareMap.servo.get("flippoB");
 
         relicSlide = hardwareMap.dcMotor.get("relicSlide");
+        relicSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        relicSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+        relicSlide.setMode(STOP_AND_RESET_ENCODER);
+        relicSlide.setMode(RUN_WITHOUT_ENCODER);
         relicLift = hardwareMap.servo.get("relicLift");
         relicGrab = hardwareMap.servo.get("relicGrab");
         

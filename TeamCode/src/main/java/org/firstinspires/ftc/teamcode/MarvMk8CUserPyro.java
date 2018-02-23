@@ -16,7 +16,7 @@ public class MarvMk8CUserPyro  extends OpMode {
 
     double collectspeed = 0.5;
 
-    double lastLiftPos = 0.5;
+    double lastLiftPos = 1;
     double lastGrabPos = 0.5;
 
     public void init() {
@@ -101,19 +101,27 @@ public class MarvMk8CUserPyro  extends OpMode {
                 marv.setSlideSpeed(0);
             }
             if (gamepad2.a) {
-                lastLiftPos += 0.005;
+                if (lastLiftPos < 1) {
+                    lastLiftPos += 0.01;
+                }
                 marv.setLiftPos(lastLiftPos);
             }
             else if (gamepad2.y) {
-                lastLiftPos -= 0.005;
+                if (lastLiftPos > 0) {
+                    lastLiftPos -= 0.01;
+                }
                 marv.setLiftPos(lastLiftPos);
             }
             if (gamepad2.right_trigger > 0) {
-                lastGrabPos += 0.005;
+                if (lastGrabPos < 1) {
+                    lastGrabPos += 0.01;
+                }
                 marv.setGrabPos(lastGrabPos);
             }
             else if (gamepad2.right_bumper) {
-                lastGrabPos -= 0.005;
+                if (lastGrabPos > 0) {
+                    lastGrabPos -= 0.01;
+                }
                 marv.setGrabPos(lastGrabPos);
             }
             telemetry.addData("slide pos", marv.relicSlide.getCurrentPosition());
