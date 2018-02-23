@@ -32,9 +32,17 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
 
     RelicRecoveryVuMark detectedTrashMark;
 
-    public MarvMk8CAutopilotSystemCommonPyro(LinearOpMode mode, AutopilotTracker tracker, Telemetry telemetry, Context appContext){
+    VuforiaLocalizer vooforia;
+    VuforiaTrackables vooforGarbage;
+    VuforiaTrackable vooforRubbish;
+
+    AutopilotTracker secondaryTracker;
+
+
+    public MarvMk8CAutopilotSystemCommonPyro(LinearOpMode mode, AutopilotTracker tracker, AutopilotTracker secondaryTracker, Telemetry telemetry, Context appContext){
         super(tracker, telemetry, appContext);
         this.mode = mode;
+        this.secondaryTracker = secondaryTracker;
     }
 
     public void setMarvCommon(MarvMk8CCommon marv){
@@ -42,11 +50,124 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
         marv.setEncoderBehavior(RUN_USING_ENCODER);
+
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+
+        parameters.vuforiaLicenseKey = "AQaSz0//////AAAAmWK7mLvLWUvPmqojdrAEgctDNGkihSVvah2Cd2y7iGo8Bg6dQUJLVoguaAqG4QYpI/87Ccb0wO4nd+jcVrzX8tF8rS4UPhr3bXkKHYtqwUjlpSvKKJzSsFGIe+MGpmmSK824Ja7JVikVoJO/u5ubCkYjm9Fyi+87T2qdjS/+RdNELgLJSDVS3Hp3nbCII6JGutHNROuLOclZCFARI1djpNJu6YNzlvCr+AJQd4Q+i0ZYv378aWnasQYifKGA8KafQMLMmNZmghljMNPDnlfFqZmn4BhItnyrBS1dbXG7BnU7xOw8DIIRq0VjEzSMiikBaUxWXxQn+K+KWahXDwchjL193WpriOF8ovjcGbeGnzJU";
+
+        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+        this.vooforia = ClassFactory.createVuforiaLocalizer(parameters);
+
+        vooforGarbage = this.vooforia.loadTrackablesFromAsset("RelicVuMark");
+        vooforRubbish = vooforGarbage.get(0);
+
+        vooforGarbage.activate();
+
+        detectedTrashMark = RelicRecoveryVuMark.from(vooforRubbish);
     }
 
     public void onSegmentTransition(AutopilotSegment previous, AutopilotSegment next, boolean wasOkayToContinue) {
 
         if (next != null && next.id.equals("__start__")){
+
+
+            marv.setDropskiDown();
+
+
+            long time = System.currentTimeMillis();
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000 && detectedTrashMark == RelicRecoveryVuMark.UNKNOWN) {
+                detectedTrashMark = RelicRecoveryVuMark.from(vooforRubbish);
+                try{Thread.sleep(1);} catch (Exception e) {}
+            }
+
+            mode.telemetry.addData("Voofor Say", detectedTrashMark);
+            mode.telemetry.update();
+
+            vooforGarbage.deactivate();
+
+            boolean dropskiShouldTurnLeft = ((marv.dropskiIsRed() && marv.isOnRedSide) || (!marv.dropskiIsRed() && !marv.isOnRedSide));
+
+            if (marv.dropskiIsConfident()) {
+
+                if (dropskiShouldTurnLeft) {
+                    double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
+                    while (mode.opModeIsActive() && ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 < frZero + 75)) {
+                        marv.fr.setPower(0.20);
+                        marv.br.setPower(0.20);
+                        marv.fl.setPower(-0.20);
+                        marv.bl.setPower(-0.20);
+                        try{Thread.sleep(1);} catch (Exception e) {}
+                    }
+
+                    marv.fr.setPower(0);
+                    marv.br.setPower(0);
+                    marv.fl.setPower(0);
+                    marv.bl.setPower(0);
+                }
+                else {
+                    double frZero = (marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0;
+                    while (mode.opModeIsActive() && ((marv.fr.getCurrentPosition()+-marv.fl.getCurrentPosition())/2.0 > frZero - 75)) {
+                        marv.fr.setPower(-0.20);
+                        marv.br.setPower(-0.20);
+                        marv.fl.setPower(0.20);
+                        marv.bl.setPower(0.20);
+                        try{Thread.sleep(1);} catch (Exception e) {}
+                    }
+
+                    marv.fr.setPower(0);
+                    marv.br.setPower(0);
+                    marv.fl.setPower(0);
+                    marv.bl.setPower(0);
+                }
+
+            }
+
+            marv.setDropskiUp();
+
+
+            if (marv.isOnRedSide) {
+                marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
+                marv.setEncoderBehavior(RUN_USING_ENCODER);
+                while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 1500) {
+                    marv.drive(0.10, 0.10, 0);
+                    try{Thread.sleep(1);} catch (Exception e) {}
+                }
+
+                marv.drive(0, 0, 0);
+            }
+            else { // marv.isOnBlueSide
+                marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
+                marv.setEncoderBehavior(RUN_USING_ENCODER);
+                while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 1500) {
+                    marv.drive(-0.10, -0.10, 0);
+                    try{Thread.sleep(1);} catch (Exception e) {}
+                }
+
+                marv.drive(0, 0, 0);
+            }
+
+            if (marv.isOnRedSide) {
+                if (marv.isOnBSide) {
+                    marv.setAngleHold(180);
+                }
+                else { // marv.isOnASide
+                    marv.setAngleHold(-90);
+                }
+            }
+            else { // marv.isOnBlueSide
+                if (marv.isOnBSide) {
+                    marv.setAngleHold(0);
+                }
+                else { // marv.isOnASide
+                    marv.setAngleHold(-90);
+                }
+            }
+
+            time = System.currentTimeMillis();
+            while (mode.opModeIsActive()/* && System.currentTimeMillis() < time + 5000 */&& !marv.angleHoldHasSettled()) {
+                marv.drive(0,0,0); // allow angle snapping to run
+                try{Thread.sleep(1);} catch (Exception e) {}
+            }
 
 
 

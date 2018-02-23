@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.evolutionftc.autopilot.AutopilotSystem;
 import com.evolutionftc.autopilot.AutopilotTrackerEncMec;
 import com.evolutionftc.autopilot.AutopilotTrackerMso;
+import com.evolutionftc.autopilot.AutopilotTrackerMsoSimple;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -17,6 +18,7 @@ public class MarvMk8CAutoBlueAPyro extends LinearOpMode {
     MarvMk8CAutopilotSystemCommonPyro marvAuto;
     
     AutopilotTrackerEncMec mecTracker;
+    AutopilotTrackerMsoSimple mbxTracker;
 
     public void runOpMode() {
         marv = new MarvMk8CCommon(hardwareMap);
@@ -24,13 +26,12 @@ public class MarvMk8CAutoBlueAPyro extends LinearOpMode {
         marv.isOnBSide = false;
 
         mecTracker = new AutopilotTrackerEncMec(marv.fl, marv.fr, marv.bl, marv.br, MarvNavConstants.ticksPerUnit, marv.imu, MarvNavConstants.nSubsteps);
+        mbxTracker = new AutopilotTrackerMsoSimple(marv.sonarRx, marv.sonarR, marv.sonarB, MarvNavConstants.MbXOffset, MarvNavConstants.MbYOffset);
 
-        marvAuto = new MarvMk8CAutopilotSystemCommonPyro(this, mecTracker, telemetry, hardwareMap.appContext);
+        marvAuto = new MarvMk8CAutopilotSystemCommonPyro(this, mecTracker, mbxTracker, telemetry, hardwareMap.appContext);
         marvAuto.setMarvCommon(marv);
         // x-axis mirroring done implicitly by switch of R/L x coord sonar
         marvAuto.beginPathTravel("mk8c_auto_blue_a_pyro");
-
-        marvAuto.host.setRobotPosition(new double[]{0, 12, 0});
 
         waitForStart();
 
