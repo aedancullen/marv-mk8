@@ -159,6 +159,8 @@ public class MarvMk8CCommon {
         setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         setGatesPosition(0);
+        //setLiftPos(1);
+        //setGrabPos(1);
 
     }
 
@@ -184,16 +186,12 @@ public class MarvMk8CCommon {
         }
     }
 
-    public void setGrabSpeed(double ups) {
-        relicGrabPos += ups / 30.0;
-
-        relicGrab.setPosition(relicGrabPos);
+    public void setGrabPos(double pos) {
+        relicGrab.setPosition(pos);
     }
 
-    public void setLiftSpeed(double ups) {
-        relicLiftPos += ups / 30.0;
-
-        relicLift.setPosition(relicLiftPos);
+    public void setLiftPos(double pos) {
+        relicLift.setPosition(pos);
     }
 
     public void setGatesPosition(double pos) {

@@ -16,6 +16,9 @@ public class MarvMk8CUserPyro  extends OpMode {
 
     double collectspeed = 0.5;
 
+    double lastLiftPos = 0.5;
+    double lastGrabPos = 0.5;
+
     public void init() {
         marv = new MarvMk8CCommon(hardwareMap);
         //marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -85,38 +88,42 @@ public class MarvMk8CUserPyro  extends OpMode {
                 marv.setWinchLevel(3);
             }
 
-            marv.winchTick();
         }
 
         else /*if (gamepad2.back)*/ {
             if (gamepad2.x) {
-                marv.setSlideSpeed(1);
+                marv.setSlideSpeed(0.5);
             }
             else if (gamepad2.b) {
-                marv.setSlideSpeed(-1);
+                marv.setSlideSpeed(-0.5);
             }
             else {
                 marv.setSlideSpeed(0);
             }
             if (gamepad2.a) {
-                marv.setLiftSpeed(-0.5);
+                lastLiftPos += 0.005;
+                marv.setLiftPos(lastLiftPos);
             }
             else if (gamepad2.y) {
-                marv.setLiftSpeed(0.5);
-            }
-            else {
-                marv.setLiftSpeed(0);
+                lastLiftPos -= 0.005;
+                marv.setLiftPos(lastLiftPos);
             }
             if (gamepad2.right_trigger > 0) {
-                marv.setGrabSpeed(0.5);
+                lastGrabPos += 0.005;
+                marv.setGrabPos(lastGrabPos);
             }
             else if (gamepad2.right_bumper) {
-                marv.setGrabSpeed(-0.5);
+                lastGrabPos -= 0.005;
+                marv.setGrabPos(lastGrabPos);
             }
-            else {
-                marv.setGrabSpeed(0);
-            }
+            telemetry.addData("slide pos", marv.relicSlide.getCurrentPosition());
+            telemetry.addData("lift pos", lastLiftPos);
+            telemetry.addData("grab pos", lastGrabPos);
+
+            telemetry.update();
         }
+
+        marv.winchTick();
 
 
     }
