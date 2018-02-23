@@ -25,7 +25,7 @@ public class MarvMk8CAutoRedAPyro extends LinearOpMode {
         marv.isOnBSide = false;
 
         mecTracker = new AutopilotTrackerEncMec(marv.fl, marv.fr, marv.bl, marv.br, MarvNavConstants.ticksPerUnit, marv.imu, MarvNavConstants.nSubsteps);
-        mbxTracker = new AutopilotTrackerMsoSimple(marv.sonarRx, marv.sonarL, marv.sonarB, MarvNavConstants.MbXOffset, MarvNavConstants.MbYOffset);
+        mbxTracker = new AutopilotTrackerMsoSimple(marv.sonarRx, marv.sonarB, marv.sonarL, MarvNavConstants.MbYOffset, MarvNavConstants.MbXOffset);
 
         marvAuto = new MarvMk8CAutopilotSystemCommonPyro(this, mecTracker, mbxTracker, telemetry, hardwareMap.appContext);
         marvAuto.setMarvCommon(marv);

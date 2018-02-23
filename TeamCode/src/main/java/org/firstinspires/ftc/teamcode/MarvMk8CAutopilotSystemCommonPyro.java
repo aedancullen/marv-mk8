@@ -169,7 +169,11 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
 
-
+            double[] secondaryRobotPosition = secondaryTracker.getRobotPosition();
+            if ((marv.isOnRedSide && marv.isOnBSide) || (!marv.isOnRedSide && !marv.isOnBSide)) {
+                secondaryRobotPosition[1] = 144.0 - secondaryRobotPosition[1]; // inv y. aedan drew a big field diagram to understand this.
+            }
+            tracker.setRobotPosition(secondaryRobotPosition);
 
         }
         
