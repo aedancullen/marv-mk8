@@ -39,7 +39,7 @@ public class MarvMk8CUserPyro  extends OpMode {
         telemetry.update();
         wheelDriveTick();
 
-        if (gamepad1.right_bumper || gamepad2.back) {
+        if (gamepad1.right_bumper) {
             marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         }
         else{
@@ -47,53 +47,76 @@ public class MarvMk8CUserPyro  extends OpMode {
         }
 
 
-        if (gamepad2.left_bumper) {
-            marv.convey(-1);
-        }
-        else if (gamepad2.right_bumper) {
-            marv.convey(1);
-        }
-        else {
-            marv.convey(0);
-        }
+        if (!gamepad2.back) {
 
-        marv.setGatesPosition(gamepad2.left_trigger);
+            if (gamepad2.left_bumper) {
+                marv.convey(-1);
+            } else if (gamepad2.right_bumper) {
+                marv.convey(1);
+            } else {
+                marv.convey(0);
+            }
 
-        marv.setFlippoPos(gamepad2.right_trigger);
+            marv.setGatesPosition(gamepad2.left_trigger);
 
-
-        if (gamepad2.dpad_down) {
-            marv.collect(0);
-        }
-        else if (gamepad2.dpad_left) {
-            marv.counterL(collectspeed);
-        }
-        else if (gamepad2.dpad_right) {
-            marv.counterR(collectspeed);
-        }
-        else if (gamepad2.dpad_up) {
-            marv.collect(-collectspeed);
-        }
-        else {
-            marv.autoCollectTick(collectspeed);
-        }
+            marv.setFlippoPos(gamepad2.right_trigger);
 
 
+            if (gamepad2.dpad_down) {
+                marv.collect(0);
+            } else if (gamepad2.dpad_left) {
+                marv.counterL(collectspeed);
+            } else if (gamepad2.dpad_right) {
+                marv.counterR(collectspeed);
+            } else if (gamepad2.dpad_up) {
+                marv.collect(-collectspeed);
+            } else {
+                marv.autoCollectTick(collectspeed);
+            }
 
-        if (gamepad2.a) {
-            marv.setWinchLevel(0);
-        }
-        else if (gamepad2.b) {
-            marv.setWinchLevel(1);
-        }
-        else if (gamepad2.x) {
-            marv.setWinchLevel(2);
-        }
-        else if (gamepad2.y) {
-            marv.setWinchLevel(3);
+
+            if (gamepad2.a) {
+                marv.setWinchLevel(0);
+            } else if (gamepad2.b) {
+                marv.setWinchLevel(1);
+            } else if (gamepad2.x) {
+                marv.setWinchLevel(2);
+            } else if (gamepad2.y) {
+                marv.setWinchLevel(3);
+            }
+
+            marv.winchTick();
         }
 
-        marv.winchTick();
+        else /*if (gamepad2.back)*/ {
+            if (gamepad2.x) {
+                marv.setSlideSpeed(1);
+            }
+            else if (gamepad2.b) {
+                marv.setSlideSpeed(-1);
+            }
+            else {
+                marv.setSlideSpeed(0);
+            }
+            if (gamepad2.a) {
+                marv.setLiftSpeed(-0.5);
+            }
+            else if (gamepad2.y) {
+                marv.setLiftSpeed(0.5);
+            }
+            else {
+                marv.setLiftSpeed(0);
+            }
+            if (gamepad2.right_trigger > 0) {
+                marv.setGrabSpeed(0.5);
+            }
+            else if (gamepad2.right_bumper) {
+                marv.setGrabSpeed(-0.5);
+            }
+            else {
+                marv.setGrabSpeed(0);
+            }
+        }
 
 
     }

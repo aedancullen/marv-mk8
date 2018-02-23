@@ -56,6 +56,13 @@ public class MarvMk8CCommon {
     Servo gateL;
     Servo gateR;
 
+    Servo relicLift;
+    Servo relicGrab;
+    DcMotor relicSlide;
+
+    int relicGrabPos;
+    int relicLiftPos;
+
     boolean angleHoldIsEnabled;
     double angleHoldAngle;
 
@@ -64,6 +71,7 @@ public class MarvMk8CCommon {
     double winchZeroPosition;
     
     int winchMaxPosition = 3189; /*set correctly*/
+    int relicSlideMaxPosition = 999999; /*set correctly*/
     
     int winchLevel=0;
     int winchTolerance = 100; /*set reasonably*/
@@ -105,6 +113,10 @@ public class MarvMk8CCommon {
 
         flippoA = hardwareMap.servo.get("flippoA");
         flippoB = hardwareMap.servo.get("flippoB");
+
+        relicSlide = hardwareMap.dcMotor.get("relicSlide");
+        relicLift = hardwareMap.servo.get("relicLift");
+        relicGrab = hardwareMap.servo.get("relicGrab");
         
         winch = hardwareMap.dcMotor.get("winch");
         winch.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -148,6 +160,40 @@ public class MarvMk8CCommon {
 
         setGatesPosition(0);
 
+    }
+
+    public void setSlideSpeed(double speed) {
+        if (speed > 0) {
+            if (relicSlide.getCurrentPosition() < relicSlideMaxPosition) {
+                relicSlide.setPower(speed);
+            }
+            else {
+                relicSlide.setPower(0);
+            }
+        }
+        else if (speed < 0) {
+            if (relicSlide.getCurrentPosition() > 0) {
+                relicSlide.setPower(speed);
+            }
+            else {
+                relicSlide.setPower(0);
+            }
+        }
+        else {
+            relicSlide.setPower(0);
+        }
+    }
+
+    public void setGrabSpeed(double ups) {
+        relicGrabPos += ups / 30.0;
+
+        relicGrab.setPosition(relicGrabPos);
+    }
+
+    public void setLiftSpeed(double ups) {
+        relicLiftPos += ups / 30.0;
+
+        relicLift.setPosition(relicLiftPos);
     }
 
     public void setGatesPosition(double pos) {
