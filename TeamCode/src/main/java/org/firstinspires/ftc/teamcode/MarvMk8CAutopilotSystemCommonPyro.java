@@ -272,6 +272,19 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
             marv.setFlippoPos(0);
 
         }
+
+        if (next != null && next.id.toLowerCase().contains("finish")){
+            marv.drive(0,0,0);
+            marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
+            marv.setEncoderBehavior(RUN_USING_ENCODER);
+            while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 500) {
+                marv.drive(0.25, 0.25, 0);
+                try{Thread.sleep(1);} catch (Exception e) {}
+            }
+
+            marv.drive(0, 0, 0);
+
+        }
     }
 
 }
