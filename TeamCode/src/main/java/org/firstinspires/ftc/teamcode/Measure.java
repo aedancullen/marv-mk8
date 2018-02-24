@@ -78,7 +78,7 @@ public class Measure extends OpMode {
         }
 
 
-        dropski.setPosition(dropskiPos);
+        dropski.setPosition(0.18);
 
         Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         telemetry.addData("angle", EssentialHeading.fromInvertedOrientation(angles).getAngleDegrees());

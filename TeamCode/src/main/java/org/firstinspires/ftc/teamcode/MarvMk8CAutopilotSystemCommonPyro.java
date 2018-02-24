@@ -75,7 +75,7 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
 
 
             long time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 1000) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 2000) {
                 detectedTrashMark = RelicRecoveryVuMark.from(vooforRubbish);
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
@@ -83,7 +83,6 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
             mode.telemetry.addData("Voofor Say", detectedTrashMark);
             mode.telemetry.update();
 
-            vooforGarbage.deactivate();
 
             boolean dropskiShouldTurnLeft = ((marv.dropskiIsRed() && marv.isOnRedSide) || (!marv.dropskiIsRed() && !marv.isOnRedSide));
 
@@ -129,7 +128,7 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
                 marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
                 marv.setEncoderBehavior(RUN_USING_ENCODER);
                 while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 1500) {
-                    marv.drive(0.10, 0.10, 0);
+                    marv.drive(0.25, 0.25, 0);
                     try{Thread.sleep(1);} catch (Exception e) {}
                 }
 
@@ -139,7 +138,7 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
                 marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
                 marv.setEncoderBehavior(RUN_USING_ENCODER);
                 while (mode.opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition())+Math.abs(marv.fl.getCurrentPosition())/2.0) < 1500) {
-                    marv.drive(-0.10, -0.10, 0);
+                    marv.drive(-0.25, -0.25, 0);
                     try{Thread.sleep(1);} catch (Exception e) {}
                 }
 
@@ -163,6 +162,10 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
                 }
             }
 
+            vooforGarbage.deactivate();
+            detectedTrashMark = RelicRecoveryVuMark.from(vooforRubbish);
+
+
             time = System.currentTimeMillis();
             while (mode.opModeIsActive()/* && System.currentTimeMillis() < time + 5000 */&& !marv.angleHoldHasSettled()) {
                 marv.drive(0,0,0); // allow angle snapping to run
@@ -172,6 +175,7 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
             time = System.currentTimeMillis();
             while (mode.opModeIsActive() && System.currentTimeMillis() < time + 1000) {
                 marv.drive(0,0,0); // pause
+                secondaryTracker.update();
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
 
@@ -190,7 +194,13 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
             if (!marv.isOnRedSide && marv.isOnBSide) {
                 secondaryRobotPosition[0] = -secondaryRobotPosition[0];
             }
-            tracker.setRobotPosition(secondaryRobotPosition);
+
+            marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
+            marv.setEncoderBehavior(RUN_USING_ENCODER);
+            host.setRobotPosition(secondaryRobotPosition);
+            host.communicate(tracker);
+
+            while (true) {marv.drive(0,0,0); host.telemetryUpdate();}
 
         }
         
