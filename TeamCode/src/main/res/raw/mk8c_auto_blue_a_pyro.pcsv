@@ -1,0 +1,10 @@
+id,success,fail,targetx,targety,targetz,targetorientation,steeringgain,accuracyx,accuracyy,accuracyz,accuracyorientation,basepower,lowestpower,powergain,rampup,rampdown,useorientation
+__start__,tokey,none,-50,-60,0,4.712,1.0,2,2,999,0.02,0.5,0.1,-9,false,true,false
+tokey,collect2,none,-1,-1,-1,-1,-1,999,999,999,999,-1,-1,-1,false,true,false
+collect2,toadd1,none,-54,-60,0,4.712,1.0,2,2,999,0.02,0.5,0.1,-9,false,true,false
+toadd1,collect3,none,-1,-1,-1,-1,-1,999,999,999,999,-1,-1,-1,false,true,false
+collect3,toadd2,none,-58,-60,0,4.712,1.0,2,2,999,0.02,0.5,0.1,-9,false,true,false
+toadd2,none,none,-1,-1,-1,-1,-1,999,999,999,999,-1,-1,-1,false,true,false
+flipL,none,none,-14,-51.5,0,4.712,1.0,0.25,0.25,999,0.02,0.4,0.1,-9,false,true,true
+flipC,none,none,-14,-59.0,0,4.712,1.0,0.25,0.25,999,0.02,0.4,0.1,-9,true,true,true
+flipR,none,none,-14,-66.5,0,4.712,1.0,0.25,0.25,999,0.02,0.4,0.1,-9,true,true,true
