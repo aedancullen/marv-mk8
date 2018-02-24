@@ -75,7 +75,7 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
 
 
             long time = System.currentTimeMillis();
-            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 3000 && detectedTrashMark == RelicRecoveryVuMark.UNKNOWN) {
+            while (mode.opModeIsActive() && System.currentTimeMillis() < time + 1000) {
                 detectedTrashMark = RelicRecoveryVuMark.from(vooforRubbish);
                 try{Thread.sleep(1);} catch (Exception e) {}
             }

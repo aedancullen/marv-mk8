@@ -33,11 +33,12 @@ public class VisionTestVooforia extends OpMode {
         rubbish = garbage.get(0);
 
         garbage.activate();
-    }
-
-    public void init_loop() {
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(rubbish);
     }
+
+    /*public void init_loop() {
+        RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(rubbish);
+    }*/
 
     public void start() {
         garbage.activate();
