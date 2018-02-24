@@ -5,6 +5,6 @@ collect2,toadd1,none,-48,60,0,1.571,1.0,2,2,999,0.02,0.4,0.1,-9,false,true,false
 toadd1,collect3,none,-1,-1,-1,-1,-1,999,999,999,999,-1,-1,-1,false,true,false
 collect3,toadd2,none,-48,60,0,1.571,1.0,2,2,999,0.02,0.4,0.1,-9,false,true,false
 toadd2,none,none,-1,-1,-1,-1,-1,999,999,999,999,-1,-1,-1,false,true,false
-flipL,none,none,-14,67.5,0,1.571,1.35,0.25,0.25,999,0.01,0.4,0.1,-9,false,true,true
-flipC,none,none,-14,60.0,0,1.571,1.35,0.25,0.25,999,0.01,0.4,0.1,-9,false,true,true
-flipR,none,none,-14,52.5,0,1.571,1.35,0.25,0.25,999,0.01,0.4,0.1,-9,false,true,true
+flipL,none,none,-17,66.5,0,1.571,1.0,0.1,0.1,999,0.01,0.4,0.1,-9,false,true,true
+flipC,none,none,-17,59.0,0,1.571,1.0,0.1,0.1,999,0.01,0.4,0.1,-9,false,true,true
+flipR,none,none,-17,51.5,0,1.571,1.0,0.1,0.1,999,0.01,0.4,0.1,-9,false,true,true

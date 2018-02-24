@@ -172,14 +172,20 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
 
+            secondaryTracker.update();
+            double[] secondaryRobotPosition = secondaryTracker.getRobotPosition();
+
             time = System.currentTimeMillis();
             while (mode.opModeIsActive() && System.currentTimeMillis() < time + 1000) {
                 marv.drive(0,0,0); // pause
                 secondaryTracker.update();
+                double[] newSecondaryRobotPosition = secondaryTracker.getRobotPosition();
+                for (int i=0;i<3;i++) {
+                    secondaryRobotPosition[i] = (secondaryRobotPosition[i] + newSecondaryRobotPosition[i]) / 2.0;
+                }
                 try{Thread.sleep(1);} catch (Exception e) {}
             }
 
-            double[] secondaryRobotPosition = secondaryTracker.getRobotPosition();
             if (marv.isOnRedSide && !marv.isOnBSide) {
                 secondaryRobotPosition[0] = -secondaryRobotPosition[0];
             }
@@ -195,12 +201,18 @@ public class MarvMk8CAutopilotSystemCommonPyro extends AutopilotSystem {
                 secondaryRobotPosition[0] = -secondaryRobotPosition[0];
             }
 
+            marv.disableAngleHold();
+            marv.drive(0,0,0);
+
+            marv.setGatesPosition(1);
+            marv.collect(0.5);
+
             marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
             marv.setEncoderBehavior(RUN_USING_ENCODER);
             host.setRobotPosition(secondaryRobotPosition);
             host.communicate(tracker);
 
-            while (true) {marv.drive(0,0,0); host.telemetryUpdate();}
+            //while (true) {host.telemetryUpdate();}
 
         }
         
