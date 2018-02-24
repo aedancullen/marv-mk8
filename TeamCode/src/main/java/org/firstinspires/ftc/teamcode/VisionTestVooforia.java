@@ -31,6 +31,12 @@ public class VisionTestVooforia extends OpMode {
 
         garbage = this.vooforia.loadTrackablesFromAsset("RelicVuMark");
         rubbish = garbage.get(0);
+
+        garbage.activate();
+    }
+
+    public void init_loop() {
+        RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(rubbish);
     }
 
     public void start() {
