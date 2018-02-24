@@ -3,7 +3,7 @@ package com.evolutionftc.autopilot;
 
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-
+import org.firstinspires.ftc.teamcode.*;
 
 
 // this is a snazzy autopilot for ftc made by aedan.
@@ -226,6 +226,13 @@ public class AutopilotHost {
 
             double targAngle = orientationTarget;
 
+            double targAngleDegs = Math.toDegrees(targAngle);
+            double attitudeDegs = Math.toDegrees(attitude);
+
+            EssentialHeading ehAttitude = new EssentialHeading(attitudeDegs);
+
+            double degreesError = new EssentialHeading(targAngleDegs).subtract(ehAttitude).getAngleDegrees();
+
             double angle = targAngle - attitude;
 
 
@@ -236,8 +243,8 @@ public class AutopilotHost {
                 angle = -(-Math.PI * 2 - angle);
             }
 
-            double powerLeft =  -(angle * steeringGain);
-            double powerRight = (angle * steeringGain);
+            double powerLeft =  -(Math.toRadians(degreesError) * steeringGain);
+            double powerRight = (Math.toRadians(degreesError) * steeringGain);
             /*powerLeft = Math.min(powerLeft, basePower);
             powerRight = Math.min(powerRight, basePower);
             powerLeft = Math.max(powerLeft, -basePower);
