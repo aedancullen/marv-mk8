@@ -232,7 +232,7 @@ public class AutopilotHost {
             if (angle > Math.PI) {
                 angle = -(Math.PI * 2 - angle);
             }
-            if (angle < -Math.PI) {
+            else if (angle < -Math.PI) {
                 angle = -(-Math.PI * 2 - angle);
             }
 
