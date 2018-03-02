@@ -6,7 +6,7 @@ package org.firstinspires.ftc.teamcode;
 
 public class MarvNavConstants {
 
-    public static double MbXOffset = 6;
+    public static double MbXOffset = 7;
 
     public static double MbYOffset = 2;
     
