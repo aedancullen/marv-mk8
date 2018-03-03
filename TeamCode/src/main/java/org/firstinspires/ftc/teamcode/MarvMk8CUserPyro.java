@@ -25,7 +25,7 @@ public class MarvMk8CUserPyro  extends OpMode {
     }
 
     public void start() {
-        marv.setLiftPos(0.1);
+        marv.setLiftPos(0.17);
     }
 
     public void wheelDriveTick() {
@@ -37,7 +37,7 @@ public class MarvMk8CUserPyro  extends OpMode {
         }
         else {
             double horiz;
-            horiz = (gamepad1.right_trigger / 4) - (gamepad1.left_trigger / 4);
+            horiz = (gamepad1.right_trigger / 2) - (gamepad1.left_trigger / 2);
             marv.drive(-gamepad1.left_stick_y / 2.50, -gamepad1.right_stick_y / 2.50, horiz);
         }
     }
@@ -132,7 +132,7 @@ public class MarvMk8CUserPyro  extends OpMode {
             }
 
             if (gamepad2.left_trigger > 0.75) {
-                lastLiftPos = 0.47;
+                lastLiftPos = 0.50;
                 marv.setLiftPos(lastLiftPos);
             }
             else if (gamepad2.left_bumper) {
