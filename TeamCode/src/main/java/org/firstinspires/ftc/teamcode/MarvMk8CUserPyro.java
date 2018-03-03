@@ -26,16 +26,16 @@ public class MarvMk8CUserPyro  extends OpMode {
 
     public void wheelDriveTick() {
 
-        double horiz;
-        /*if (gamepad1.left_trigger > 0) {
-            horiz = -gamepad1.left_trigger/2;
+        if (!gamepad1.left_bumper) {
+            double horiz;
+            horiz = (gamepad1.right_trigger / 2) - (gamepad1.left_trigger / 2);
+            marv.drive(-gamepad1.left_stick_y / 1.25, -gamepad1.right_stick_y / 1.25, horiz);
         }
         else {
-            horiz = gamepad1.right_trigger/2;
-        }*/
-        horiz = (gamepad1.right_trigger / 2) - (gamepad1.left_trigger / 2);
-
-        marv.drive(-gamepad1.left_stick_y / 1.25, -gamepad1.right_stick_y / 1.25, horiz);
+            double horiz;
+            horiz = (gamepad1.right_trigger / 4) - (gamepad1.left_trigger / 4);
+            marv.drive(-gamepad1.left_stick_y / 2.50, -gamepad1.right_stick_y / 2.50, horiz);
+        }
     }
 
     public void loop() {
