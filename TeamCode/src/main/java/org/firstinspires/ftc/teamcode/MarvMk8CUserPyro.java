@@ -127,11 +127,15 @@ public class MarvMk8CUserPyro  extends OpMode {
                 marv.setGrabPos(lastGrabPos);
             }
 
-            if (gamepad2.left_bumper) {
+            if (gamepad2.left_trigger > 0.75) {
                 lastLiftPos = 0.47;
                 lastGrabPos = 0;
                 marv.setLiftPos(lastLiftPos);
                 marv.setGrabPos(lastGrabPos);
+            }
+            else if (gamepad2.left_bumper) {
+                lastLiftPos = 1;
+                marv.setLiftPos(lastLiftPos);
             }
 
             telemetry.addData("slide pos", marv.relicSlide.getCurrentPosition());
