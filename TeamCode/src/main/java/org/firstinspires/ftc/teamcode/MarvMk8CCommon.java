@@ -166,7 +166,7 @@ public class MarvMk8CCommon {
         setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         setGatesPosition(0);
-        //setLiftPos(1);
+        setLiftPos(0);
         //setGrabPos(1);
 
     }

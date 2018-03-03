@@ -24,6 +24,10 @@ public class MarvMk8CUserPyro  extends OpMode {
         //marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
+    public void start() {
+        marv.setLiftPos(0.1);
+    }
+
     public void wheelDriveTick() {
 
         if (!gamepad1.left_bumper) {
@@ -129,9 +133,7 @@ public class MarvMk8CUserPyro  extends OpMode {
 
             if (gamepad2.left_trigger > 0.75) {
                 lastLiftPos = 0.47;
-                lastGrabPos = 0;
                 marv.setLiftPos(lastLiftPos);
-                marv.setGrabPos(lastGrabPos);
             }
             else if (gamepad2.left_bumper) {
                 lastLiftPos = 1;
