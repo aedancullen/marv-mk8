@@ -32,13 +32,13 @@ public class MarvMk8CUserPyro  extends OpMode {
 
         if (!gamepad1.left_bumper) {
             double horiz;
-            horiz = (gamepad1.right_trigger / 2) - (gamepad1.left_trigger / 2);
-            marv.drive(-gamepad1.left_stick_y / 1.25, -gamepad1.right_stick_y / 1.25, horiz);
+            horiz = (gamepad1.right_trigger / 1.1) - (gamepad1.left_trigger / 1.1);
+            marv.drive(-gamepad1.left_stick_y / 1.1, -gamepad1.right_stick_y / 1.1, horiz);
         }
         else {
             double horiz;
             horiz = (gamepad1.right_trigger / 2) - (gamepad1.left_trigger / 2);
-            marv.drive(-gamepad1.left_stick_y / 2.50, -gamepad1.right_stick_y / 2.50, horiz);
+            marv.drive(-gamepad1.left_stick_y / 2, -gamepad1.right_stick_y / 2, horiz);
         }
     }
 
