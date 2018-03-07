@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import static org.firstinspires.ftc.teamcode.MarvNavConstants.ticksPerUnit;
+
 /**
  * Created by Bob on 3/6/2018.
  */
@@ -42,18 +44,18 @@ public class ReleaseHitPositioner {
     }
 
     double encoderDecomposeMecX(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
-        double xvalSubLeft = ((double)(fl.getCurrentPosition())) - ((double)(bl.getCurrentPosition()));
-        double xvalSubRight = ((double)(br.getCurrentPosition())) - ((double)(fr.getCurrentPosition()));
+        double xvalSubLeft = ((double)(fl.getCurrentPosition()) / ticksPerUnit) - ((double)(bl.getCurrentPosition()) / ticksPerUnit);
+        double xvalSubRight = ((double)(br.getCurrentPosition()) / ticksPerUnit) - ((double)(fr.getCurrentPosition()) / ticksPerUnit);
 
         double xval = (xvalSubLeft + xvalSubRight) / 4.0;
 
         return xval;
     }
 
-    double computeRobotPos() {
+
+    void computeRobotPos() {
         computedRobotX = (edgeLX + edgeRX) / 2.0;
-        computedRobotY = Math.abs(edgeRX - edgeLX);
-        return 0;
+        computedRobotY = Math.abs(edgeRX - edgeLX) * DISTANCE_PER_UNIT;
     }
 
 }
