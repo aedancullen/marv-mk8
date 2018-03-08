@@ -174,18 +174,18 @@ public class RHPAutoCommon extends LinearOpMode {
 
     public void localizeLtoR() {
         rhp.resetZeros();
-        marv.drive(0, 0, 0.25);
+        marv.drive(0, 0, 0.15);
         rhp.blockUntilRelease(this, new Runnable() {
             @Override
             public void run() {
-                marv.drive(0, 0, 0.25);
+                marv.drive(0, 0, 0.15);
             }
         });
         rhp.recordEdgeLXMec(marv.fl, marv.fr, marv.bl, marv.br);
         rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
-                marv.drive(0, 0, 0.25);
+                marv.drive(0, 0, 0.15);
             }
         });
         marv.drive(0, 0, 0);
@@ -195,18 +195,18 @@ public class RHPAutoCommon extends LinearOpMode {
 
     public void localizeRtoL() {
         rhp.resetZeros();
-        marv.drive(0, 0, -0.25);
+        marv.drive(0, 0, -0.15);
         rhp.blockUntilRelease(this, new Runnable() {
             @Override
             public void run() {
-                marv.drive(0, 0, -0.25);
+                marv.drive(0, 0, -0.15);
             }
         });
         rhp.recordEdgeRXMec(marv.fl, marv.fr, marv.bl, marv.br);
         rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
-                marv.drive(0, 0, -0.25);
+                marv.drive(0, 0, -0.15);
             }
         });
         marv.drive(0, 0, 0);

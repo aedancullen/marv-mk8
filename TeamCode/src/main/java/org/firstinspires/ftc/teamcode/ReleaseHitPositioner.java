@@ -95,6 +95,7 @@ public class ReleaseHitPositioner {
         yHasFinished = false;
     }
 
+
     public double[] driveToPos(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br, double inchesX, double inchesY, double inchesTol, double power) {
         double ticksX = inchesX * ticksPerUnit;
         double ticksY = inchesY * ticksPerUnit;

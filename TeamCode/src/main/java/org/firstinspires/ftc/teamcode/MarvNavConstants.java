@@ -17,7 +17,7 @@ public class MarvNavConstants {
     public static double CryptXOffsetRed =  -CryptXOffsetBlue;
 
 
-    public static double CryptYOffset = -10.5;
+    public static double CryptYOffset = -10;
 
     public static int ticksPerUnit = 42;
 
@@ -26,6 +26,6 @@ public class MarvNavConstants {
 
     // ReleaseHit-specific stuff
 
-    public static double RHPTolerance = 0.25;
+    public static double RHPTolerance = 0.35;
 
 }
