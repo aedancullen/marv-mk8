@@ -43,7 +43,7 @@ public class ReleaseHitPositioner {
         edgeRX = encoderDecomposeMecX(fl, fr, bl, br);
     }
 
-    private double encoderDecomposeMecX(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
+    public double encoderDecomposeMecX(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
 
         int ticksFl = fl.getCurrentPosition();
         int ticksFr = fr.getCurrentPosition();
@@ -58,7 +58,7 @@ public class ReleaseHitPositioner {
         return xval - zeroX;
     }
 
-    private double encoderDecomposeMecY(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
+    public double encoderDecomposeMecY(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
 
         int ticksFl = fl.getCurrentPosition();
         int ticksFr = fr.getCurrentPosition();
