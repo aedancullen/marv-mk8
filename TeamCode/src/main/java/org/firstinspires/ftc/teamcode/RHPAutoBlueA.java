@@ -138,20 +138,24 @@ public class RHPAutoBlueA extends LinearOpMode {
 
 
     public void localizeLtoR() {
+        rhp.resetZeros();
         marv.drive(0, 0, 0.1);
         rhp.blockUntilRelease();
         rhp.recordEdgeLXMec(marv.fl, marv.fr, marv.bl, marv.br);
         rhp.blockUntilHit();
         rhp.recordEdgeRXMec(marv.fl, marv.fr, marv.bl, marv.br);
+        rhp.compute();
         //marv.drive(0, 0, 0);
     }
 
     public void localizeRtoL() {
-        marv.drive(0, 0, 0.1);
+        rhp.resetZeros();
+        marv.drive(0, 0, -0.1);
         rhp.blockUntilRelease();
         rhp.recordEdgeRXMec(marv.fl, marv.fr, marv.bl, marv.br);
         rhp.blockUntilHit();
         rhp.recordEdgeLXMec(marv.fl, marv.fr, marv.bl, marv.br);
+        rhp.compute();
         //marv.drive(0, 0, 0);
     }
 
