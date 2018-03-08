@@ -5,9 +5,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import static org.firstinspires.ftc.teamcode.MarvNavConstants.ticksPerUnit;
 
-/**
- * Created by Bob on 3/6/2018.
- */
 
 public class ReleaseHitPositioner {
 
@@ -20,30 +17,30 @@ public class ReleaseHitPositioner {
     double zeroX;
 
 
-    double TICKS_PER_WIDTH = (ticksPerUnit * 14.0) / 18.25;
+    double TICKS_VERT_PER_WIDTH = -(ticksPerUnit * 14.0) / 18.25;
 
-    boolean rhpcHasLine() {
-        return Math.abs(rhpc.red() - rhpc.blue()) > 6;
+    private boolean rhpcHasLine() {
+        return Math.abs(rhpc.red() - rhpc.blue()) > 5;
     }
 
-    void blockUntilRelease() {
+    public void blockUntilRelease() {
         blockUntilHit();
         while (rhpcHasLine()) {}
     }
 
-    void blockUntilHit() {
+    public void blockUntilHit() {
         while (!rhpcHasLine()) {}
     }
 
-    void recordEdgeLXMec(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
+    public void recordEdgeLXMec(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
         edgeLX = encoderDecomposeMecX(fl, fr, bl, br);
     }
 
-    void recordEdgeRXMec(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
+    public void recordEdgeRXMec(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
         edgeRX = encoderDecomposeMecX(fl, fr, bl, br);
     }
 
-    double encoderDecomposeMecX(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
+    private double encoderDecomposeMecX(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
 
         int ticksFl = fl.getCurrentPosition();
         int ticksFr = fr.getCurrentPosition();
@@ -58,7 +55,7 @@ public class ReleaseHitPositioner {
         return xval - zeroX;
     }
 
-    double encoderDecomposeMecY(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
+    private double encoderDecomposeMecY(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
 
         int ticksFl = fl.getCurrentPosition();
         int ticksFr = fr.getCurrentPosition();
@@ -74,26 +71,51 @@ public class ReleaseHitPositioner {
     }
 
 
-    void computeRobotPosAtRX() {
-        zeroX = edgeRX;
-        zeroY = Math.abs(edgeRX - edgeLX) * TICKS_PER_WIDTH;
+    public void compute() {
+        zeroX = (edgeRX + edgeLX) / 2.0;
+        zeroY = Math.abs(edgeRX - edgeLX) * TICKS_VERT_PER_WIDTH;
     }
 
-    void computeRobotPosAtLX() {
-        zeroX = edgeLX;
-        zeroY = Math.abs(edgeRX - edgeLX) * TICKS_PER_WIDTH;
-    }
 
-    void resetZeros() {
+    public void resetZeros() {
         zeroX = 0;
         zeroY = 0;
     }
 
-    double[] driveToPos(double inchesX, double inchesY) {
+    public double[] driveToPos(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br, double inchesX, double inchesY, double inchesTol, double power) {
         double ticksX = inchesX * ticksPerUnit;
         double ticksY = inchesY * ticksPerUnit;
 
-        return new double[] {0,0};
+        double powerX = 0;
+        double powerY = 0;
+
+        if (Math.abs(ticksX - encoderDecomposeMecX(fl, fr, bl, br)) > ticksPerUnit * inchesTol) {
+            if (ticksX - encoderDecomposeMecX(fl, fr, bl, br) > 0) {
+                powerX = power;
+            }
+            else {
+                powerX = -power;
+            }
+        }
+        if (Math.abs(ticksY - encoderDecomposeMecY(fl, fr, bl, br)) > ticksPerUnit * inchesTol) {
+            if (ticksY - encoderDecomposeMecY(fl, fr, bl, br) > 0) {
+                powerY = power;
+            }
+            else{
+                powerY = -power;
+            }
+        }
+
+        return new double[] {powerX, powerY};
+    }
+
+    public boolean posHasBeenReached(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br, double inchesX, double inchesY, double inchesTol) {
+        double ticksX = inchesX * ticksPerUnit;
+        double ticksY = inchesY * ticksPerUnit;
+
+        return (Math.abs(ticksX - encoderDecomposeMecX(fl, fr, bl, br)) < ticksPerUnit * inchesTol)
+                &&
+                (Math.abs(ticksY - encoderDecomposeMecY(fl, fr, bl, br)) < ticksPerUnit * inchesTol);
     }
 
 }
