@@ -16,11 +16,11 @@ public class ReleaseHitPositioner {
     double edgeLX;
     double edgeRX;
 
-    double computedRobotY;
-    double computedRobotX;
+    double zeroY;
+    double zeroX;
 
-    double targetY;
-    double targetX;
+
+    double TICKS_PER_WIDTH = (ticksPerUnit * 14.0) / 18.25;
 
     boolean rhpcHasLine() {
         return Math.abs(rhpc.red() - rhpc.blue()) > 6;
@@ -44,18 +44,56 @@ public class ReleaseHitPositioner {
     }
 
     double encoderDecomposeMecX(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
-        double xvalSubLeft = ((double)(fl.getCurrentPosition()) / ticksPerUnit) - ((double)(bl.getCurrentPosition()) / ticksPerUnit);
-        double xvalSubRight = ((double)(br.getCurrentPosition()) / ticksPerUnit) - ((double)(fr.getCurrentPosition()) / ticksPerUnit);
+
+        int ticksFl = fl.getCurrentPosition();
+        int ticksFr = fr.getCurrentPosition();
+        int ticksBl = bl.getCurrentPosition();
+        int ticksBr = br.getCurrentPosition();
+
+        double xvalSubLeft = ((double)(ticksFl)) - ((double)(ticksBl));
+        double xvalSubRight = ((double)(ticksBr)) - ((double)(ticksFr));
 
         double xval = (xvalSubLeft + xvalSubRight) / 4.0;
 
-        return xval;
+        return xval - zeroX;
+    }
+
+    double encoderDecomposeMecY(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
+
+        int ticksFl = fl.getCurrentPosition();
+        int ticksFr = fr.getCurrentPosition();
+        int ticksBl = bl.getCurrentPosition();
+        int ticksBr = br.getCurrentPosition();
+
+        double yval = (
+                ((double)(ticksFl)) + ((double)(ticksFr))
+                        + ((double)(ticksBl)) + ((double)(ticksBr))
+        ) / 4.0;
+
+        return yval - zeroY;
     }
 
 
-    void computeRobotPos() {
-        computedRobotX = (edgeLX + edgeRX) / 2.0;
-        computedRobotY = Math.abs(edgeRX - edgeLX) * DISTANCE_PER_UNIT;
+    void computeRobotPosAtRX() {
+        zeroX = edgeRX;
+        zeroY = Math.abs(edgeRX - edgeLX) * TICKS_PER_WIDTH;
+    }
+
+    void computeRobotPosAtLX() {
+        zeroX = edgeLX;
+        zeroY = Math.abs(edgeRX - edgeLX) * TICKS_PER_WIDTH;
+    }
+
+    void resetZeros() {
+        zeroX = 0;
+        zeroY = 0;
+    }
+
+    double[] driveToPos(double inchesX, double inchesY) {
+        double ticksX = inchesX * ticksPerUnit;
+        double ticksY = inchesY * ticksPerUnit;
+
+        return new double[] {0,0};
     }
 
 }
