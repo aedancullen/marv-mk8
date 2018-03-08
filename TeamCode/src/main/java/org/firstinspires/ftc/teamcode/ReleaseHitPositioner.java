@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -20,19 +21,19 @@ public class ReleaseHitPositioner {
         this.rhpc = rhpc;
     }
 
-    double TICKS_VERT_PER_WIDTH = -(ticksPerUnit * 14.0) / 18.25;
+    double TICKS_VERT_PER_WIDTH = 14.0 / 18.25;
 
     private boolean rhpcHasLine() {
         return Math.abs(rhpc.red() - rhpc.blue()) > 5;
     }
 
-    public void blockUntilRelease() {
-        blockUntilHit();
-        while (rhpcHasLine()) {}
+    public void blockUntilRelease(LinearOpMode mode) {
+        blockUntilHit(mode);
+        while (rhpcHasLine() && mode.opModeIsActive()) {}
     }
 
-    public void blockUntilHit() {
-        while (!rhpcHasLine()) {}
+    public void blockUntilHit(LinearOpMode mode) {
+        while (!rhpcHasLine() && mode.opModeIsActive()) {}
     }
 
     public void recordEdgeLXMec(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
@@ -74,9 +75,10 @@ public class ReleaseHitPositioner {
     }
 
 
-    public void compute() {
+    public void compute(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
         zeroX = (edgeRX + edgeLX) / 2.0;
-        zeroY = Math.abs(edgeRX - edgeLX) * TICKS_VERT_PER_WIDTH;
+        double encoderLocY = encoderDecomposeMecY(fl, fr, bl, br);
+        zeroY = encoderLocY + Math.abs(edgeRX - edgeLX) * TICKS_VERT_PER_WIDTH;
     }
 
 
