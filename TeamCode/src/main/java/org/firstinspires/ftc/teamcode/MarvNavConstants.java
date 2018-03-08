@@ -17,7 +17,7 @@ public class MarvNavConstants {
     public static double CryptXOffsetRed =  -CryptXOffsetBlue;
 
 
-    public static double CryptYOffset = -3;
+    public static double CryptYOffset = -10.5;
 
     public static int ticksPerUnit = 42;
 

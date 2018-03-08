@@ -21,19 +21,19 @@ public class ReleaseHitPositioner {
         this.rhpc = rhpc;
     }
 
-    double TICKS_VERT_PER_WIDTH = 14.0 / 18.25;
+    double TICKS_VERT_PER_WIDTH = 14.0 / 20.25;
 
     private boolean rhpcHasLine() {
         return Math.abs(rhpc.red() - rhpc.blue()) > 5;
     }
 
-    public void blockUntilRelease(LinearOpMode mode) {
-        blockUntilHit(mode);
-        while (rhpcHasLine() && mode.opModeIsActive()) {}
+    public void blockUntilRelease(LinearOpMode mode, Runnable task) {
+        blockUntilHit(mode, task);
+        while (rhpcHasLine() && mode.opModeIsActive()) {task.run();}
     }
 
-    public void blockUntilHit(LinearOpMode mode) {
-        while (!rhpcHasLine() && mode.opModeIsActive()) {}
+    public void blockUntilHit(LinearOpMode mode, Runnable task) {
+        while (!rhpcHasLine() && mode.opModeIsActive()) {task.run();}
     }
 
     public void recordEdgeLXMec(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
@@ -87,6 +87,14 @@ public class ReleaseHitPositioner {
         zeroY = 0;
     }
 
+    public boolean xHasFinished;
+    public boolean yHasFinished;
+
+    public void resetFinishedFlags() {
+        xHasFinished = false;
+        yHasFinished = false;
+    }
+
     public double[] driveToPos(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br, double inchesX, double inchesY, double inchesTol, double power) {
         double ticksX = inchesX * ticksPerUnit;
         double ticksY = inchesY * ticksPerUnit;
@@ -94,7 +102,7 @@ public class ReleaseHitPositioner {
         double powerX = 0;
         double powerY = 0;
 
-        if (Math.abs(ticksX - encoderDecomposeMecX(fl, fr, bl, br)) > ticksPerUnit * inchesTol) {
+        if (!xHasFinished && Math.abs(ticksX - encoderDecomposeMecX(fl, fr, bl, br)) > ticksPerUnit * inchesTol) {
             if (ticksX - encoderDecomposeMecX(fl, fr, bl, br) > 0) {
                 powerX = power;
             }
@@ -102,7 +110,10 @@ public class ReleaseHitPositioner {
                 powerX = -power;
             }
         }
-        if (Math.abs(ticksY - encoderDecomposeMecY(fl, fr, bl, br)) > ticksPerUnit * inchesTol) {
+        else {
+            xHasFinished = true;
+        }
+        if (!yHasFinished && Math.abs(ticksY - encoderDecomposeMecY(fl, fr, bl, br)) > ticksPerUnit * inchesTol) {
             if (ticksY - encoderDecomposeMecY(fl, fr, bl, br) > 0) {
                 powerY = power;
             }
@@ -110,17 +121,16 @@ public class ReleaseHitPositioner {
                 powerY = -power;
             }
         }
+        else {
+            yHasFinished = true;
+        }
 
         return new double[] {powerX, powerY};
     }
 
-    public boolean posHasBeenReached(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br, double inchesX, double inchesY, double inchesTol) {
-        double ticksX = inchesX * ticksPerUnit;
-        double ticksY = inchesY * ticksPerUnit;
+    public boolean posHasBeenReached() {
 
-        return (Math.abs(ticksX - encoderDecomposeMecX(fl, fr, bl, br)) < ticksPerUnit * inchesTol)
-                &&
-                (Math.abs(ticksY - encoderDecomposeMecY(fl, fr, bl, br)) < ticksPerUnit * inchesTol);
+        return (xHasFinished && yHasFinished);
     }
 
 }
