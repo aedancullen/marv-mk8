@@ -9,14 +9,23 @@ public class MarvNavConstants {
     public static double MbXOffset = 7;
 
     public static double MbYOffset = 2;
-    
-    public static double CryptXOffsetBlue = 7.5; // set appropriately!
+
+    public static double CryptXOffset = 7.5;
+    public static double CryptXOffsetBlue = CryptXOffset; // set appropriately!
     
     // x axis always reversed on red side (no matter which crypto A/B)
     public static double CryptXOffsetRed =  -CryptXOffsetBlue;
 
+
+    public static double CryptYOffset = -3;
+
     public static int ticksPerUnit = 42;
 
     public static int nSubsteps = 10;
+
+
+    // ReleaseHit-specific stuff
+
+    public static double RHPTolerance = 0.25;
 
 }

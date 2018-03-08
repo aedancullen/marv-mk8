@@ -16,6 +16,9 @@ public class ReleaseHitPositioner {
     double zeroY;
     double zeroX;
 
+    public ReleaseHitPositioner(ColorSensor rhpc) {
+        this.rhpc = rhpc;
+    }
 
     double TICKS_VERT_PER_WIDTH = -(ticksPerUnit * 14.0) / 18.25;
 
