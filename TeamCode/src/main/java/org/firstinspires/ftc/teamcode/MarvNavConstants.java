@@ -26,6 +26,6 @@ public class MarvNavConstants {
 
     // ReleaseHit-specific stuff
 
-    public static double RHPTolerance = 0.35;
+    public static double RHPTolerance = 1.0;
 
 }

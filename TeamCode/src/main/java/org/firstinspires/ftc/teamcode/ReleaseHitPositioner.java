@@ -21,7 +21,7 @@ public class ReleaseHitPositioner {
         this.rhpc = rhpc;
     }
 
-    double TICKS_VERT_PER_WIDTH = 14.0 / 20.25;
+    double TICKS_VERT_PER_WIDTH = 14.0 / 18.25;
 
     private boolean rhpcHasLine() {
         return Math.abs(rhpc.red() - rhpc.blue()) > 5;
@@ -33,6 +33,7 @@ public class ReleaseHitPositioner {
     }
 
     public void blockUntilHit(LinearOpMode mode, Runnable task) {
+        while (rhpcHasLine() && mode.opModeIsActive()) {task.run();}
         while (!rhpcHasLine() && mode.opModeIsActive()) {task.run();}
     }
 
