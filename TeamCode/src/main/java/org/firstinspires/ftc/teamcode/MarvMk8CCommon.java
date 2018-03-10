@@ -377,6 +377,63 @@ public class MarvMk8CCommon {
 
     }
 
+    public void drivehp(
+                        double vertL,
+                        double vertR,
+                        double horiz) {
+
+        double rot = 0;
+
+        if (angleHoldIsEnabled) {
+            // it always comes in handy, dat EssentialHeading
+            // much less annoying than the ftc_app "Orientation"
+            EssentialHeading heading = EssentialHeading.fromInvertedOrientation(imuGetOrientation());
+            double degreesError = new EssentialHeading(angleHoldAngle).subtract(heading).getAngleDegrees();
+            if (Math.abs(degreesError) > 0) {
+                rot += 0.06 * degreesError;
+                rot = Math.max(Math.min(rot, angleHoldPowerCap), -angleHoldPowerCap);
+            }
+        }
+
+        double flp = vertL + rot + horiz;
+        fl.setPower(Math.max(Math.min(flp, 1), -1));
+        double frp = vertR - rot - horiz;
+        fr.setPower(Math.max(Math.min(frp, 1), -1));
+        double blp = vertL + rot - horiz;
+        bl.setPower(Math.max(Math.min(blp, 1), -1));
+        double brp = vertR - rot + horiz;
+        br.setPower(Math.max(Math.min(brp, 1), -1));
+
+
+    }
+
+    public void setDriveTargetPositions(double vert, double horiz) {
+        double flp = vert + horiz;
+        double frp = vert - horiz;
+        double blp = vert - horiz;
+        double brp = vert + horiz;
+
+        fl.setTargetPosition((int) flp);
+        fr.setTargetPosition((int) frp);
+        bl.setTargetPosition((int) blp);
+        br.setTargetPosition((int) brp);
+    }
+
+    public void setDriveTargetPowers(double power) {
+        fl.setPower(power);
+        fr.setPower(power);
+        bl.setPower(power);
+        br.setPower(power);
+    }
+
+    public boolean encodersAreBusy() {
+
+        boolean diag1busy = fl.isBusy() || br.isBusy();
+        boolean diag2busy = br.isBusy() || bl.isBusy();
+
+        return diag1busy && diag2busy;
+    }
+
     public void convey(double speed) {
         conveyorA.setPower(speed);
         conveyorB.setPower(-speed);
