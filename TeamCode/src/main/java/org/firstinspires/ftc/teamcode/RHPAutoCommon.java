@@ -51,8 +51,7 @@ public class RHPAutoCommon extends LinearOpMode {
         marv.setAngleHold(0);
         localizeCenterLR();
         goCenter();
-
-        //marv.disableAngleHold();
+        
 
         flip();
 
@@ -277,15 +276,17 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void goLeft() {
-        rhp.resetFinishedFlags();
-        double inchesX = MarvNavConstants.CryptXOffset;
-        double inchesY = MarvNavConstants.CryptYOffset;
-        double tolerance = MarvNavConstants.RHPTolerance;
-        while (opModeIsActive() && !rhp.posHasBeenReached()) {
-            double[] powers = rhp.driveToPos(marv.fl, marv.fr, marv.bl, marv.br, inchesX, inchesY, tolerance, 0.15);
-            marv.drivehp(powers[1], powers[1], powers[0]);
-        }
-        marv.drivehp(0,0,0);
+        double ticksX = rhp.zeroX + (8 * ticksPerUnit);
+        double ticksY = rhp.zeroY + (MarvNavConstants.CryptYOffset * ticksPerUnit);
+
+        marv.setEncoderBehavior(RUN_TO_POSITION);
+        marv.setDriveTargetPowers(0.35);
+        marv.setDriveTargetPositions(ticksY, ticksX);
+
+        while (opModeIsActive() && marv.encodersAreBusy()) {}
+
+        marv.setDriveTargetPowers(0);
+        marv.setEncoderBehavior(RUN_USING_ENCODER);
     }
 
     public void goCenter() {
@@ -300,7 +301,7 @@ public class RHPAutoCommon extends LinearOpMode {
         }
         marv.drivehp(0,0,0);*/
 
-        double ticksX = rhp.zeroX + (8 * ticksPerUnit);
+        double ticksX = rhp.zeroX + (0 * ticksPerUnit);
         double ticksY = rhp.zeroY + (MarvNavConstants.CryptYOffset * ticksPerUnit);
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
@@ -314,15 +315,17 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void goRight() {
-        rhp.resetFinishedFlags();
-        double inchesX = -MarvNavConstants.CryptXOffset;
-        double inchesY = MarvNavConstants.CryptYOffset;
-        double tolerance = MarvNavConstants.RHPTolerance;
-        while (opModeIsActive() && !rhp.posHasBeenReached()) {
-            double[] powers = rhp.driveToPos(marv.fl, marv.fr, marv.bl, marv.br, inchesX, inchesY, tolerance, 0.15);
-            marv.drivehp(powers[1], powers[1], powers[0]);
-        }
-        marv.drivehp(0,0,0);
+        double ticksX = rhp.zeroX + (-8 * ticksPerUnit);
+        double ticksY = rhp.zeroY + (MarvNavConstants.CryptYOffset * ticksPerUnit);
+
+        marv.setEncoderBehavior(RUN_TO_POSITION);
+        marv.setDriveTargetPowers(0.35);
+        marv.setDriveTargetPositions(ticksY, ticksX);
+
+        while (opModeIsActive() && marv.encodersAreBusy()) {}
+
+        marv.setDriveTargetPowers(0);
+        marv.setEncoderBehavior(RUN_USING_ENCODER);
     }
 
 
