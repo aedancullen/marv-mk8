@@ -20,7 +20,12 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENC
 @Autonomous(name = "RHP Auto Blue A")
 public class RHPAutoBlueA extends RHPAutoCommon {
 
-    boolean isOnRedSide = false;
-    boolean isOnBSide = false;
+    public void runOpMode() {
+        marv = new MarvMk8CCommon(hardwareMap);
+        marv.isOnRedSide = false;
+        marv.isOnBSide = false;
+
+        super.runOpMode();
+    }
 
 }
