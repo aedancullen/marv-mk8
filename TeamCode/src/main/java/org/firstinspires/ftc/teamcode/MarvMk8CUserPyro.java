@@ -99,10 +99,10 @@ public class MarvMk8CUserPyro  extends OpMode {
             marv.collect(0);
 
             if (gamepad2.x) {
-                marv.setSlideSpeed(0.5);
+                marv.setSlideSpeed(1);
             }
             else if (gamepad2.b) {
-                marv.setSlideSpeed(-0.5);
+                marv.setSlideSpeed(-1);
             }
             else {
                 marv.setSlideSpeed(0);

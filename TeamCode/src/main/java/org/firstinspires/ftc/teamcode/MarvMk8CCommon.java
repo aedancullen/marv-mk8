@@ -226,6 +226,10 @@ public class MarvMk8CCommon {
     }
 
     public void setDropskiMid() {
+        dropski.setPosition((0.75+0.18) / 3);
+    }
+
+    public void setDropskiSafe() {
         dropski.setPosition((0.75+0.18) / 2);
     }
 

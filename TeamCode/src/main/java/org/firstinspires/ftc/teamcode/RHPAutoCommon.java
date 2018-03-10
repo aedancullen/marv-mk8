@@ -38,7 +38,7 @@ public class RHPAutoCommon extends LinearOpMode {
     public void runOpMode() {
 
         marv = new MarvMk8CCommon(hardwareMap);
-        marv.isOnRedSide = isOnRedSide;
+        marv.isOnRedSide = true;
         marv.isOnBSide = isOnBSide;
 
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -142,11 +142,9 @@ public class RHPAutoCommon extends LinearOpMode {
                 marv.setKickskiCW();
             }
 
-            sleep(500);
-
         }
 
-        marv.setDropskiMid();
+        marv.setDropskiSafe();
 
     }
 
@@ -163,7 +161,7 @@ public class RHPAutoCommon extends LinearOpMode {
             long start = System.currentTimeMillis();
             while (opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition()) + Math.abs(marv.fl.getCurrentPosition()) / 2.0) < 1500) {
                 marv.drivehp(0.25, 0.25, 0);
-                if (System.currentTimeMillis() > start + 1000) {
+                if (System.currentTimeMillis() > start + 500) {
                     homeJewelArm();
                 }
                 try {
@@ -179,7 +177,7 @@ public class RHPAutoCommon extends LinearOpMode {
             long start = System.currentTimeMillis();
             while (opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition()) + Math.abs(marv.fl.getCurrentPosition()) / 2.0) < 1500) {
                 marv.drivehp(-0.25, -0.25, 0);
-                if (System.currentTimeMillis() > start + 1000) {
+                if (System.currentTimeMillis() > start + 500) {
                     homeJewelArm();
                 }
                 try {
