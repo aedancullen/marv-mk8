@@ -9,6 +9,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+import org.firstinspires.ftc.robotcore.internal.system.SystemProperties;
 
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_USING_ENCODER;
@@ -56,6 +57,7 @@ public class RHPAutoCommon extends LinearOpMode {
         flip();*/
 
         jewelRoutine();
+        dismountRoutine();
 
         /*telemetry.addData("edgeLX", rhp.edgeLX);
         telemetry.addData("edgeRX", rhp.edgeRX);
@@ -66,6 +68,24 @@ public class RHPAutoCommon extends LinearOpMode {
 
         while (opModeIsActive()) { marv.drivehp(0, 0, 0);}
 
+    }
+
+    public void placeCenterRoutine() {
+        localizeCenterLR();
+        goCenter();
+        flip();
+    }
+
+    public void placeLeftRoutine() {
+        localizeCenterRL();
+        goLeft();
+        flip();
+    }
+
+    public void placeRightRoutine() {
+        localizeCenterLR();
+        goRight();
+        flip();
     }
 
     public void startVoof() {
@@ -126,10 +146,13 @@ public class RHPAutoCommon extends LinearOpMode {
 
         }
 
+        marv.setDropskiMid();
+
+    }
+
+    public void homeJewelArm() {
         marv.setKickskiCenter();
         marv.setDropskiUp();
-
-        sleep(500);
     }
 
     public void dismountRoutine() {
@@ -137,8 +160,12 @@ public class RHPAutoCommon extends LinearOpMode {
         if (marv.isOnRedSide) {
             marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
             marv.setEncoderBehavior(RUN_USING_ENCODER);
+            long start = System.currentTimeMillis();
             while (opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition()) + Math.abs(marv.fl.getCurrentPosition()) / 2.0) < 1500) {
                 marv.drivehp(0.25, 0.25, 0);
+                if (System.currentTimeMillis() > start + 1000) {
+                    homeJewelArm();
+                }
                 try {
                     Thread.sleep(1);
                 } catch (Exception e) {
@@ -149,8 +176,12 @@ public class RHPAutoCommon extends LinearOpMode {
         } else { // marv.isOnBlueSide
             marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
             marv.setEncoderBehavior(RUN_USING_ENCODER);
+            long start = System.currentTimeMillis();
             while (opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition()) + Math.abs(marv.fl.getCurrentPosition()) / 2.0) < 1500) {
                 marv.drivehp(-0.25, -0.25, 0);
+                if (System.currentTimeMillis() > start + 1000) {
+                    homeJewelArm();
+                }
                 try {
                     Thread.sleep(1);
                 } catch (Exception e) {
@@ -180,12 +211,35 @@ public class RHPAutoCommon extends LinearOpMode {
 
         time = System.currentTimeMillis();
         while (opModeIsActive()/* && System.currentTimeMillis() < time + 5000 */ && !marv.angleHoldHasSettled()) {
-            marv.drivehp(0, 0, 0); // allow angle snapping to run
+            marv.drive(0, 0, 0); // allow angle snapping to run
             try {
                 Thread.sleep(1);
             } catch (Exception e) {}
         }
 
+    }
+
+
+    public void enterFromRight() {
+        marv.drivehp(0, 0, 0.35);
+        rhp.blockUntilHit(this, new Runnable() {
+            @Override
+            public void run() {
+                marv.drivehp(0, 0, 0.35);
+            }
+        });
+        marv.drivehp(0, 0, 0);
+    }
+
+    public void enterFromLeft() {
+        marv.drivehp(0, 0, -0.35);
+        rhp.blockUntilHit(this, new Runnable() {
+            @Override
+            public void run() {
+                marv.drivehp(0, 0, -0.35);
+            }
+        });
+        marv.drivehp(0, 0, 0);
     }
 
 

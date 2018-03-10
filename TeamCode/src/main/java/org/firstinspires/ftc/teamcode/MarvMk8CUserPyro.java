@@ -26,6 +26,7 @@ public class MarvMk8CUserPyro  extends OpMode {
 
     public void start() {
         marv.setLiftPos(0.17);
+        marv.setKickskiCenter();
     }
 
     public void wheelDriveTick() {
