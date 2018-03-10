@@ -52,7 +52,7 @@ public class RHPAutoCommon extends LinearOpMode {
         localizeCenterLR();
         goCenter();
 
-        marv.disableAngleHold();
+        //marv.disableAngleHold();
 
         flip();
 
