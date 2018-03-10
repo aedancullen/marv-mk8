@@ -48,12 +48,14 @@ public class RHPAutoCommon extends LinearOpMode {
 
         waitForStart();
 
-        marv.setAngleHold(0);
+        /*marv.setAngleHold(0);
         localizeCenterLR();
         goCenter();
-        
 
-        flip();
+
+        flip();*/
+
+        jewelRoutine();
 
         /*telemetry.addData("edgeLX", rhp.edgeLX);
         telemetry.addData("edgeRX", rhp.edgeRX);
@@ -84,6 +86,11 @@ public class RHPAutoCommon extends LinearOpMode {
 
     }
 
+    public void stopVoof() {
+        detectedTrashMark = RelicRecoveryVuMark.from(vooforRubbish);
+        vooforGarbage.deactivate();
+    }
+
     public void flip() {
         marv.drivehp(0, 0, 0);
         marv.setFlippoPos(1);
@@ -94,38 +101,38 @@ public class RHPAutoCommon extends LinearOpMode {
         marv.setFlippoPos(0);
     }
 
-    public void dismountRoutine() {
+    public void jewelRoutine() {
+
+        marv.setDropskiMid();
+        marv.setKickskiCenter();
+
+        sleep(500);
 
         marv.setDropskiDown();
 
-
-        long time = System.currentTimeMillis();
-        while (opModeIsActive() && System.currentTimeMillis() < time + 2000) {
-            detectedTrashMark = RelicRecoveryVuMark.from(vooforRubbish);
-            try {
-                Thread.sleep(1);
-            } catch (Exception e) {
-            }
-        }
-
-        telemetry.addData("Voofor Say", detectedTrashMark);
-        telemetry.update();
-
+        sleep(500);
 
         boolean dropskiShouldTurnLeft = ((marv.dropskiIsRed() && marv.isOnRedSide) || (!marv.dropskiIsRed() && !marv.isOnRedSide));
 
         if (marv.dropskiIsConfident()) {
 
             if (dropskiShouldTurnLeft) {
-
+                marv.setKickskiCCW();
             } else {
-
+                marv.setKickskiCW();
             }
+
+            sleep(500);
 
         }
 
+        marv.setKickskiCenter();
         marv.setDropskiUp();
 
+        sleep(500);
+    }
+
+    public void dismountRoutine() {
 
         if (marv.isOnRedSide) {
             marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
@@ -152,9 +159,6 @@ public class RHPAutoCommon extends LinearOpMode {
 
             marv.drivehp(0, 0, 0);
         }
-
-        detectedTrashMark = RelicRecoveryVuMark.from(vooforRubbish);
-        vooforGarbage.deactivate();
 
     }
 

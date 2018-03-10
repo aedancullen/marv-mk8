@@ -56,6 +56,9 @@ public class MarvMk8CCommon {
     Servo dropski;
     ColorSensor dropskiColor;
 
+    Servo kickski;
+    ColorSensor kickskiColor;
+
     Servo gateL;
     Servo gateR;
 
@@ -147,6 +150,9 @@ public class MarvMk8CCommon {
         dropski = hardwareMap.servo.get("dropski");
         dropskiColor = hardwareMap.colorSensor.get("dropskiColor");
 
+        kickski = hardwareMap.servo.get("kickski");
+        kickskiColor = hardwareMap.colorSensor.get("kickskiColor");
+
         gateL = hardwareMap.servo.get("gateL");
         gateR = hardwareMap.servo.get("gateR");
 
@@ -219,8 +225,24 @@ public class MarvMk8CCommon {
         dropski.setPosition(0.75);
     }
 
+    public void setDropskiMid() {
+        dropski.setPosition((0.75+0.18) / 2);
+    }
+
     public void setDropskiDown() {
         dropski.setPosition(0.18);
+    }
+
+    public void setKickskiCenter() {
+        kickski.setPosition(0.68);
+    }
+
+    public void setKickskiCCW() {
+        kickski.setPosition(0.68+0.32);
+    }
+
+    public void setKickskiCW() {
+        kickski.setPosition(0.68-0.32);
     }
 
     public void setFlippoPos(double pos) {
@@ -233,11 +255,11 @@ public class MarvMk8CCommon {
     }
 
     public boolean dropskiIsRed() {
-        return (dropskiColor.red() > dropskiColor.blue());
+        return (kickskiColor.red() > kickskiColor.blue());
     }
 
     public boolean dropskiIsConfident() {
-        return (dropskiColor.red() != 0 || dropskiColor.blue() != 0);
+        return (kickskiColor.red() != 0 || kickskiColor.blue() != 0);
     }
 
     public void setZeroPowerBehavior(DcMotor.ZeroPowerBehavior behavior) {
