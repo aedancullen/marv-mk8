@@ -186,7 +186,7 @@ public class RHPAutoCommon extends LinearOpMode {
             marv.setEncoderBehavior(RUN_USING_ENCODER);
             long start = System.currentTimeMillis();
             while (opModeIsActive() && (Math.abs(marv.fr.getCurrentPosition()) + Math.abs(marv.fl.getCurrentPosition()) / 2.0) < 1500) {
-                marv.drive(0.25, 0.25, 0);
+                marv.drive(0.30, 0.25, 0);
                 if (System.currentTimeMillis() > start + 500) {
                     homeJewelArm();
                 }
