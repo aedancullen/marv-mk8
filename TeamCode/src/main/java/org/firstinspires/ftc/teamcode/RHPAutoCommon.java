@@ -54,12 +54,12 @@ public class RHPAutoCommon extends LinearOpMode {
         }
 
 
-        /*jewelRoutine();
+        jewelRoutine();
         dismountRoutine();
 
-        setSnap();*/
+        setSnap();
 
-        marv.setAngleHold(0);
+        //marv.setAngleHold(0);
 
         if (marv.isOnRedSide) {
             //enterFromRight();
@@ -309,19 +309,19 @@ public class RHPAutoCommon extends LinearOpMode {
         rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
-                marv.drivehp(0, 0, 0.15);
+                marv.drive(0, 0, 0.15);
             }
         });
-        marv.drivehp(0, 0, 0);
+        marv.drive(0, 0, 0);
         rhp.recordEdgeLXMec(marv.fl, marv.fr, marv.bl, marv.br);
         exitLtoR();
         rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
-                marv.drivehp(0, 0, -0.15);
+                marv.drive(0, 0, -0.15);
             }
         });
-        marv.drivehp(0, 0, 0);
+        marv.drive(0, 0, 0);
         rhp.recordEdgeRXMec(marv.fl, marv.fr, marv.bl, marv.br);
         rhp.compute(marv.fl, marv.fr, marv.bl, marv.br);
     }
@@ -379,19 +379,19 @@ public class RHPAutoCommon extends LinearOpMode {
         rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
-                marv.drivehp(0, 0, -0.15);
+                marv.drive(0, 0, -0.15);
             }
         });
-        marv.drivehp(0, 0, 0);
+        marv.drive(0, 0, 0);
         rhp.recordEdgeRXMec(marv.fl, marv.fr, marv.bl, marv.br);
         exitRtoL();
         rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
-                marv.drivehp(0, 0, 0.15);
+                marv.drive(0, 0, 0.15);
             }
         });
-        marv.drivehp(0, 0, 0);
+        marv.drive(0, 0, 0);
         rhp.recordEdgeLXMec(marv.fl, marv.fr, marv.bl, marv.br);
         rhp.compute(marv.fl, marv.fr, marv.bl, marv.br);
     }
