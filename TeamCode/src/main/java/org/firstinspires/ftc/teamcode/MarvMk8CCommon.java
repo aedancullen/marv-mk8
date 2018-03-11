@@ -459,7 +459,7 @@ public class MarvMk8CCommon {
         boolean straight1busy = fl.isBusy() || fr.isBusy();
         boolean straight2busy = bl.isBusy() || br.isBusy();
 
-        return diag1busy && diag2busy;
+        return diag1busy && diag2busy && straight1busy && straight2busy;
     }
 
     public void convey(double speed) {
