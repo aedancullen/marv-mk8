@@ -97,7 +97,7 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void placeCenterRoutine() {
-        localizeCenterLR();
+        localizeCenterRL();
         goCenter();
         flip();
     }
@@ -371,7 +371,7 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void goLeft() {
-        double ticksX = rhp.zeroX + (8 * ticksPerUnit);
+        double ticksX = rhp.zeroX + (8.5 * ticksPerUnit);
         double ticksY = rhp.zeroY + (MarvNavConstants.CryptYOffset * ticksPerUnit);
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
@@ -412,7 +412,7 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void goRight() {
-        double ticksX = rhp.zeroX + (-8 * ticksPerUnit);
+        double ticksX = rhp.zeroX + (-8.5 * ticksPerUnit);
         double ticksY = rhp.zeroY + (MarvNavConstants.CryptYOffset * ticksPerUnit);
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
