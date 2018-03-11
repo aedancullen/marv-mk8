@@ -115,13 +115,13 @@ public class MarvMk8CUserPyro  extends OpMode {
             }
             if (gamepad2.y) {
                 if (lastLiftPos < 1) {
-                    lastLiftPos += 0.02;
+                    lastLiftPos += 0.01;
                 }
                 marv.setLiftPos(lastLiftPos);
             }
             else if (gamepad2.a) {
                 if (lastLiftPos > 0) {
-                    lastLiftPos -= 0.02;
+                    lastLiftPos -= 0.01;
                 }
                 marv.setLiftPos(lastLiftPos);
             }
@@ -134,7 +134,12 @@ public class MarvMk8CUserPyro  extends OpMode {
             }
 
             if (gamepad2.left_trigger > 0.75) {
-                lastLiftPos = 0.56;
+                if (lastGrabPos > 0.25) {
+                    lastLiftPos = 0.5;
+                }
+                else {
+                    lastLiftPos = 0.56;
+                }
                 marv.setLiftPos(lastLiftPos);
             }
             else if (gamepad2.left_bumper) {
