@@ -249,10 +249,17 @@ public class RHPAutoCommon extends LinearOpMode {
 
     public void enterFromRight() {
         marv.drive(0, 0, 0.35);
-        rhp.blockUntilRelease(this, new Runnable() {
+        rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
                 marv.drive(0, 0, 0.35);
+            }
+        });
+        marv.drive(0, 0, 0.15);
+        rhp.blockUntilRelease(this, new Runnable() {
+            @Override
+            public void run() {
+                marv.drive(0, 0, 0.15);
             }
         });
         marv.drive(0, 0, 0);
@@ -260,10 +267,17 @@ public class RHPAutoCommon extends LinearOpMode {
 
     public void enterFromLeft() {
         marv.drive(0, 0, -0.35);
-        rhp.blockUntilRelease(this, new Runnable() {
+        rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
                 marv.drive(0, 0, -0.35);
+            }
+        });
+        marv.drive(0, 0, -0.15);
+        rhp.blockUntilRelease(this, new Runnable() {
+            @Override
+            public void run() {
+                marv.drive(0, 0, -0.15);
             }
         });
         marv.drive(0, 0, 0);

@@ -125,9 +125,9 @@ public class MarvMk8CUserPyro  extends OpMode {
                 }
                 marv.setLiftPos(lastLiftPos);
             }
-            
+
             if (gamepad2.right_trigger > 0) {
-                marv.setSlideSpeed(gamepad1.right_trigger);
+                marv.setSlideSpeed(gamepad2.right_trigger);
             }
             else if (gamepad2.right_bumper) {
                 marv.setSlideSpeed(-1);
