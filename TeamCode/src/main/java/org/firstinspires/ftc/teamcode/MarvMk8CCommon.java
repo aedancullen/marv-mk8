@@ -122,7 +122,7 @@ public class MarvMk8CCommon {
 
         relicSlide = hardwareMap.dcMotor.get("relicSlide");
         relicSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        relicSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+        //relicSlide.setDirection(DcMotorSimple.Direction.REVERSE);
         relicSlide.setMode(STOP_AND_RESET_ENCODER);
         relicSlide.setMode(RUN_WITHOUT_ENCODER);
         relicLift = hardwareMap.servo.get("relicLift");
@@ -459,7 +459,7 @@ public class MarvMk8CCommon {
         boolean straight1busy = fl.isBusy() || fr.isBusy();
         boolean straight2busy = bl.isBusy() || br.isBusy();
 
-        return diag1busy && diag2busy;
+        return diag1busy && diag2busy && straight1busy && straight2busy;
     }
 
     public void convey(double speed) {

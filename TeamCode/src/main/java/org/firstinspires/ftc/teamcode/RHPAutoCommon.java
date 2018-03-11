@@ -53,35 +53,39 @@ public class RHPAutoCommon extends LinearOpMode {
             detectedTrashMark = RelicRecoveryVuMark.CENTER;
         }
 
-        /*marv.setAngleHold(0);
-        localizeCenterLR();
-        goCenter();
 
-
-        flip();*/
-
-        jewelRoutine();
+        /*jewelRoutine();
         dismountRoutine();
 
-        setSnap();
+        setSnap();*/
 
-        //marv.setAngleHold(0);
+        marv.setAngleHold(0);
 
         if (marv.isOnRedSide) {
-            enterFromRight();
+            //enterFromRight();
+            localizeLtoR();
+            goCenter();
         }
         else {
-            enterFromLeft();
+            //enterFromLeft();
+            localizeRtoL();
+            goCenter();
         }
 
         if (detectedTrashMark == RelicRecoveryVuMark.CENTER) {
-            placeCenterRoutine();
+            //placeCenterRoutine();
+            goCenter();
+            flip();
         }
         else if (detectedTrashMark == RelicRecoveryVuMark.LEFT) {
-            placeLeftRoutine();
+            //placeLeftRoutine();
+            goLeft();
+            flip();
         }
         else if (detectedTrashMark == RelicRecoveryVuMark.RIGHT) {
-            placeRightRoutine();
+            //placeRightRoutine();
+            goRight();
+            flip();
         }
 
 
@@ -279,24 +283,45 @@ public class RHPAutoCommon extends LinearOpMode {
         marv.drive(0, 0, 0);
     }
 
-
-    public void localizeLtoR() {
-        rhp.resetZeros();
-        marv.drive(0, 0, 0.15);
-        rhp.blockUntilRelease(this, new Runnable() {
-            @Override
-            public void run() {
-                marv.drive(0, 0, 0.15);
-            }
-        });
-        rhp.recordEdgeLXMec(marv.fl, marv.fr, marv.bl, marv.br);
+    public void exitLtoR() {
         rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
-                marv.drive(0, 0, 0.15);
+                marv.drivehp(0, 0, 0.35);
             }
         });
-        marv.drive(0, 0, 0);
+        while (opModeIsActive() && rhp.rhpcHasLine()) {marv.drivehp(0, 0, 0.15);}
+    }
+
+    public void exitRtoL() {
+        rhp.blockUntilHit(this, new Runnable() {
+            @Override
+            public void run() {
+                marv.drivehp(0, 0, -0.35);
+            }
+        });
+        while (opModeIsActive() && rhp.rhpcHasLine()) {marv.drivehp(0, 0, -0.15);}
+    }
+
+
+    public void localizeLtoR() {
+        rhp.resetZeros();
+        rhp.blockUntilHit(this, new Runnable() {
+            @Override
+            public void run() {
+                marv.drivehp(0, 0, 0.15);
+            }
+        });
+        marv.drivehp(0, 0, 0);
+        rhp.recordEdgeLXMec(marv.fl, marv.fr, marv.bl, marv.br);
+        exitLtoR();
+        rhp.blockUntilHit(this, new Runnable() {
+            @Override
+            public void run() {
+                marv.drivehp(0, 0, -0.15);
+            }
+        });
+        marv.drivehp(0, 0, 0);
         rhp.recordEdgeRXMec(marv.fl, marv.fr, marv.bl, marv.br);
         rhp.compute(marv.fl, marv.fr, marv.bl, marv.br);
     }
@@ -351,27 +376,28 @@ public class RHPAutoCommon extends LinearOpMode {
 
     public void localizeRtoL() {
         rhp.resetZeros();
-        marv.drive(0, 0, -0.15);
-        rhp.blockUntilRelease(this, new Runnable() {
-            @Override
-            public void run() {
-                marv.drive(0, 0, -0.15);
-            }
-        });
-        rhp.recordEdgeRXMec(marv.fl, marv.fr, marv.bl, marv.br);
         rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
-                marv.drive(0, 0, -0.15);
+                marv.drivehp(0, 0, -0.15);
             }
         });
-        marv.drive(0, 0, 0);
+        marv.drivehp(0, 0, 0);
+        rhp.recordEdgeRXMec(marv.fl, marv.fr, marv.bl, marv.br);
+        exitRtoL();
+        rhp.blockUntilHit(this, new Runnable() {
+            @Override
+            public void run() {
+                marv.drivehp(0, 0, 0.15);
+            }
+        });
+        marv.drivehp(0, 0, 0);
         rhp.recordEdgeLXMec(marv.fl, marv.fr, marv.bl, marv.br);
         rhp.compute(marv.fl, marv.fr, marv.bl, marv.br);
     }
 
     public void goLeft() {
-        double ticksX = rhp.zeroX + (8.5 * ticksPerUnit);
+        double ticksX = rhp.zeroX + (8.25 * ticksPerUnit);
         double ticksY = rhp.zeroY + (MarvNavConstants.CryptYOffset * ticksPerUnit);
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
@@ -412,7 +438,7 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void goRight() {
-        double ticksX = rhp.zeroX + (-8.5 * ticksPerUnit);
+        double ticksX = rhp.zeroX + (-8.25 * ticksPerUnit);
         double ticksY = rhp.zeroY + (MarvNavConstants.CryptYOffset * ticksPerUnit);
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
