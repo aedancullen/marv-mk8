@@ -38,8 +38,8 @@ public class MarvMk8CUserPyro  extends OpMode {
         }
         else {
             double horiz;
-            horiz = (gamepad1.right_trigger / 2) - (gamepad1.left_trigger / 2);
-            marv.drive(-gamepad1.left_stick_y / 2, -gamepad1.right_stick_y / 2, horiz);
+            horiz = (gamepad1.right_trigger / 2.25) - (gamepad1.left_trigger / 2.25);
+            marv.drive(-gamepad1.left_stick_y / 2.50, -gamepad1.right_stick_y / 2.50, horiz);
         }
     }
 
@@ -99,41 +99,42 @@ public class MarvMk8CUserPyro  extends OpMode {
             marv.collect(0);
 
             if (gamepad2.x) {
-                marv.setSlideSpeed(1);
+                if (lastGrabPos < 1) {
+                    lastGrabPos += 0.02;
+                }
+                marv.setGrabPos(lastGrabPos);
             }
             else if (gamepad2.b) {
-                marv.setSlideSpeed(-1);
+                if (lastGrabPos > 0) {
+                    lastGrabPos -= 0.02;
+                }
+                marv.setGrabPos(lastGrabPos);
             }
             else {
                 marv.setSlideSpeed(0);
             }
             if (gamepad2.y) {
                 if (lastLiftPos < 1) {
-                    lastLiftPos += 0.01;
+                    lastLiftPos += 0.02;
                 }
                 marv.setLiftPos(lastLiftPos);
             }
             else if (gamepad2.a) {
                 if (lastLiftPos > 0) {
-                    lastLiftPos -= 0.01;
+                    lastLiftPos -= 0.02;
                 }
                 marv.setLiftPos(lastLiftPos);
             }
+            
             if (gamepad2.right_trigger > 0) {
-                if (lastGrabPos < 1) {
-                    lastGrabPos += 0.01;
-                }
-                marv.setGrabPos(lastGrabPos);
+                marv.setSlideSpeed(gamepad1.right_trigger);
             }
             else if (gamepad2.right_bumper) {
-                if (lastGrabPos > 0) {
-                    lastGrabPos -= 0.01;
-                }
-                marv.setGrabPos(lastGrabPos);
+                marv.setSlideSpeed(-1);
             }
 
             if (gamepad2.left_trigger > 0.75) {
-                lastLiftPos = 0.50;
+                lastLiftPos = 0.56;
                 marv.setLiftPos(lastLiftPos);
             }
             else if (gamepad2.left_bumper) {
