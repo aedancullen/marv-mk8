@@ -23,7 +23,7 @@ public class ReleaseHitPositioner {
 
     double TICKS_VERT_PER_WIDTH = 14.0 / 18.25;
 
-    private boolean rhpcHasLine() {
+    public boolean rhpcHasLine() {
         return Math.abs(rhpc.red() - rhpc.blue()) > 5;
     }
 
