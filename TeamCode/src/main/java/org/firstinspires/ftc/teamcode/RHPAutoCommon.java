@@ -13,6 +13,7 @@ import org.firstinspires.ftc.robotcore.internal.system.SystemProperties;
 
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_USING_ENCODER;
+import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_WITHOUT_ENCODER;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENCODER;
 import static org.firstinspires.ftc.teamcode.MarvNavConstants.ticksPerUnit;
 
@@ -54,12 +55,13 @@ public class RHPAutoCommon extends LinearOpMode {
         }
 
 
-        jewelRoutine();
+        /*jewelRoutine();
         dismountRoutine();
 
-        setSnap();
+        setSnap();*/
 
-        //marv.setAngleHold(0);
+
+        marv.setAngleHold(0);
 
         if (marv.isOnRedSide) {
             //enterFromRight();
@@ -87,6 +89,16 @@ public class RHPAutoCommon extends LinearOpMode {
             goRight();
             flip();
         }
+
+        if (!marv.isOnBSide) {
+            goAGlyphing();
+            marv.collect(0.5);
+            goABashing();
+            goAGlyphing();
+            marv.collect(0);
+        }
+
+        //bashPile();
 
 
         /*telemetry.addData("edgeLX", rhp.edgeLX);
@@ -463,6 +475,55 @@ public class RHPAutoCommon extends LinearOpMode {
         while (opModeIsActive() && marv.encodersAreBusy()) {}
 
         marv.setDriveTargetPowers(0);
+        marv.setEncoderBehavior(RUN_USING_ENCODER);
+    }
+
+    public void goAGlyphing() {
+        double ticksX = rhp.zeroX + (0 * ticksPerUnit);
+        double ticksY = rhp.zeroY + (15 * ticksPerUnit);
+
+        marv.setEncoderBehavior(RUN_TO_POSITION);
+        marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        marv.setDriveTargetPowers(0.80);
+        marv.setDriveTargetPositions(ticksY, ticksX);
+
+        while (opModeIsActive() && marv.encodersAreBusy()) {}
+
+        marv.setDriveTargetPowers(0);
+        marv.setEncoderBehavior(RUN_USING_ENCODER);
+    }
+
+    public void goABashing() {
+        double ticksX = rhp.zeroX + (15 * ticksPerUnit);
+        double ticksY = rhp.zeroY + (25 * ticksPerUnit);
+
+        marv.setEncoderBehavior(RUN_TO_POSITION);
+        marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        marv.setDriveTargetPowers(0.80);
+        marv.setDriveTargetPositions(ticksY, ticksX);
+
+        while (opModeIsActive() && marv.encodersAreBusy()) {}
+
+        marv.setDriveTargetPowers(0);
+        marv.setEncoderBehavior(RUN_USING_ENCODER);
+    }
+
+    public void bashPile() {
+        //marv.setGatesPosition(1);
+        marv.collect(0.5);
+        marv.setEncoderBehavior(RUN_WITHOUT_ENCODER);
+        marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        long time = System.currentTimeMillis();
+        while (opModeIsActive() && System.currentTimeMillis() < time + 1000) {
+            try{Thread.sleep(1);marv.drive(0.6, 0.6, -0.6);} catch (Exception e) {}
+        }
+        time = System.currentTimeMillis();
+        while (opModeIsActive() && System.currentTimeMillis() < time + 1000) {
+            try{Thread.sleep(1);marv.drive(-0.25, -0.25, 0.25);} catch (Exception e) {}
+        }
+        marv.drive(0, 0, 0);
+        marv.collect(0);
+        marv.setGatesPosition(0);
         marv.setEncoderBehavior(RUN_USING_ENCODER);
     }
 
