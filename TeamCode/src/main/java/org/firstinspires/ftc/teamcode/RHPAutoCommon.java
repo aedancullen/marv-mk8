@@ -98,8 +98,14 @@ public class RHPAutoCommon extends LinearOpMode {
             marv.collect(0);
         }*/
 
-
+        marv.setGatesPosition(1);
+        marv.collect(0.5);
         strafeRightScotty();
+        goInScotty();
+
+        marv.drive(-0.25, -0.25, 0);
+        sleep(500);
+        marv.drive(0, 0, 0);
 
 
         /*telemetry.addData("edgeLX", rhp.edgeLX);
@@ -114,7 +120,6 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void strafeRightScotty() {
-        marv.setGatesPosition(1);
         double ref = marv.readScotty();
         double lastValue = marv.readScotty();
         while (opModeIsActive() && marv.readScotty() - lastValue < 0.05) {
@@ -136,6 +141,16 @@ public class RHPAutoCommon extends LinearOpMode {
         marv.setDriveTargetPowers(0);
         marv.setEncoderBehavior(RUN_USING_ENCODER);*/
 
+        marv.drive(0, 0, 0);
+    }
+
+    public void goInScotty() {
+        while (opModeIsActive() && marv.readScotty() < 2.0) {
+            marv.drive(0.25, 0.25, 0);
+        }
+        while (opModeIsActive() && marv.readScotty() > 1.6) {
+            marv.drive(0.25, 0.25, 0);
+        }
         marv.drive(0, 0, 0);
     }
 
