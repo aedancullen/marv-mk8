@@ -36,6 +36,8 @@ public class MarvMk8CCommon {
     AnalogInput sonarR;
     AnalogInput sonarB;
 
+    AnalogInput scottySensor;
+
     DigitalChannel sonarRx;
 
     DcMotor collectorL;
@@ -137,6 +139,8 @@ public class MarvMk8CCommon {
         sonarR = hardwareMap.analogInput.get("sonarR");
         sonarB = hardwareMap.analogInput.get("sonarB");
 
+        scottySensor = hardwareMap.analogInput.get("scottySensor");
+
         sonarRx = hardwareMap.digitalChannel.get("sonarRx");
         sonarRx.setMode(DigitalChannel.Mode.OUTPUT);
 
@@ -175,6 +179,10 @@ public class MarvMk8CCommon {
         setLiftPos(0);
         //setGrabPos(1);
 
+    }
+
+    public double readScotty() {
+        return scottySensor.getVoltage();
     }
 
     public void setSlideSpeed(double speed) {

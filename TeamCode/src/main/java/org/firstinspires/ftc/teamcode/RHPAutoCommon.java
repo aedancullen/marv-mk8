@@ -58,10 +58,8 @@ public class RHPAutoCommon extends LinearOpMode {
         /*jewelRoutine();
         dismountRoutine();
 
-        setSnap();*/
+        setSnap();
 
-
-        marv.setAngleHold(0);
 
         if (marv.isOnRedSide) {
             //enterFromRight();
@@ -90,15 +88,18 @@ public class RHPAutoCommon extends LinearOpMode {
             flip();
         }
 
-        if (!marv.isOnBSide) {
+        */
+
+        /*if (!marv.isOnBSide) {
             goAGlyphing();
             marv.collect(0.5);
             goABashing();
             goAGlyphing();
             marv.collect(0);
-        }
+        }*/
 
-        //bashPile();
+
+        strafeRightScotty();
 
 
         /*telemetry.addData("edgeLX", rhp.edgeLX);
@@ -110,6 +111,32 @@ public class RHPAutoCommon extends LinearOpMode {
 
         while (opModeIsActive()) { marv.drive(0, 0, 0);}
 
+    }
+
+    public void strafeRightScotty() {
+        marv.setGatesPosition(1);
+        double ref = marv.readScotty();
+        double lastValue = marv.readScotty();
+        while (opModeIsActive() && marv.readScotty() - lastValue < 0.05) {
+            lastValue = marv.readScotty();
+            marv.drive(0, 0, 0.50);
+            sleep(1);
+        }
+
+        double ticksY = rhp.encoderDecomposeMecY(marv.fl, marv.br, marv.bl, marv.br);
+        double ticksX = rhp.encoderDecomposeMecX(marv.fl, marv.fr, marv.bl, marv.br);
+
+        /*marv.setEncoderBehavior(RUN_TO_POSITION);
+        marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        marv.setDriveTargetPowers(0.40);
+        marv.setDriveTargetPositions(ticksY - (2 * ticksPerUnit), ticksX + (6 * ticksPerUnit));
+
+        while (opModeIsActive() && marv.encodersAreBusy()) {}
+
+        marv.setDriveTargetPowers(0);
+        marv.setEncoderBehavior(RUN_USING_ENCODER);*/
+
+        marv.drive(0, 0, 0);
     }
 
     public void placeCenterRoutine() {

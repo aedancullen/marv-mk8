@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -15,10 +16,13 @@ public class NewDropSensorsFun extends OpMode {
     ColorSensor kickskiColor;
     ColorSensor dropskiColor;
 
+    AnalogInput scottySensor;
+
     public void init() {
         kickski = hardwareMap.servo.get("kickski");
         kickskiColor = hardwareMap.get(ColorSensor.class, "kickskiColor");
         dropskiColor = hardwareMap.colorSensor.get("dropskiColor");
+        scottySensor = hardwareMap.analogInput.get("scottySensor");
     }
 
     public void loop() {
@@ -27,6 +31,8 @@ public class NewDropSensorsFun extends OpMode {
         telemetry.addData("dropski red", dropskiColor.red());
         telemetry.addData("dropski blue", dropskiColor.blue());
         telemetry.addData("kickski position", servoPos);
+
+        telemetry.addData("scottysensor:", scottySensor.getVoltage());
         telemetry.update();
 
         kickski.setPosition(servoPos);
