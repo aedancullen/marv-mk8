@@ -98,7 +98,9 @@ public class RHPAutoCommon extends LinearOpMode {
             marv.collect(0);
         }*/
 
-        marv.setGatesPosition(1);
+        marv.setAngleHold(0);
+
+        marv.setGatesPosition(0.95);
         marv.collect(0.5);
         strafeRightScotty();
         goInScotty();
@@ -122,7 +124,7 @@ public class RHPAutoCommon extends LinearOpMode {
     public void strafeRightScotty() {
         double ref = marv.readScotty();
         double lastValue = marv.readScotty();
-        while (opModeIsActive() && marv.readScotty() - lastValue < 0.05) {
+        while (opModeIsActive() && marv.readScotty() - lastValue < 0.04) {
             lastValue = marv.readScotty();
             marv.drive(0, 0, 0.50);
             sleep(1);
