@@ -111,7 +111,7 @@ public class MarvMk8CUserPyro  extends OpMode {
                 marv.setGrabPos(lastGrabPos);
             }
             else {
-                marv.setSlideSpeed(0);
+                marv.setSlideSpeed(0, false);
             }
             if (gamepad2.y) {
                 if (lastLiftPos < 1) {
@@ -126,11 +126,13 @@ public class MarvMk8CUserPyro  extends OpMode {
                 marv.setLiftPos(lastLiftPos);
             }
 
+            boolean overrideIsEnabled = gamepad2.dpad_up || gamepad2.dpad_down || gamepad2.dpad_left || gamepad2.dpad_right;
+
             if (gamepad2.right_trigger > 0) {
-                marv.setSlideSpeed(gamepad2.right_trigger);
+                marv.setSlideSpeed(gamepad2.right_trigger, overrideIsEnabled);
             }
             else if (gamepad2.right_bumper) {
-                marv.setSlideSpeed(-1);
+                marv.setSlideSpeed(-1, overrideIsEnabled);
             }
 
             if (gamepad2.left_trigger > 0.75) {

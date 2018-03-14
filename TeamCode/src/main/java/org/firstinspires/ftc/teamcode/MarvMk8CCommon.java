@@ -185,9 +185,9 @@ public class MarvMk8CCommon {
         return scottySensor.getVoltage();
     }
 
-    public void setSlideSpeed(double speed) {
+    public void setSlideSpeed(double speed, boolean overrideIsEnabled) {
         if (speed > 0) {
-            if (relicSlide.getCurrentPosition() < relicSlideMaxPosition) {
+            if (relicSlide.getCurrentPosition() < relicSlideMaxPosition || overrideIsEnabled) {
                 relicSlide.setPower(speed);
             }
             else {
@@ -195,7 +195,7 @@ public class MarvMk8CCommon {
             }
         }
         else if (speed < 0) {
-            if (relicSlide.getCurrentPosition() > 0) {
+            if (relicSlide.getCurrentPosition() > 0 || overrideIsEnabled) {
                 relicSlide.setPower(speed);
             }
             else {
