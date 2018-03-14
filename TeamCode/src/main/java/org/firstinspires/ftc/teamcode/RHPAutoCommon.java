@@ -11,6 +11,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import org.firstinspires.ftc.robotcore.internal.system.SystemProperties;
 
+import java.util.ArrayList;
+
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_USING_ENCODER;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_WITHOUT_ENCODER;
@@ -118,6 +120,80 @@ public class RHPAutoCommon extends LinearOpMode {
         telemetry.addData("posY", rhp.encoderDecomposeMecY(marv.fl, marv.fr, marv.bl, marv.br) / MarvNavConstants.ticksPerUnit);*/
 
         while (opModeIsActive()) { marv.drive(0, 0, 0);}
+
+    }
+
+    public void scottySenseToRight() {
+        double startPosX = rhp.encoderDecomposeMecX(marv.fl, marv.fr, marv.bl, marv.br);
+        double startPosY = rhp.encoderDecomposeMecY(marv.fl, marv.fr, marv.bl, marv.br);
+
+        double currentPosX = startPosX;
+
+        ArrayList<Double> positions = new ArrayList<>();
+        ArrayList<Double> distances = new ArrayList<>();
+
+        while (currentPosX < startPosX + (24 * ticksPerUnit)) {
+            double newPosX = rhp.encoderDecomposeMecX(marv.fl, marv.fr, marv.bl, marv.br);
+            if (newPosX != currentPosX) {
+                positions.add(newPosX);
+                distances.add(marv.readScotty());
+            }
+            currentPosX = newPosX;
+            marv.drive(0, 0, 0.15);
+        }
+
+        int bestPositionIndex = 0;
+        double bestDeviation = Double.POSITIVE_INFINITY;
+
+        for (int i = 0; i < positions.size(); i++) {
+            int leftBound = 0;
+            int rightBound = positions.size() - 1;
+            for (int l = i - 1; l >= 0; l--) {
+                if (positions.get(l) < positions.get(i) - (3 * ticksPerUnit)) {
+                    leftBound = l;
+                    break;
+                }
+            }
+            for (int r = i + 1; r < positions.size(); r++) {
+                if (positions.get(r) > positions.get(i) + (3 * ticksPerUnit)) {
+                    rightBound = r;
+                    break;
+                }
+            }
+
+            double avg = distances.get(leftBound);
+            for (int k = leftBound + 1; k <= rightBound; k++) {
+                avg += distances.get(k);
+            }
+
+            avg /= rightBound - leftBound;
+
+
+            double deviation = 0;
+            for (int j = leftBound; j <= rightBound; j++) {
+                deviation += Math.pow(Math.abs(distances.get(j) - avg), 2);
+            }
+
+            deviation /= rightBound - leftBound;
+
+            if (deviation < bestDeviation) {
+                bestDeviation = deviation;
+                bestPositionIndex = i;
+            }
+
+        }
+
+        double targetPosX = positions.get(bestPositionIndex);
+
+        marv.setEncoderBehavior(RUN_TO_POSITION);
+        marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        marv.setDriveTargetPowers(0.25);
+        marv.setDriveTargetPositions(startPosY, targetPosX);
+
+        while (opModeIsActive() && marv.encodersAreBusy()) {}
+
+        marv.setDriveTargetPowers(0);
+        marv.setEncoderBehavior(RUN_USING_ENCODER);
 
     }
 
