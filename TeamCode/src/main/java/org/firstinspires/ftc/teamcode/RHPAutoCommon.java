@@ -62,7 +62,7 @@ public class RHPAutoCommon extends LinearOpMode {
 
         setSnap();*/
 
-        marv.setAngleHold(0);
+        /*marv.setAngleHold(0);
 
 
         if (marv.isOnRedSide) {
@@ -109,7 +109,10 @@ public class RHPAutoCommon extends LinearOpMode {
             else {
                 goOutsideRight();
             }
-        }
+        }*/
+
+        marv.setAngleHold(0);
+        scottySenseToRight();
 
 
         /*telemetry.addData("edgeLX", rhp.edgeLX);
@@ -127,20 +130,21 @@ public class RHPAutoCommon extends LinearOpMode {
         double startPosX = rhp.encoderDecomposeMecX(marv.fl, marv.fr, marv.bl, marv.br);
         double startPosY = rhp.encoderDecomposeMecY(marv.fl, marv.fr, marv.bl, marv.br);
 
-        double currentPosX = startPosX;
-
         ArrayList<Double> positions = new ArrayList<>();
         ArrayList<Double> distances = new ArrayList<>();
 
-        while (currentPosX < startPosX + (24 * ticksPerUnit)) {
-            double newPosX = rhp.encoderDecomposeMecX(marv.fl, marv.fr, marv.bl, marv.br);
-            if (newPosX != currentPosX) {
-                positions.add(newPosX);
-                distances.add(marv.readScotty());
-            }
-            currentPosX = newPosX;
+        double latestPosX = startPosX;
+
+        while (latestPosX < startPosX + (24 * ticksPerUnit)) {
+            latestPosX = rhp.encoderDecomposeMecX(marv.fl, marv.fr, marv.bl, marv.br);
+            positions.add(latestPosX);
+            distances.add(marv.readScotty());
             marv.drive(0, 0, 0.15);
         }
+
+        telemetry.addData("positions", positions);
+        telemetry.addData("distances", distances);
+        //telemetry.update();
 
         int bestPositionIndex = 0;
         double bestDeviation = Double.POSITIVE_INFINITY;
@@ -149,24 +153,28 @@ public class RHPAutoCommon extends LinearOpMode {
             int leftBound = 0;
             int rightBound = positions.size() - 1;
             for (int l = i - 1; l >= 0; l--) {
-                if (positions.get(l) < positions.get(i) - (3 * ticksPerUnit)) {
+                if (positions.get(l) < positions.get(i) - (2 * ticksPerUnit)) {
                     leftBound = l;
                     break;
                 }
             }
             for (int r = i + 1; r < positions.size(); r++) {
-                if (positions.get(r) > positions.get(i) + (3 * ticksPerUnit)) {
+                if (positions.get(r) > positions.get(i) + (2 * ticksPerUnit)) {
                     rightBound = r;
                     break;
                 }
             }
+
+            /*if (leftBound == -1 || rightBound == -1) {
+                continue;
+            }*/
 
             double avg = distances.get(leftBound);
             for (int k = leftBound + 1; k <= rightBound; k++) {
                 avg += distances.get(k);
             }
 
-            avg /= rightBound - leftBound;
+            avg /= rightBound - leftBound + 1;
 
 
             double deviation = 0;
@@ -174,16 +182,22 @@ public class RHPAutoCommon extends LinearOpMode {
                 deviation += Math.pow(Math.abs(distances.get(j) - avg), 2);
             }
 
-            deviation /= rightBound - leftBound;
+            deviation /= rightBound - leftBound + 1;
 
             if (deviation < bestDeviation) {
                 bestDeviation = deviation;
                 bestPositionIndex = i;
             }
 
+            telemetry.addData("deviation" + i, deviation);
+            telemetry.addData("rb " + i, rightBound);
+            telemetry.addData("lb " + i, leftBound);
+
         }
 
         double targetPosX = positions.get(bestPositionIndex);
+        telemetry.addData("chosen", bestPositionIndex);
+        telemetry.update();
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
