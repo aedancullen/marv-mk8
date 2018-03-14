@@ -374,20 +374,20 @@ public class RHPAutoCommon extends LinearOpMode {
         rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
-                marv.drive(0, 0, 0.40);
+                marv.drivehp(0, 0, 0.35);
             }
         });
-        while (opModeIsActive() && rhp.rhpcHasLine()) {marv.drivehp(0, 0, 0.40);}
+        while (opModeIsActive() && rhp.rhpcHasLine()) {marv.drivehp(0, 0, 0.15);}
     }
 
     public void exitRtoL() {
         rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
-                marv.drive(0, 0, -0.40);
+                marv.drivehp(0, 0, -0.35);
             }
         });
-        while (opModeIsActive() && rhp.rhpcHasLine()) {marv.drivehp(0, 0, -0.40);}
+        while (opModeIsActive() && rhp.rhpcHasLine()) {marv.drivehp(0, 0, -0.15);}
     }
 
 
