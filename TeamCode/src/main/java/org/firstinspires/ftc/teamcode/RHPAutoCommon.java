@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.util.Log;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -139,7 +141,7 @@ public class RHPAutoCommon extends LinearOpMode {
             latestPosX = rhp.encoderDecomposeMecX(marv.fl, marv.fr, marv.bl, marv.br);
             positions.add(latestPosX);
             distances.add(marv.readScotty());
-            marv.drive(0, 0, 0.15);
+            marv.drive(0, 0, 0.25);
         }
 
         telemetry.addData("positions", positions);
@@ -150,8 +152,8 @@ public class RHPAutoCommon extends LinearOpMode {
         double bestDeviation = Double.POSITIVE_INFINITY;
 
         for (int i = 0; i < positions.size(); i++) {
-            int leftBound = 0;
-            int rightBound = positions.size() - 1;
+            int leftBound = -1;
+            int rightBound = -1;
             for (int l = i - 1; l >= 0; l--) {
                 if (positions.get(l) < positions.get(i) - (2 * ticksPerUnit)) {
                     leftBound = l;
@@ -165,9 +167,9 @@ public class RHPAutoCommon extends LinearOpMode {
                 }
             }
 
-            /*if (leftBound == -1 || rightBound == -1) {
+            if (leftBound == -1 || rightBound == -1) {
                 continue;
-            }*/
+            }
 
             double avg = distances.get(leftBound);
             for (int k = leftBound + 1; k <= rightBound; k++) {
@@ -201,7 +203,7 @@ public class RHPAutoCommon extends LinearOpMode {
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        marv.setDriveTargetPowers(0.25);
+        marv.setDriveTargetPowers(0.35);
         marv.setDriveTargetPositions(startPosY, targetPosX);
 
         while (opModeIsActive() && marv.encodersAreBusy()) {}
