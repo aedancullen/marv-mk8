@@ -141,7 +141,7 @@ public class RHPAutoCommon extends LinearOpMode {
             latestPosX = rhp.encoderDecomposeMecX(marv.fl, marv.fr, marv.bl, marv.br);
             positions.add(latestPosX);
             distances.add(marv.readScotty());
-            marv.drive(0, 0, 0.25);
+            marv.drive(0, 0, 0.15);
         }
 
         telemetry.addData("positions", positions);
@@ -155,13 +155,13 @@ public class RHPAutoCommon extends LinearOpMode {
             int leftBound = -1;
             int rightBound = -1;
             for (int l = i - 1; l >= 0; l--) {
-                if (positions.get(l) < positions.get(i) - (2 * ticksPerUnit)) {
+                if (positions.get(l) < positions.get(i) - (2.5 * ticksPerUnit)) {
                     leftBound = l;
                     break;
                 }
             }
             for (int r = i + 1; r < positions.size(); r++) {
-                if (positions.get(r) > positions.get(i) + (2 * ticksPerUnit)) {
+                if (positions.get(r) > positions.get(i) + (2.5 * ticksPerUnit)) {
                     rightBound = r;
                     break;
                 }
