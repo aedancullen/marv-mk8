@@ -58,7 +58,9 @@ public class RHPAutoCommon extends LinearOpMode {
         /*jewelRoutine();
         dismountRoutine();
 
-        setSnap();
+        setSnap();*/
+
+        marv.setAngleHold(0);
 
 
         if (marv.isOnRedSide) {
@@ -88,26 +90,16 @@ public class RHPAutoCommon extends LinearOpMode {
             flip();
         }
 
-        */
 
-        /*if (!marv.isOnBSide) {
-            goAGlyphing();
+
+        if (!marv.isOnBSide) {
+            marv.setGatesPosition(0.95);
             marv.collect(0.5);
-            goABashing();
             goAGlyphing();
-            marv.collect(0);
-        }*/
-
-        marv.setAngleHold(0);
-
-        marv.setGatesPosition(0.95);
-        marv.collect(0.5);
-        strafeRightScotty();
-        goInScotty();
-
-        marv.drive(-0.25, -0.25, 0);
-        sleep(500);
-        marv.drive(0, 0, 0);
+            strafeRightScotty();
+            goInScotty();
+            goAGlyphing();
+        }
 
 
         /*telemetry.addData("edgeLX", rhp.edgeLX);
@@ -126,12 +118,11 @@ public class RHPAutoCommon extends LinearOpMode {
         double lastValue = marv.readScotty();
         while (opModeIsActive() && marv.readScotty() - lastValue < 0.04) {
             lastValue = marv.readScotty();
-            marv.drive(0, 0, 0.50);
+            marv.drive(0, 0, 0.25);
             sleep(1);
         }
 
-        double ticksY = rhp.encoderDecomposeMecY(marv.fl, marv.br, marv.bl, marv.br);
-        double ticksX = rhp.encoderDecomposeMecX(marv.fl, marv.fr, marv.bl, marv.br);
+        sleep(50);
 
         /*marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -147,12 +138,17 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void goInScotty() {
+        double locX = rhp.encoderDecomposeMecX(marv.fl, marv.fr, marv.bl, marv.br);
+        double locY = rhp.encoderDecomposeMecY(marv.fl, marv.fr, marv.bl, marv.br);
         while (opModeIsActive() && marv.readScotty() < 2.0) {
-            marv.drive(0.25, 0.25, 0);
+            marv.drive(0.50, 0.50, 0);
         }
         while (opModeIsActive() && marv.readScotty() > 1.6) {
-            marv.drive(0.25, 0.25, 0);
+            marv.drive(0.50, 0.50, 0);
         }
+
+        marv.drive(-0.50, -0.50, 0);
+        sleep(750);
         marv.drive(0, 0, 0);
     }
 
@@ -524,7 +520,7 @@ public class RHPAutoCommon extends LinearOpMode {
 
     public void goAGlyphing() {
         double ticksX = rhp.zeroX + (0 * ticksPerUnit);
-        double ticksY = rhp.zeroY + (15 * ticksPerUnit);
+        double ticksY = rhp.zeroY + (5 * ticksPerUnit);
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
