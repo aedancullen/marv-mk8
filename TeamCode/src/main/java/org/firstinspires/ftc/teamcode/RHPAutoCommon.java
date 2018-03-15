@@ -100,7 +100,7 @@ public class RHPAutoCommon extends LinearOpMode {
             //setSnap();
             int countsSettled = 0;
             while (opModeIsActive()/* && System.currentTimeMillis() < time + 5000 */ && countsSettled < 3) {
-                marv.drivehp(0, 0, 0); // allow angle snapping to run
+                marv.drive(0, 0, 0); // allow angle snapping to run
                 if (marv.angleHoldHasSettled()) {
                     countsSettled++;
                 }
