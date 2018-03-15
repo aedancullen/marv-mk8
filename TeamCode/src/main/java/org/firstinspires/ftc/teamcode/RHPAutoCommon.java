@@ -95,9 +95,19 @@ public class RHPAutoCommon extends LinearOpMode {
 
         if (!marv.isOnBSide) {
             marv.collect(0.5);
+            marv.setGatesPosition(1);
             goAGlyphing();
             //setSnap();
-            //marv.setGatesPosition(1);
+            int countsSettled = 0;
+            while (opModeIsActive()/* && System.currentTimeMillis() < time + 5000 */ && countsSettled < 3) {
+                marv.drive(0, 0, 0); // allow angle snapping to run
+                if (marv.angleHoldHasSettled()) {
+                    countsSettled++;
+                }
+                try {
+                    Thread.sleep(1);
+                } catch (Exception e) {}
+            }
             scottySenseToRight();
             goOutsideLeft();
             marv.collect(-0.5);
@@ -135,6 +145,7 @@ public class RHPAutoCommon extends LinearOpMode {
     public void scottySenseToRight() {
 
         double startPosX = rhp.encoderDecomposeMecX(marv.fl, marv.fr, marv.bl, marv.br);
+        double startPosY = rhp.encoderDecomposeMecY(marv.fl, marv.fr, marv.bl, marv.br);
 
         ArrayList<Double> positions = new ArrayList<>();
         ArrayList<Double> distances = new ArrayList<>();
@@ -145,10 +156,8 @@ public class RHPAutoCommon extends LinearOpMode {
             latestPosX = rhp.encoderDecomposeMecX(marv.fl, marv.fr, marv.bl, marv.br);
             positions.add(latestPosX);
             distances.add(marv.readScotty());
-            marv.drive(0, 0, 0.25);
+            marv.drivehp(0, 0, 0.25);
         }
-
-        double startPosY = rhp.encoderDecomposeMecY(marv.fl, marv.fr, marv.bl, marv.br);
 
         telemetry.addData("positions", positions);
         telemetry.addData("distances", distances);
@@ -340,10 +349,10 @@ public class RHPAutoCommon extends LinearOpMode {
 
         long time = System.currentTimeMillis();
         while (opModeIsActive() && marv.readScotty() < 2.0 && System.currentTimeMillis() < time + 1000) {
-            marv.drive(0.40, 0.40, 0);
+            marv.drive(0.60, 0.60, 0);
         }
         while (opModeIsActive() && marv.readScotty() > 1.6 && System.currentTimeMillis() < time + 1000) {
-            marv.drive(0.40, 0.40, 0);
+            marv.drive(0.60, 0.60, 0);
         }
 
         marv.drive(0, 0, 0);
@@ -551,7 +560,7 @@ public class RHPAutoCommon extends LinearOpMode {
         rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
-                marv.drivehp(0, 0, 0.25);
+                marv.drivehp(0, 0, 0.35);
             }
         });
         while (opModeIsActive() && rhp.rhpcHasLine()) {marv.drivehp(0, 0, 0.15);}
@@ -561,7 +570,7 @@ public class RHPAutoCommon extends LinearOpMode {
         rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
-                marv.drivehp(0, 0, -0.25);
+                marv.drivehp(0, 0, -0.35);
             }
         });
         while (opModeIsActive() && rhp.rhpcHasLine()) {marv.drivehp(0, 0, -0.15);}
