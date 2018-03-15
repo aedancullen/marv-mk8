@@ -424,7 +424,7 @@ public class MarvMk8CCommon {
             EssentialHeading heading = EssentialHeading.fromInvertedOrientation(imuGetOrientation());
             double degreesError = new EssentialHeading(angleHoldAngle).subtract(heading).getAngleDegrees();
             if (Math.abs(degreesError) > 0) {
-                rot += 0.06 * degreesError;
+                rot += 0.05 * degreesError;
                 rot = Math.max(Math.min(rot, angleHoldPowerCap), -angleHoldPowerCap);
             }
         }
@@ -446,6 +446,18 @@ public class MarvMk8CCommon {
         double frp = vert - horiz;
         double blp = vert - horiz;
         double brp = vert + horiz;
+
+        fl.setTargetPosition((int) flp);
+        fr.setTargetPosition((int) frp);
+        bl.setTargetPosition((int) blp);
+        br.setTargetPosition((int) brp);
+    }
+
+    public void setDriveTargetPositionsWithRot(double vert, double horiz, double rot) {
+        double flp = vert + rot + horiz;
+        double frp = vert - rot - horiz;
+        double blp = vert + rot - horiz;
+        double brp = vert - rot + horiz;
 
         fl.setTargetPosition((int) flp);
         fr.setTargetPosition((int) frp);

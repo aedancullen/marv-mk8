@@ -60,6 +60,17 @@ public class ReleaseHitPositioner {
         return xval - zeroX;
     }
 
+    public double encoderDecomposeMecRot(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
+        int ticksFl = fl.getCurrentPosition();
+        int ticksFr = fr.getCurrentPosition();
+        int ticksBl = bl.getCurrentPosition();
+        int ticksBr = br.getCurrentPosition();
+
+        double rotation = (((double)ticksFl) + ((double)ticksBl)) - (((double)ticksFr) + ((double)ticksBr));
+
+        return rotation / 4.0;
+    }
+
     public double encoderDecomposeMecY(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
 
         int ticksFl = fl.getCurrentPosition();
