@@ -130,6 +130,16 @@ public class RHPAutoCommon extends LinearOpMode {
                 flip();
             }
 
+            marv.setEncoderBehavior(RUN_TO_POSITION);
+            marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            marv.setDriveTargetPowers(0.35);
+            marv.setDriveTargetPositionsWithRot(rhp.zeroY + (-1 * ticksPerUnit), rhp.zeroX, rhp.zeroRot);
+
+            while (opModeIsActive() && marv.encodersAreBusy()) {}
+
+            marv.setDriveTargetPowers(0);
+            marv.setEncoderBehavior(RUN_USING_ENCODER);
+
         }
 
 
@@ -407,9 +417,10 @@ public class RHPAutoCommon extends LinearOpMode {
     public void flip() {
         marv.drive(0, 0, 0);
         marv.convey(1);
+        sleep(100);
         marv.setFlippoPos(1);
         long time = System.currentTimeMillis();
-        while (opModeIsActive() && System.currentTimeMillis() < time + 750) {
+        while (opModeIsActive() && System.currentTimeMillis() < time + 700) {
             try{Thread.sleep(1);marv.drivehp(0, 0, 0);} catch (Exception e) {}
         }
         rhp.setZeroRot(marv.fl, marv.fr, marv.bl, marv.br);
@@ -752,7 +763,7 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void goOutsideLeft() {
-        double ticksX = rhp.zeroX + (-10 * ticksPerUnit);
+        double ticksX = rhp.zeroX + (-11 * ticksPerUnit);
         double ticksY = rhp.zeroY + (-5 * ticksPerUnit);
         double ticksRot = rhp.zeroRot;
 
@@ -768,7 +779,7 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void goOutsideRight() {
-        double ticksX = rhp.zeroX + (10 * ticksPerUnit);
+        double ticksX = rhp.zeroX + (11 * ticksPerUnit);
         double ticksY = rhp.zeroY + (-5 * ticksPerUnit);
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
