@@ -249,7 +249,7 @@ public class RHPAutoCommon extends LinearOpMode {
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        marv.setDriveTargetPowers(0.50);
+        marv.setDriveTargetPowers(0.35);
         marv.setDriveTargetPositionsWithRot(rhp.zeroY + startPosY, rhp.zeroX + targetPosXFirst, rhp.zeroRot);
 
         while (opModeIsActive() && marv.encodersAreBusy()) {}
@@ -261,7 +261,7 @@ public class RHPAutoCommon extends LinearOpMode {
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        marv.setDriveTargetPowers(0.50);
+        marv.setDriveTargetPowers(0.35);
         marv.setDriveTargetPositionsWithRot(rhp.zeroY + startPosY, rhp.zeroX + targetPosXFirst, rhp.zeroRot);
 
         while (opModeIsActive() && marv.encodersAreBusy()) {}
@@ -273,7 +273,7 @@ public class RHPAutoCommon extends LinearOpMode {
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        marv.setDriveTargetPowers(0.50);
+        marv.setDriveTargetPowers(0.35);
         marv.setDriveTargetPositionsWithRot(rhp.zeroY + startPosY, rhp.zeroX + targetPosXSecond, rhp.zeroRot);
 
         while (opModeIsActive() && marv.encodersAreBusy()) {}
@@ -364,10 +364,10 @@ public class RHPAutoCommon extends LinearOpMode {
 
         long time = System.currentTimeMillis();
         while (opModeIsActive() && marv.readScotty() < 2.0 && System.currentTimeMillis() < time + 1000) {
-            marv.drive(0.50, 0.50, 0);
+            marv.drive(0.35, 0.35, 0);
         }
         while (opModeIsActive() && marv.readScotty() > 1.6 && System.currentTimeMillis() < time + 1000) {
-            marv.drive(0.50, 0.50, 0);
+            marv.drive(0.35, 0.35, 0);
         }
 
         marv.drive(0, 0, 0);
@@ -694,7 +694,7 @@ public class RHPAutoCommon extends LinearOpMode {
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        marv.setDriveTargetPowers(0.50);
+        marv.setDriveTargetPowers(0.35);
         marv.setDriveTargetPositionsWithRot(ticksY, ticksX, ticksRot);
 
         while (opModeIsActive() && marv.encodersAreBusy()) {}
@@ -721,7 +721,7 @@ public class RHPAutoCommon extends LinearOpMode {
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        marv.setDriveTargetPowers(0.50);
+        marv.setDriveTargetPowers(0.35);
         marv.setDriveTargetPositionsWithRot(ticksY, ticksX, ticksRot);
 
         while (opModeIsActive() && marv.encodersAreBusy()) {}
@@ -737,7 +737,7 @@ public class RHPAutoCommon extends LinearOpMode {
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        marv.setDriveTargetPowers(0.50);
+        marv.setDriveTargetPowers(0.35);
         marv.setDriveTargetPositionsWithRot(ticksY, ticksX, ticksRot);
 
         while (opModeIsActive() && marv.encodersAreBusy()) {}
@@ -748,12 +748,12 @@ public class RHPAutoCommon extends LinearOpMode {
 
     public void goAGlyphing() {
         double ticksX = rhp.zeroX + (-15 * ticksPerUnit);
-        double ticksY = rhp.zeroY + (6 * ticksPerUnit);
+        double ticksY = rhp.zeroY + (5 * ticksPerUnit);
         double ticksRot = rhp.zeroRot;
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        marv.setDriveTargetPowers(0.75);
+        marv.setDriveTargetPowers(0.35);
         marv.setDriveTargetPositionsWithRot(ticksY, ticksX, ticksRot);
 
         while (opModeIsActive() && marv.encodersAreBusy()) {}
@@ -763,13 +763,13 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void goOutsideLeft() {
-        double ticksX = rhp.zeroX + (-10 * ticksPerUnit);
-        double ticksY = rhp.zeroY + (-4 * ticksPerUnit);
+        double ticksX = rhp.zeroX + (-12 * ticksPerUnit);
+        double ticksY = rhp.zeroY + (-5 * ticksPerUnit);
         double ticksRot = rhp.zeroRot;
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        marv.setDriveTargetPowers(0.75);
+        marv.setDriveTargetPowers(0.35);
         marv.setDriveTargetPositionsWithRot(ticksY, ticksX, ticksRot);
 
         while (opModeIsActive() && marv.encodersAreBusy()) {}
@@ -779,8 +779,8 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void goOutsideRight() {
-        double ticksX = rhp.zeroX + (10 * ticksPerUnit);
-        double ticksY = rhp.zeroY + (-4 * ticksPerUnit);
+        double ticksX = rhp.zeroX + (13.5 * ticksPerUnit);
+        double ticksY = rhp.zeroY + (-5 * ticksPerUnit);
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
