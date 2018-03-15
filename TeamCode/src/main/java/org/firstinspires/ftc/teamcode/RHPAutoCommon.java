@@ -215,7 +215,7 @@ public class RHPAutoCommon extends LinearOpMode {
 
             deviation /= rightBound - leftBound + 1;
 
-            if (positions.get(i) < (28 * ticksPerUnit) / 2.0) {
+            if (positions.get(i) < (startPosX + (28 * ticksPerUnit)) / 2.0) {
                 if (deviation < leftBestDeviation) {
                     leftBestDeviation = deviation;
                     leftBestPositionIndex = i;
