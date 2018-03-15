@@ -16,6 +16,7 @@ public class ReleaseHitPositioner {
 
     double zeroY;
     double zeroX;
+    double zeroRot;
 
     public ReleaseHitPositioner(ColorSensor rhpc) {
         this.rhpc = rhpc;
@@ -68,7 +69,7 @@ public class ReleaseHitPositioner {
 
         double rotation = (((double)ticksFl) + ((double)ticksBl)) - (((double)ticksFr) + ((double)ticksBr));
 
-        return rotation / 4.0;
+        return rotation / 4.0 - zeroRot;
     }
 
     public double encoderDecomposeMecY(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
@@ -91,12 +92,18 @@ public class ReleaseHitPositioner {
         zeroX = (edgeRX + edgeLX) / 2.0;
         double encoderLocY = encoderDecomposeMecY(fl, fr, bl, br);
         zeroY = encoderLocY + Math.abs(edgeRX - edgeLX) * TICKS_VERT_PER_WIDTH;
+        setZeroRot(fl, fr, bl, br);
+    }
+
+    public void setZeroRot(DcMotor fl, DcMotor fr, DcMotor bl, DcMotor br) {
+        zeroRot = encoderDecomposeMecRot(fl, fr, bl, br);
     }
 
 
     public void resetZeros() {
         zeroX = 0;
         zeroY = 0;
+        zeroRot = 0;
     }
 
     public boolean xHasFinished;
