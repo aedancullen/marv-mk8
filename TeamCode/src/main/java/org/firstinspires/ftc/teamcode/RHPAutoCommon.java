@@ -115,17 +115,6 @@ public class RHPAutoCommon extends LinearOpMode {
             marv.setGatesPosition(0);
             //setSnap();
 
-            countsSettled = 0;
-            while (opModeIsActive()/* && System.currentTimeMillis() < time + 5000*/  && countsSettled < 1) {
-                marv.drive(0, 0, 0); // allow angle snapping to run
-                if (marv.angleHoldHasSettled()) {
-                    countsSettled++;
-                }
-                try {
-                    Thread.sleep(1);
-                } catch (Exception e) {}
-            }
-
             localizeLtoR();
 
             if (detectedTrashMark == RelicRecoveryVuMark.CENTER) {
@@ -753,7 +742,7 @@ public class RHPAutoCommon extends LinearOpMode {
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        marv.setDriveTargetPowers(0.35);
+        marv.setDriveTargetPowers(0.50);
         marv.setDriveTargetPositionsWithRot(ticksY, ticksX, ticksRot);
 
         while (opModeIsActive() && marv.encodersAreBusy()) {}
@@ -763,13 +752,13 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void goOutsideLeft() {
-        double ticksX = rhp.zeroX + (-12 * ticksPerUnit);
+        double ticksX = rhp.zeroX + (-10 * ticksPerUnit);
         double ticksY = rhp.zeroY + (-5 * ticksPerUnit);
         double ticksRot = rhp.zeroRot;
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        marv.setDriveTargetPowers(0.35);
+        marv.setDriveTargetPowers(0.50);
         marv.setDriveTargetPositionsWithRot(ticksY, ticksX, ticksRot);
 
         while (opModeIsActive() && marv.encodersAreBusy()) {}
@@ -779,7 +768,7 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void goOutsideRight() {
-        double ticksX = rhp.zeroX + (13.5 * ticksPerUnit);
+        double ticksX = rhp.zeroX + (10 * ticksPerUnit);
         double ticksY = rhp.zeroY + (-5 * ticksPerUnit);
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
