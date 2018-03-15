@@ -133,7 +133,7 @@ public class RHPAutoCommon extends LinearOpMode {
             marv.setEncoderBehavior(RUN_TO_POSITION);
             marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             marv.setDriveTargetPowers(0.35);
-            marv.setDriveTargetPositionsWithRot(rhp.zeroY + (-1 * ticksPerUnit), rhp.zeroX, rhp.zeroRot);
+            marv.setDriveTargetPositionsWithRot(rhp.zeroY + (-2 * ticksPerUnit), rhp.zeroX, rhp.zeroRot);
 
             while (opModeIsActive() && marv.encodersAreBusy()) {}
 
@@ -215,7 +215,7 @@ public class RHPAutoCommon extends LinearOpMode {
 
             deviation /= rightBound - leftBound + 1;
 
-            if (i < positions.size() / 2) {
+            if (positions.get(i) < (28 * ticksPerUnit) / 2.0) {
                 if (deviation < leftBestDeviation) {
                     leftBestDeviation = deviation;
                     leftBestPositionIndex = i;
