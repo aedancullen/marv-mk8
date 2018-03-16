@@ -25,7 +25,7 @@ public class ReleaseHitPositioner {
     double TICKS_VERT_PER_WIDTH = 14.0 / 18.25;
 
     public boolean rhpcHasLine() {
-        return Math.abs(rhpc.red() - rhpc.blue()) > 5;
+        return Math.abs(rhpc.red() - rhpc.blue()) > 3;
     }
 
     public void blockUntilRelease(LinearOpMode mode, Runnable task) {

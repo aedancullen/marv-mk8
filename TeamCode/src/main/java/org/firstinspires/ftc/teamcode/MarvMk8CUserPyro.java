@@ -44,6 +44,9 @@ public class MarvMk8CUserPyro  extends OpMode {
     }
 
     public void loop() {
+        marv.setDropskiUp();
+        marv.setKickskiCenter();
+
         telemetry.update();
         wheelDriveTick();
 
