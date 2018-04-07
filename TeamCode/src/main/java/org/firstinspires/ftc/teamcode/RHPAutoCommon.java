@@ -93,9 +93,9 @@ public class RHPAutoCommon extends LinearOpMode {
 
 
 
-        if (!marv.isOnBSide) {
+        if (!marv.isOnBSide && marv.isDoingExtras) {
             marv.collect(0.5);
-            marv.setGatesPosition(1);
+            //marv.setGatesPosition(1);
             goAGlyphing();
             //setSnap();
             int countsSettled = 0;
@@ -748,7 +748,7 @@ public class RHPAutoCommon extends LinearOpMode {
 
     public void goAGlyphing() {
         double ticksX = rhp.zeroX + (-15 * ticksPerUnit);
-        double ticksY = rhp.zeroY + (5 * ticksPerUnit);
+        double ticksY = rhp.zeroY + (4.5 * ticksPerUnit);
         double ticksRot = rhp.zeroRot;
 
         marv.setEncoderBehavior(RUN_TO_POSITION);
@@ -763,7 +763,7 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void goOutsideLeft() {
-        double ticksX = rhp.zeroX + (-11 * ticksPerUnit);
+        double ticksX = rhp.zeroX + (-15 * ticksPerUnit);
         double ticksY = rhp.zeroY + (-5 * ticksPerUnit);
         double ticksRot = rhp.zeroRot;
 
@@ -779,7 +779,7 @@ public class RHPAutoCommon extends LinearOpMode {
     }
 
     public void goOutsideRight() {
-        double ticksX = rhp.zeroX + (11 * ticksPerUnit);
+        double ticksX = rhp.zeroX + (15 * ticksPerUnit);
         double ticksY = rhp.zeroY + (-5 * ticksPerUnit);
 
         marv.setEncoderBehavior(RUN_TO_POSITION);

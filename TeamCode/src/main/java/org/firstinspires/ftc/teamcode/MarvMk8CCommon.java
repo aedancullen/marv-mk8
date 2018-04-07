@@ -28,6 +28,8 @@ public class MarvMk8CCommon {
     public boolean isOnRedSide; // used by AutopilotSystemCommon
     public boolean isOnBSide;
 
+    public boolean isDoingExtras = true;
+
     DcMotor fl;
     DcMotor fr;
     DcMotor bl;

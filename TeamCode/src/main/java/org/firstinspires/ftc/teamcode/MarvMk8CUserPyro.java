@@ -14,7 +14,7 @@ public class MarvMk8CUserPyro  extends OpMode {
 
     MarvMk8CCommon marv;
 
-    double collectspeed = 0.5;
+    double collectspeed = 0.6;
 
     double lastLiftPos = 0;
     double lastGrabPos = 0;
