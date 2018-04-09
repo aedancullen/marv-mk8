@@ -299,7 +299,7 @@ public class MarvMk8CCommon {
     
     public void homeWinchTick() {
         if (liftIsRaised()) { // if either is triggered, then stop
-            winch.setPower(-0.50);
+            winch.setPower(-0.75);
         }
         else {
             winch.setPower(0);
@@ -340,10 +340,10 @@ public class MarvMk8CCommon {
             winch.setPower(0);
         }
         else if (winch.getCurrentPosition()-winchZeroPosition - targetPosition > 0) {
-            winch.setPower(-0.50);
+            winch.setPower(-0.75);
         }
         else if (winch.getCurrentPosition()-winchZeroPosition - targetPosition < 0) {
-            winch.setPower(0.75);
+            winch.setPower(1.00);
         }
     }
     
