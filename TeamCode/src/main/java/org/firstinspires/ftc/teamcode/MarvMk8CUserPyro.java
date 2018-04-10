@@ -14,7 +14,8 @@ public class MarvMk8CUserPyro  extends OpMode {
 
     MarvMk8CCommon marv;
 
-    double collectspeed = 0.6;
+    double collectspeed = 0.30;
+    double collectdiff = 0.15;
 
     double lastLiftPos = 0;
     double lastGrabPos = 0;
@@ -63,14 +64,19 @@ public class MarvMk8CUserPyro  extends OpMode {
             if (gamepad2.left_bumper) {
                 marv.convey(-1);
             } else if (gamepad2.right_bumper) {
-                marv.convey(1);
-            } else {
                 marv.convey(0);
+            } else {
+                marv.autoConveyTick(1);
             }
 
             marv.setGatesPosition(gamepad2.left_trigger);
 
-            marv.setFlippoPos(gamepad2.right_trigger);
+            if (marv.winchLevel > 0) {
+                marv.setFlippoPos(gamepad2.right_trigger);
+            }
+            else {
+                marv.setFlippoPos(0);
+            }
 
 
             if (gamepad2.dpad_down) {
@@ -82,7 +88,14 @@ public class MarvMk8CUserPyro  extends OpMode {
             } else if (gamepad2.dpad_up) {
                 marv.collect(-collectspeed);
             } else {
-                marv.autoCollectTick(collectspeed);
+                //marv.autoCollectTick(collectspeed);
+                if (!marv.liftIsRaised()) {
+                    marv.collectorR.setPower(collectspeed + collectdiff / 2.0);
+                    marv.collectorL.setPower(-collectspeed + collectdiff / 2.0);
+                }
+                else {
+                    marv.collect(0);
+                }
             }
 
 
