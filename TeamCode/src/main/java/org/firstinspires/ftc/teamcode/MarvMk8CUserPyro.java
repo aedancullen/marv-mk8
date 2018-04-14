@@ -14,8 +14,8 @@ public class MarvMk8CUserPyro  extends OpMode {
 
     MarvMk8CCommon marv;
 
-    double collectspeed = 0.32;
-    double collectdiff = 0.0;
+    double collectspeed = 0.41;
+    double collectdiff = 0.095;
 
     double lastLiftPos = 0;
     double lastGrabPos = 0;
@@ -63,10 +63,23 @@ public class MarvMk8CUserPyro  extends OpMode {
 
             if (gamepad2.left_bumper) {
                 marv.convey(-1);
-            } else if (gamepad2.right_bumper) {
-                marv.convey(0);
             } else {
-                marv.autoConveyTick(1);
+                if (marv.liftIsRaised()) {
+                    if (gamepad2.right_bumper) {
+                        marv.convey(1);
+                    }
+                    else {
+                        marv.autoConveyTick(1);
+                    }
+                }
+                else {
+                    if (gamepad2.right_bumper) {
+                        marv.convey(0);
+                    }
+                    else {
+                        marv.autoConveyTick(1);
+                    }
+                }
             }
 
             marv.setGatesPosition(gamepad2.left_trigger);
@@ -113,6 +126,7 @@ public class MarvMk8CUserPyro  extends OpMode {
 
         else /*if (gamepad2.back)*/ {
             marv.collect(0);
+            marv.convey(0);
 
             if (gamepad2.x) {
                 if (lastGrabPos < 1) {
