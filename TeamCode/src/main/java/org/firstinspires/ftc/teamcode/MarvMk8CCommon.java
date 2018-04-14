@@ -82,8 +82,8 @@ public class MarvMk8CCommon {
     
     int winchMaxPosition = 3189; /*set correctly*/
     int relicSlideMaxPosition = 1136; /*set correctly*/
-    int relicSlideMinPosition = 180;
-    int relicSlideSlowPosition = 850;
+    int relicSlideMinPosition = 200;
+    int relicSlideSlowPosition = 700;
     
     int winchLevel=0;
     int winchTolerance = 100; /*set reasonably*/
@@ -196,7 +196,7 @@ public class MarvMk8CCommon {
                     relicSlide.setPower(speed);
                 }
                 else {
-                    relicSlide.setPower(speed / 4.0);
+                    relicSlide.setPower(speed * 0.6);
                 }
             }
             else {
