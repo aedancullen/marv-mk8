@@ -3,7 +3,7 @@ package com.evolutionftc.autopilot;
 
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.*;
+
 
 
 // this is a snazzy autopilot for ftc made by aedan.
@@ -222,17 +222,9 @@ public class AutopilotHost {
             }
         }
         else if (navigationStatus == NavigationStatus.ORIENTING) { // State action case for ORIENTING
-
             double attitude = robotAttitude[0];
 
             double targAngle = orientationTarget;
-
-            double targAngleDegs = Math.toDegrees(targAngle);
-            double attitudeDegs = Math.toDegrees(attitude);
-
-            EssentialHeading ehAttitude = new EssentialHeading(attitudeDegs);
-
-            double degreesError = new EssentialHeading(targAngleDegs).subtract(ehAttitude).getAngleDegrees();
 
             double angle = targAngle - attitude;
 
@@ -240,16 +232,16 @@ public class AutopilotHost {
             if (angle > Math.PI) {
                 angle = -(Math.PI * 2 - angle);
             }
-            else if (angle < -Math.PI) {
+            if (angle < -Math.PI) {
                 angle = -(-Math.PI * 2 - angle);
             }
 
-            double powerLeft =  -(Math.toRadians(degreesError) * steeringGain);
-            double powerRight = (Math.toRadians(degreesError) * steeringGain);
-            /*powerLeft = Math.min(powerLeft, basePower);
+            double powerLeft =  -(angle * steeringGain);
+            double powerRight = (angle * steeringGain);
+            powerLeft = Math.min(powerLeft, basePower);
             powerRight = Math.min(powerRight, basePower);
             powerLeft = Math.max(powerLeft, -basePower);
-            powerRight = Math.max(powerRight, -basePower);*/
+            powerRight = Math.max(powerRight, -basePower);
             return new double[]{powerLeft, powerRight};
 
         }
