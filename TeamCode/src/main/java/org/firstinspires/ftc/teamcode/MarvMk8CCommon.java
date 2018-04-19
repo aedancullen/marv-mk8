@@ -179,7 +179,7 @@ public class MarvMk8CCommon {
 
         setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
-        setGatesPosition(0);
+        setConveyGateClosed();
         setLiftPos(0);
         //setGrabPos(1);
 
@@ -227,6 +227,14 @@ public class MarvMk8CCommon {
     public void setGatesPosition(double pos) {
         gateL.setPosition(1 - (pos * 0.6));
         gateR.setPosition(pos * 0.6);
+    }
+
+    public void setConveyGateOpen() {
+        gateL.setPosition(0.5);
+    }
+
+    public void setConveyGateClosed() {
+        gateL.setPosition(0);
     }
 
     public double imuGetHeadingDegs() {

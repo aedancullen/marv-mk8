@@ -56,10 +56,12 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
             marv.setFlippoPos(1);
             mode.sleep(750);
             marv.setFlippoPos(0);
-            marv.setWinchLevel(0);
         }
         else if (next != null && next.id.startsWith("flip")) {
-            marv.setWinchLevel(1);
+            marv.setConveyGateOpen();
+        }
+        else if (next != null && next.id.startsWith("collect")) {
+            marv.setConveyGateClosed();
         }
 
     }

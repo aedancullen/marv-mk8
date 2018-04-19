@@ -25,6 +25,8 @@ public class IntakePowerTweak extends OpMode {
         telemetry.addData("scotty", marv.readScotty());
         telemetry.update();
 
+        marv.setConveyGateOpen();
+
         if (gamepad1.dpad_down) {
             marv.collectorR.setPower(colspeed + diff / 2.0);
             marv.collectorL.setPower(-colspeed + diff / 2.0);
