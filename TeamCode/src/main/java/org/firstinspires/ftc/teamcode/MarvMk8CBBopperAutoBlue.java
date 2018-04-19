@@ -29,7 +29,7 @@ public class MarvMk8CBBopperAutoBlue extends LinearOpMode {
         while (opModeIsActive()) {
             double[] powers = marvAuto.systemTickDifferential();
             marv.drive(powers[0], powers[1], 0);
-            marv.winchTick();
+            //marv.winchTick();
         }
 
     }
