@@ -22,6 +22,7 @@ public class IntakePowerTweak extends OpMode {
     public void loop() {
         telemetry.addData("current speed", colspeed);
         telemetry.addData("difference", diff);
+        telemetry.addData("scotty", marv.readScotty());
         telemetry.update();
 
         if (gamepad1.dpad_down) {
