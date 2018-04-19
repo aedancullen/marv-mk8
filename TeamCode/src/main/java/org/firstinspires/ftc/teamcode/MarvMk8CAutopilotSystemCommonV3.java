@@ -5,6 +5,7 @@ import android.content.Context;
 import com.evolutionftc.autopilot.AutopilotSegment;
 import com.evolutionftc.autopilot.AutopilotSystem;
 import com.evolutionftc.autopilot.AutopilotTracker;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -21,9 +22,11 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENC
 public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
 
     public MarvMk8CCommon marv;
+    LinearOpMode mode;
 
-    public MarvMk8CAutopilotSystemCommonV3(AutopilotTracker tracker, Telemetry telemetry, Context appContext){
+    public MarvMk8CAutopilotSystemCommonV3(LinearOpMode mode, AutopilotTracker tracker, Telemetry telemetry, Context appContext){
         super(tracker, telemetry, appContext);
+        this.mode = mode;
     }
 
     public void setMarvCommon(MarvMk8CCommon marv){
@@ -49,7 +52,10 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
     public void onSegmentTransition(AutopilotSegment previous, AutopilotSegment next, boolean wasOkayToContinue) {
 
         if (previous != null && previous.id.startsWith("flip")) {
-            // flip, then
+            marv.drive(0, 0, 0);
+            marv.setFlippoPos(1);
+            mode.sleep(750);
+            marv.setFlippoPos(0);
             marv.setWinchLevel(0);
         }
         else if (next != null && next.id.startsWith("flip")) {
