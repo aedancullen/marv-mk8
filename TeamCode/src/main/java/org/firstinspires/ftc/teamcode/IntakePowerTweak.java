@@ -23,6 +23,7 @@ public class IntakePowerTweak extends OpMode {
         telemetry.addData("current speed", colspeed);
         telemetry.addData("difference", diff);
         telemetry.update();
+
         if (gamepad1.dpad_down) {
             marv.collectorR.setPower(colspeed + diff / 2.0);
             marv.collectorL.setPower(-colspeed + diff / 2.0);
@@ -35,6 +36,14 @@ public class IntakePowerTweak extends OpMode {
         }
         else if (gamepad1.dpad_left) {
             marv.counterL(colspeed);
+        }
+        else if (gamepad1.left_bumper) {
+            marv.collectorL.setPower(-1);
+            marv.collectorR.setPower(-1);
+        }
+        else if (gamepad1.right_bumper) {
+            marv.collectorR.setPower(1);
+            marv.collectorL.setPower(1);
         }
         else {
             marv.collect(0);
