@@ -1,4 +1,5 @@
 id,success,fail,targetx,targety,targetz,targetorientation,steeringgain,accuracyx,accuracyy,accuracyz,accuracyorientation,basepower,lowestpower,powergain,rampup,rampdown,useorientation
 __start__,flipcenter,none,0,-21,0,1.571,1.0,1,1,999,0.05,0.2,0.2,-9,true,true,false
-flipcenter,interm,none,4,-36,0,1.571,1.0,1,1,999,0.01,0.4,0.1,-9,false,true,true
+flipcenter,collect1,none,4,-36,0,1.571,1.0,1,1,999,0.01,0.4,0.1,-9,false,true,true
 interm,none,none,-6,-36,0,1.571,1.0,1,1,999,0.05,0.4,0.4,-9,true,true,false
+collect1,interm,interm,-1,-1,0,1.571,1.0,1,1,999,0.05,0.4,0.4,-9,true,true,false
