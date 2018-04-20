@@ -21,6 +21,9 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENC
 
 public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
 
+    double collectspeed = 0.40;
+    double collectdiff = -0.15;
+
     public MarvMk8CCommon marv;
     LinearOpMode mode;
 
@@ -49,6 +52,8 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
         super.beginPathTravel("mk8c_v3_blue_a_center");
     }
 
+    public boolean isS()
+
     public void onSegmentTransition(AutopilotSegment previous, AutopilotSegment next, boolean wasOkayToContinue) {
 
         if (previous != null && previous.id.startsWith("flip")) {
@@ -59,9 +64,14 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
         }
         else if (next != null && next.id.startsWith("flip")) {
             marv.setConveyGateOpen();
+            marv.convey(0);
+            marv.collect(0);
         }
         else if (next != null && next.id.startsWith("collect")) {
             marv.setConveyGateClosed();
+            marv.convey(1);
+            marv.collectorR.setPower(collectspeed + collectdiff / 2.0);
+            marv.collectorL.setPower(-collectspeed + collectdiff / 2.0);
         }
 
     }
