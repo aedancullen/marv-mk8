@@ -56,8 +56,7 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
     }
 
     public boolean shouldContinue(AutopilotSegment segment, double[] robotPosition, double[] robotAttitude) {
-        if (segment.id.startsWith("collect") && marv.readScotty() > 2.0) {
-            marv.setConveyGateClosed();
+        if (segment.id.startsWith("collect") && marv.readScotty() > 1.8) {
             return false;
         }
         else {
@@ -79,7 +78,6 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
             marv.collect(0);
         }
         if (next != null && next.id.startsWith("collect")) {
-            //marv.setConveyGateClosed();
             marv.convey(1);
             marv.collectorR.setPower(collectspeed + collectdiff / 2.0);
             marv.collectorL.setPower(-collectspeed + collectdiff / 2.0);
@@ -96,6 +94,10 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
             else if (next.id.startsWith("collect4")) {
                 next.navigationTarget = new double[]{storage.readInt("p4x"), storage.readInt("p4y"), 0};
             }
+        }
+
+        if (previous != null && previous.id.startsWith("collect")) {
+            marv.setConveyGateClosed();
         }
 
     }
