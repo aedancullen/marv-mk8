@@ -14,6 +14,8 @@ public class MarvMk8CBopperPreconfig extends LinearOpMode {
     PreconfigStorage storage;
 
     public void runOpMode() {
+        storage = new PreconfigStorage(hardwareMap.appContext);
+
         readPositionAtIndex("p1");
         readPositionAtIndex("p2");
         readPositionAtIndex("p3");
@@ -21,8 +23,6 @@ public class MarvMk8CBopperPreconfig extends LinearOpMode {
         telemetry.update();
 
         waitForStart();
-
-        storage = new PreconfigStorage(hardwareMap.appContext);
 
         setPositionAtIndex("p1");
         setPositionAtIndex("p2");
@@ -36,25 +36,26 @@ public class MarvMk8CBopperPreconfig extends LinearOpMode {
     }
 
     public void setPositionAtIndex(String index) {
+        while (gamepad1.left_bumper && gamepad1.right_bumper) {}
         int nX = 0;
         int nY = 0;
         boolean aPressedOnLast = false;
         boolean bPressedOnLast = false;
         boolean xPressedOnLast = false;
         boolean yPressedOnLast = false;
-        while (!(gamepad1.left_bumper && gamepad1.right_bumper)) {
+        while (!(gamepad1.left_bumper && gamepad1.right_bumper) && opModeIsActive()) {
             telemetry.addData(index + "x", nX);
             telemetry.addData(index + "y", nY);
             if (gamepad1.a && !aPressedOnLast) {
                 aPressedOnLast = true;
-                nX++;
+                nX--;
             }
             else if (!gamepad1.a) {
                 aPressedOnLast = false;
             }
             if (gamepad1.b && !bPressedOnLast) {
                 bPressedOnLast = true;
-                nX--;
+                nY--;
             }
             else if (!gamepad1.b) {
                 bPressedOnLast = false;
@@ -64,14 +65,14 @@ public class MarvMk8CBopperPreconfig extends LinearOpMode {
 
             if (gamepad1.x && !xPressedOnLast) {
                 xPressedOnLast = true;
-                nY++;
+                nX++;
             }
             else if (!gamepad1.x) {
                 xPressedOnLast = false;
             }
             if (gamepad1.y && !yPressedOnLast) {
                 yPressedOnLast = true;
-                nY--;
+                nY++;
             }
             else if (!gamepad1.y) {
                 yPressedOnLast = false;
