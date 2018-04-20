@@ -46,7 +46,7 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
         else if (detectedMark == RelicRecoveryVuMark.LEFT) {
             if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_b_left");}else {super.beginPathTravel("mk8c_v3_blue_b_left");}
         }*/
-        super.beginPathTravel("mk8c_v3_blue_b_center");
+        super.beginPathTravel("mk8c_v3_blue_a_center");
     }
 
     public void onSegmentTransition(AutopilotSegment previous, AutopilotSegment next, boolean wasOkayToContinue) {

@@ -37,8 +37,8 @@ public class MarvMk8CBopperPreconfig extends LinearOpMode {
 
     public void setPositionAtIndex(String index) {
         while (gamepad1.left_bumper && gamepad1.right_bumper) {}
-        int nX = 0;
-        int nY = 0;
+        int nX = (int)(storage.readInt(index + "x") * (4.0/24.0));
+        int nY = (int)(storage.readInt(index + "y") * (4.0/24.0));
         boolean aPressedOnLast = false;
         boolean bPressedOnLast = false;
         boolean xPressedOnLast = false;
@@ -46,6 +46,11 @@ public class MarvMk8CBopperPreconfig extends LinearOpMode {
         while (!(gamepad1.left_bumper && gamepad1.right_bumper) && opModeIsActive()) {
             telemetry.addData(index + "x", nX);
             telemetry.addData(index + "y", nY);
+            if (gamepad1.left_stick_button && gamepad1.right_stick_button) {
+                nX = 0;
+                nY = 0;
+            }
+
             if (gamepad1.a && !aPressedOnLast) {
                 aPressedOnLast = true;
                 nX--;
@@ -81,7 +86,9 @@ public class MarvMk8CBopperPreconfig extends LinearOpMode {
             telemetry.update();
         }
 
-        storage.writeInt(index + "x", nX * (int)(24.0/4.0));
-        storage.writeInt(index + "y", nY * (int)(24.0/4.0));
+        if (gamepad1.left_bumper && gamepad1.right_bumper) {
+            storage.writeInt(index + "x", nX * (int) (24.0 / 4.0));
+            storage.writeInt(index + "y", nY * (int) (24.0 / 4.0));
+        }
     }
 }
