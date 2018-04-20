@@ -27,9 +27,12 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
     public MarvMk8CCommon marv;
     LinearOpMode mode;
 
+    PreconfigStorage storage;
+
     public MarvMk8CAutopilotSystemCommonV3(LinearOpMode mode, AutopilotTracker tracker, Telemetry telemetry, Context appContext){
         super(tracker, telemetry, appContext);
         this.mode = mode;
+        storage = new PreconfigStorage(appContext);
     }
 
     public void setMarvCommon(MarvMk8CCommon marv){
@@ -52,7 +55,14 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
         super.beginPathTravel("mk8c_v3_blue_a_center");
     }
 
-    public boolean isS()
+    public boolean shouldContinue(AutopilotSegment segment, double[] robotPosition, double[] robotAttitude) {
+        if (segment.id.startsWith("collect") && marv.readScotty() > 2.0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
     public void onSegmentTransition(AutopilotSegment previous, AutopilotSegment next, boolean wasOkayToContinue) {
 
@@ -72,6 +82,19 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
             marv.convey(1);
             marv.collectorR.setPower(collectspeed + collectdiff / 2.0);
             marv.collectorL.setPower(-collectspeed + collectdiff / 2.0);
+
+            if (next.id.startsWith("collect1")) {
+                next.navigationTarget = new double[]{storage.readInt("p1x"), storage.readInt("p1y"), 0};
+            }
+            else if (next.id.startsWith("collect2")) {
+                next.navigationTarget = new double[]{storage.readInt("p2x"), storage.readInt("p2y"), 0};
+            }
+            else if (next.id.startsWith("collect3")) {
+                next.navigationTarget = new double[]{storage.readInt("p3x"), storage.readInt("p3y"), 0};
+            }
+            else if (next.id.startsWith("collect4")) {
+                next.navigationTarget = new double[]{storage.readInt("p4x"), storage.readInt("p4y"), 0};
+            }
         }
 
     }
