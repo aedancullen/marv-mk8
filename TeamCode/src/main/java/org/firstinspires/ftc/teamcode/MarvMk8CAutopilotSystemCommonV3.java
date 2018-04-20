@@ -68,15 +68,15 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
 
         if (previous != null && previous.id.startsWith("flip")) {
             marv.drive(0, 0, 0);
+            marv.setConveyGateOpen();
+            marv.convey(0);
+            marv.collect(0);
+            mode.sleep(500);
             marv.setFlippoPos(1);
             mode.sleep(750);
             marv.setFlippoPos(0);
         }
-        if (next != null && next.id.startsWith("flip")) {
-            marv.setConveyGateOpen();
-            marv.convey(0);
-            marv.collect(0);
-        }
+
         if (next != null && next.id.startsWith("collect")) {
             marv.convey(1);
             marv.collectorR.setPower(collectspeed + collectdiff / 2.0);
