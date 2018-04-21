@@ -11,4 +11,5 @@ collect3,interm3,interm3,-1,-1,0,1.571,1.2,1,1,999,0.05,0.4,0.2,-9,false,true,fa
 interm3,collect4,none,-6,-36,0,1.571,1.2,1,1,999,0.05,0.4,0.2,-9,false,true,false
 collect4,flipright,flipright,-1,-1,0,1.571,1.2,1,1,999,0.05,0.4,0.2,-9,false,true,false
 flipright,bashright-nopid,none,4,-43.5,0,1.571,1.2,1,1,999,0.01,0.4,0.2,-9,false,true,true
-bashright-nopid,none,none,6,-43,0,1.571,1.2,1,1,999,0.02,0.2,0.2,-9,false,true,false
+bashright-nopid,out,out,6,-43,0,1.571,1.2,1,1,999,0.02,0.2,0.2,-9,false,true,false
+out,none,none,2,-43,0,1.571,1.2,1,1,999,0.02,0.2,0.2,-9,false,true,false

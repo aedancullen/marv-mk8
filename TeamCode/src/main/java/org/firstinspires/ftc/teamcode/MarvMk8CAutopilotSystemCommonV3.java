@@ -22,7 +22,7 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENC
 public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
 
     double collectspeed = 0.40;
-    double collectdiff = 0.15;
+    double collectdiff = 0.20;
 
     double timeAtBashStart = 0;
 
@@ -65,7 +65,7 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
             }
         }
         else if (segment.id.startsWith("bash")) {
-            if (System.currentTimeMillis() - timeAtBashStart > 500) {
+            if (System.currentTimeMillis() - timeAtBashStart > 1500) {
                 return false;
             }
         }

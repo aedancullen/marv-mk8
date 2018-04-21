@@ -179,7 +179,7 @@ public class MarvMk8CCommon {
 
         setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
-        setConveyGateClosed();
+        //setConveyGateClosed();
         setLiftPos(0);
         //setGrabPos(1);
 
