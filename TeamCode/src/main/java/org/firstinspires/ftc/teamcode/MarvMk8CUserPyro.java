@@ -15,7 +15,7 @@ public class MarvMk8CUserPyro  extends OpMode {
     MarvMk8CCommon marv;
 
     double collectspeed = 0.40;
-    double collectdiff = -0.15;
+    double collectdiff = 0.15;
 
     double lastLiftPos = 0;
     double lastGrabPos = 0;
@@ -58,6 +58,13 @@ public class MarvMk8CUserPyro  extends OpMode {
             marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         }
 
+        if (gamepad2.left_stick_button && gamepad2.right_stick_button) {
+            marv.setConveyGateOpen();
+        }
+        else {
+            marv.setConveyGateClosed();
+        }
+
 
         if (!gamepad2.back) {
 
@@ -82,7 +89,7 @@ public class MarvMk8CUserPyro  extends OpMode {
                 }
             }
 
-            marv.setGatesPosition(gamepad2.left_trigger);
+            //marv.setGatesPosition(gamepad2.left_trigger);
 
             if (marv.winchLevel > 0) {
                 marv.setFlippoPos(gamepad2.right_trigger);
