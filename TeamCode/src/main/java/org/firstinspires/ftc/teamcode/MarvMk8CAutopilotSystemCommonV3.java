@@ -66,6 +66,13 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
 
     public void onSegmentTransition(AutopilotSegment previous, AutopilotSegment next, boolean wasOkayToContinue) {
 
+        if (previous != null && previous.id.endsWith("nopid")) {
+            marv.setEncoderBehavior(RUN_USING_ENCODER);
+        }
+        if (next != null && next.id.endsWith("nopid")) {
+            marv.setEncoderBehavior(RUN_WITHOUT_ENCODER);
+        }
+
         if (previous != null && previous.id.startsWith("flip")) {
             marv.drive(0, 0, 0);
             marv.setConveyGateOpen();
