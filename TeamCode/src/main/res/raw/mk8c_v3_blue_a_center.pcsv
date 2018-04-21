@@ -5,10 +5,10 @@ bashcenter-nopid,collect1,collect1,6,-36,0,1.571,1.2,1,1,999,0.02,0.2,0.2,-9,fal
 collect1,interm1,interm1,-1,-1,0,1.571,1.2,1,1,999,0.05,0.4,0.2,-9,false,true,false
 interm1,collect2,none,-6,-36,0,1.571,1.2,1,1,999,0.05,0.4,0.2,-9,false,true,false
 collect2,flipleft,flipleft,-1,-1,0,1.571,1.2,1,1,999,0.05,0.4,0.2,-9,false,true,false
-flipleft,bashleft-nopid,none,4,-29,0,1.571,1.2,1,1,999,0.01,0.4,0.2,-9,false,true,true
+flipleft,bashleft-nopid,none,4,-28.5,0,1.571,1.2,1,1,999,0.01,0.4,0.2,-9,false,true,true
 bashleft-nopid,collect3,collect3,6,-29,0,1.571,1.2,1,1,999,0.02,0.2,0.2,-9,false,true,false
 collect3,interm3,interm3,-1,-1,0,1.571,1.2,1,1,999,0.05,0.4,0.2,-9,false,true,false
 interm3,collect4,none,-6,-36,0,1.571,1.2,1,1,999,0.05,0.4,0.2,-9,false,true,false
 collect4,flipright,flipright,-1,-1,0,1.571,1.2,1,1,999,0.05,0.4,0.2,-9,false,true,false
-flipright,bashright-nopid,none,4,-43,0,1.571,1.2,1,1,999,0.01,0.4,0.2,-9,false,true,true
+flipright,bashright-nopid,none,4,-43.5,0,1.571,1.2,1,1,999,0.01,0.4,0.2,-9,false,true,true
 bashright-nopid,none,none,6,-43,0,1.571,1.2,1,1,999,0.02,0.2,0.2,-9,false,true,false

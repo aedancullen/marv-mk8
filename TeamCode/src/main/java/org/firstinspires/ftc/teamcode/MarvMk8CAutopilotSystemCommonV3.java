@@ -24,6 +24,9 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
     double collectspeed = 0.40;
     double collectdiff = 0.15;
 
+    double timeAtBashStart = 0;
+
+
     public MarvMk8CCommon marv;
     LinearOpMode mode;
 
@@ -71,13 +74,8 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
         return true;
     }
 
-    long timeAtBashStart;
 
     public void onSegmentTransition(AutopilotSegment previous, AutopilotSegment next, boolean wasOkayToContinue) {
-
-        if (next != null && next.id.startsWith("bash")) {
-            timeAtBashStart = System.currentTimeMillis();
-        }
 
         if (previous != null && previous.id.endsWith("nopid")) {
             marv.setEncoderBehavior(RUN_USING_ENCODER);
@@ -96,6 +94,8 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
             marv.setFlippoPos(1);
             mode.sleep(750);
             marv.setFlippoPos(0);
+
+            timeAtBashStart = System.currentTimeMillis();
         }
 
         if (next != null && next.id.startsWith("collect")) {
