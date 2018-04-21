@@ -22,7 +22,7 @@ import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENC
 public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
 
     double collectspeed = 0.40;
-    double collectdiff = -0.15;
+    double collectdiff = 0.15;
 
     public MarvMk8CCommon marv;
     LinearOpMode mode;
@@ -56,15 +56,28 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
     }
 
     public boolean shouldContinue(AutopilotSegment segment, double[] robotPosition, double[] robotAttitude) {
-        if (segment.id.startsWith("collect") && marv.readScotty() > 1.8) {
-            return false;
+        if (segment.id.startsWith("collect")) {
+            if (marv.readScotty() > 1.8) {
+                return false;
+            }
         }
-        else {
-            return true;
+        else if (segment.id.startsWith("bash")) {
+            if (System.currentTimeMillis() - timeAtBashStart > 500) {
+                return false;
+            }
         }
+
+
+        return true;
     }
 
+    long timeAtBashStart;
+
     public void onSegmentTransition(AutopilotSegment previous, AutopilotSegment next, boolean wasOkayToContinue) {
+
+        if (next != null && next.id.startsWith("bash")) {
+            timeAtBashStart = System.currentTimeMillis();
+        }
 
         if (previous != null && previous.id.endsWith("nopid")) {
             marv.setEncoderBehavior(RUN_USING_ENCODER);
