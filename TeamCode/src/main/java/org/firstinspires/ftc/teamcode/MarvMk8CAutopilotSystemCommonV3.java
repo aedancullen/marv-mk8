@@ -94,7 +94,7 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
         }
 
         else if (segment.id.startsWith("collect")) {
-            if (marv.readScotty() > 1.8) {
+            if (marv.readScotty() > 1.5) {
                 return false;
             }
         }
@@ -106,8 +106,13 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
         else if (segment.id.startsWith("flip") && host.getNavigationStatus() == AutopilotHost.NavigationStatus.ORIENTING) {
             marv.setConveyGateOpen();
             marv.convey(0);
-            marv.collectorR.setPower(-collectspeed - collectdiff / 2.0);
-            marv.collectorL.setPower(collectspeed - collectdiff / 2.0);
+            if (!segment.id.contains("key")) {
+                marv.collectorR.setPower(-collectspeed - collectdiff / 2.0);
+                marv.collectorL.setPower(collectspeed - collectdiff / 2.0);
+            }
+            else {
+                marv.collectorL.setPower(-0.25);
+            }
         }
 
 

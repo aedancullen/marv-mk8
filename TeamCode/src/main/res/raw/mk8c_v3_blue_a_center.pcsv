@@ -1,7 +1,7 @@
 id,success,fail,targetx,targety,targetz,targetorientation,steeringgain,accuracyx,accuracyy,accuracyz,accuracyorientation,basepower,lowestpower,powergain,rampup,rampdown,useorientation
-__start__,flipcenter,none,0,-21,0,1.571,1.2,1,1,999,0.05,0.2,0.2,-9,false,true,false
-flipcenter,bashcenter-nopid,none,4,-36,0,1.571,1.2,1,1,999,0.02,0.4,0.2,-9,false,true,true
-bashcenter-nopid,collect1,collect1,7,-36,0,1.571,0,1,1,999,0.02,0.2,0.2,-9,false,true,false
+__start__,flipkey,none,0,-21,0,1.571,1.2,1,1,999,0.05,0.2,0.2,-9,false,true,false
+flipkey,bashkey-nopid,none,4,-36,0,1.571,1.2,1,1,999,0.02,0.4,0.2,-9,false,true,true
+bashkey-nopid,collect1,collect1,7,-36,0,1.571,0,1,1,999,0.02,0.2,0.2,-9,false,true,false
 collect1,interm1,interm1,-1,-1,0,1.571,1.2,1,999,999,0.05,0.4,0.2,-9,false,true,false
 interm1,collect2,none,-6,-36,0,1.571,1.2,1,999,999,0.05,0.4,0.2,-9,false,true,false
 collect2,flipleft,flipleft,-1,-1,0,1.571,1.2,1,999,999,0.05,0.4,0.2,-9,false,true,false
