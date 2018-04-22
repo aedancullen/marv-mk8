@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import android.content.Context;
 
+import com.evolutionftc.autopilot.AutopilotHost;
 import com.evolutionftc.autopilot.AutopilotSegment;
 import com.evolutionftc.autopilot.AutopilotSystem;
 import com.evolutionftc.autopilot.AutopilotTracker;
@@ -24,8 +25,8 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
     double collectspeed = 0.40;
     double collectdiff = 0.20;
 
-    double timeAtBashStart = 0;
-
+    long timeAtBashStart = 0;
+    long timeAtDismountStart = 0;
 
     public MarvMk8CCommon marv;
     LinearOpMode mode;
@@ -46,6 +47,31 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
     }
 
     public void senseAndStartPath() {
+        marv.setDropskiMid();
+        marv.setKickskiCenter();
+
+        mode.sleep(500);
+
+        marv.setDropskiDown();
+
+        mode.sleep(500);
+
+        boolean dropskiShouldTurnLeft = ((marv.dropskiIsRed() && marv.isOnRedSide) || (!marv.dropskiIsRed() && !marv.isOnRedSide));
+
+        if (marv.dropskiIsConfident()) {
+
+            if (dropskiShouldTurnLeft) {
+                marv.setKickskiCCW();
+            } else {
+                marv.setKickskiCW();
+            }
+
+        }
+
+        marv.setDropskiSafe();
+
+        timeAtDismountStart = System.currentTimeMillis();
+
         /*if (detectedMark == RelicRecoveryVuMark.RIGHT) {
             if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_b_right");}else {super.beginPathTravel("mk8c_v3_blue_b_right");}
         }
@@ -59,7 +85,15 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
     }
 
     public boolean shouldContinue(AutopilotSegment segment, double[] robotPosition, double[] robotAttitude) {
-        if (segment.id.startsWith("collect")) {
+
+        if (segment.id.startsWith("__start__")) {
+            if (System.currentTimeMillis() - timeAtDismountStart > 500) {
+                marv.setKickskiCenter();
+                marv.setDropskiUp();
+            }
+        }
+
+        else if (segment.id.startsWith("collect")) {
             if (marv.readScotty() > 1.8) {
                 return false;
             }
@@ -68,6 +102,12 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
             if (System.currentTimeMillis() - timeAtBashStart > 1500) {
                 return false;
             }
+        }
+        else if (segment.id.startsWith("flip") && host.getNavigationStatus() == AutopilotHost.NavigationStatus.ORIENTING) {
+            marv.setConveyGateOpen();
+            marv.convey(0);
+            marv.collectorR.setPower(-collectspeed - collectdiff / 2.0);
+            marv.collectorL.setPower(collectspeed - collectdiff / 2.0);
         }
 
 
@@ -86,11 +126,11 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
 
         if (previous != null && previous.id.startsWith("flip")) {
             marv.drive(0, 0, 0);
-            marv.setConveyGateOpen();
+            /*marv.setConveyGateOpen();
             marv.convey(0);
             marv.collectorR.setPower(-collectspeed - collectdiff / 2.0);
             marv.collectorL.setPower(collectspeed - collectdiff / 2.0);
-            mode.sleep(500);
+            mode.sleep(500);*/
             marv.setFlippoPos(1);
             mode.sleep(750);
             marv.setFlippoPos(0);

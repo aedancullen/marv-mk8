@@ -36,6 +36,9 @@ public class Measure extends OpMode {
     double dropskiPos = 0;
 
     DcMotor fr;
+    DcMotor fl;
+    DcMotor br;
+    DcMotor bl;
 
     BNO055IMU imu;
 
@@ -50,6 +53,9 @@ public class Measure extends OpMode {
         imu.initialize(parameters);
 
         fr = hardwareMap.dcMotor.get("fr");
+        fl = hardwareMap.dcMotor.get("fl");
+        br = hardwareMap.dcMotor.get("br");
+        bl = hardwareMap.dcMotor.get("bl");
         winch = hardwareMap.dcMotor.get("winch");
         mbR = hardwareMap.analogInput.get("sonarR");
         mbB = hardwareMap.analogInput.get("sonarB");
@@ -70,7 +76,7 @@ public class Measure extends OpMode {
 
     public void loop() {
 
-        if (gamepad1.a) {
+        /*if (gamepad1.a) {
             dropskiPos += 0.05;
         }
         else if (gamepad1.b) {
@@ -103,7 +109,12 @@ public class Measure extends OpMode {
         telemetry.addData("voltMbR", mbR.getMaxVoltage());
         telemetry.addData("voltMbL", mbL.getVoltage());
         telemetry.addData("voltMbB", mbB.getVoltage());
+*/
 
+        telemetry.addData("fr", fr.getCurrentPosition());
+        telemetry.addData("fl", fl.getCurrentPosition());
+        telemetry.addData("br", br.getCurrentPosition());
+        telemetry.addData("bl", bl.getCurrentPosition());
         telemetry.update();
     }
 
