@@ -22,6 +22,9 @@ public class MarvMk8CABopperAutoBlue extends LinearOpMode {
         marvAuto = new MarvMk8CAutopilotSystemCommonV3(this, tracker, telemetry, hardwareMap.appContext);
         marvAuto.setMarvCommon(marv);
 
+        marv.isOnRedSide = false;
+        marv.isOnBSide = false;
+
         marvAuto.host.setRobotPosition(new double[]{0, -0.75, 0});
 
         waitForStart();

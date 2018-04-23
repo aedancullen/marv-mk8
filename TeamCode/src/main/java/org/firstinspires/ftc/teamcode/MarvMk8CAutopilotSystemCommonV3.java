@@ -9,8 +9,12 @@ import com.evolutionftc.autopilot.AutopilotTracker;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_USING_ENCODER;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_WITHOUT_ENCODER;
@@ -33,6 +37,34 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
 
     PreconfigStorage storage;
 
+    VuforiaLocalizer vooforia;
+    VuforiaTrackables vooforGarbage;
+    VuforiaTrackable vooforRubbish;
+    RelicRecoveryVuMark detectedMark;
+
+    public void startVoof() {
+
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+
+        parameters.vuforiaLicenseKey = "AQaSz0//////AAAAmWK7mLvLWUvPmqojdrAEgctDNGkihSVvah2Cd2y7iGo8Bg6dQUJLVoguaAqG4QYpI/87Ccb0wO4nd+jcVrzX8tF8rS4UPhr3bXkKHYtqwUjlpSvKKJzSsFGIe+MGpmmSK824Ja7JVikVoJO/u5ubCkYjm9Fyi+87T2qdjS/+RdNELgLJSDVS3Hp3nbCII6JGutHNROuLOclZCFARI1djpNJu6YNzlvCr+AJQd4Q+i0ZYv378aWnasQYifKGA8KafQMLMmNZmghljMNPDnlfFqZmn4BhItnyrBS1dbXG7BnU7xOw8DIIRq0VjEzSMiikBaUxWXxQn+K+KWahXDwchjL193WpriOF8ovjcGbeGnzJU";
+
+        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+        this.vooforia = ClassFactory.createVuforiaLocalizer(parameters);
+
+        vooforGarbage = this.vooforia.loadTrackablesFromAsset("RelicVuMark");
+        vooforRubbish = vooforGarbage.get(0);
+
+        vooforGarbage.activate();
+
+        detectedMark = RelicRecoveryVuMark.from(vooforRubbish);
+
+    }
+
+    public void stopVoof() {
+        detectedMark = RelicRecoveryVuMark.from(vooforRubbish);
+        vooforGarbage.deactivate();
+    }
+
     public MarvMk8CAutopilotSystemCommonV3(LinearOpMode mode, AutopilotTracker tracker, Telemetry telemetry, Context appContext){
         super(tracker, telemetry, appContext);
         this.mode = mode;
@@ -44,9 +76,13 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
         marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         marv.setEncoderBehavior(STOP_AND_RESET_ENCODER);
         marv.setEncoderBehavior(RUN_USING_ENCODER);
+
+        startVoof();
     }
 
     public void senseAndStartPath() {
+        stopVoof();
+
         marv.setDropskiMid();
         marv.setKickskiCenter();
 
@@ -72,16 +108,16 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
 
         timeAtDismountStart = System.currentTimeMillis();
 
-        /*if (detectedMark == RelicRecoveryVuMark.RIGHT) {
-            if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_b_right");}else {super.beginPathTravel("mk8c_v3_blue_b_right");}
+        if (detectedMark == RelicRecoveryVuMark.RIGHT) {
+            if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_right");}else {super.beginPathTravel("mk8c_v3_blue_a_right");}
         }
-        else if (detectedMark == RelicRecoveryVuMark.CENTER && detectedMark == RelicRecoveryVuMark.UNKNOWN) {
-            if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_b_center");}else {super.beginPathTravel("mk8c_v3_blue_b_center");}
+        else if (detectedMark == RelicRecoveryVuMark.CENTER || detectedMark == RelicRecoveryVuMark.UNKNOWN) {
+            if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_center");}else {super.beginPathTravel("mk8c_v3_blue_a_center");}
         }
         else if (detectedMark == RelicRecoveryVuMark.LEFT) {
-            if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_b_left");}else {super.beginPathTravel("mk8c_v3_blue_b_left");}
-        }*/
-        super.beginPathTravel("mk8c_v3_blue_a_right");
+            if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_left");}else {super.beginPathTravel("mk8c_v3_blue_a_left");}
+        }
+        //super.beginPathTravel("mk8c_v3_blue_a_right");
     }
 
     public boolean shouldContinue(AutopilotSegment segment, double[] robotPosition, double[] robotAttitude) {
