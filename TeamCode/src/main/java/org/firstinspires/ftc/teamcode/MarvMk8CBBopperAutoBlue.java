@@ -22,6 +22,9 @@ public class MarvMk8CBBopperAutoBlue extends LinearOpMode {
         marvAuto = new MarvMk8CAutopilotSystemCommonV3(this, tracker, telemetry, hardwareMap.appContext);
         marvAuto.setMarvCommon(marv);
 
+        marv.isOnRedSide = false;
+        marv.isOnBSide = true;
+
         waitForStart();
 
         marvAuto.senseAndStartPath();

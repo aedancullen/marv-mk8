@@ -1,6 +1,11 @@
 id,success,fail,targetx,targety,targetz,targetorientation,steeringgain,accuracyx,accuracyy,accuracyz,accuracyorientation,basepower,lowestpower,powergain,rampup,rampdown,useorientation
-__start__,flipcenter,none,0,-26,0,1.571,1.0,2,2,999,0.05,0.2,0.2,-9,true,true,false
+__start__,flipkey,none,0,-23,0,1.571,1.2,1,1,999,0.05,0.2,0.2,-9,false,true,false
+flipkey,bashkey-nopid,none,-12,-29,0,0.000,1.2,1,1,999,0.02,0.4,0.2,-9,false,true,true
+bashkey-nopid,out,out,-12,-33,0,1.571,0,1,999,999,0.02,0.2,0.2,-9,false,true,false
+out,none,none,-12,-26,0,1.571,0,1,1,999,0.02,0.2,0.2,-9,false,true,false
+route,collect1-nopid,none,-22,-22,0,1.571,1.2,1,1,999,0.05,0.4,0.4,false,true,false
+collect1-nopid,interm1,interm1,-1,-1,0,1.571,1.2,999,1,999,0.05,0.4,0.2,-9,false,true,false
+interm1,collect2-nopid,none,-30,-6,0,1.571,1.2,999,1,999,0.05,0.4,0.2,-9,false,true,false
 intakeset,interm,none,0,-25,0,1.571,1.0,999,999,999,0.05,0.5,0.5,-9,true,true,true
 interm,pile,none,-22,-20,0,1.571,1.0,2,2,999,0.05,0.4,0.4,-9,true,true,false
 pile,none,none,-30,-6,0,1.571,1.0,2,2,999,0.05,0.4,0.4,-9,true,true,false
-flipcenter,none,none,-12,-28,0,0.000,1.0,2,2,999,0.02,0.4,0.1,-9,false,true,true
