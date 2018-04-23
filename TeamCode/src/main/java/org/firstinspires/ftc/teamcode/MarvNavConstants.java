@@ -21,7 +21,7 @@ public class MarvNavConstants {
 
     public static int ticksPerUnit = 42;
 
-    public static int nSubsteps = 10;
+    public static int nSubsteps = 20;
 
 
     // ReleaseHit-specific stuff
