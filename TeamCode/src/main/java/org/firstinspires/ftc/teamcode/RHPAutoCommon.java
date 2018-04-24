@@ -416,6 +416,10 @@ public class RHPAutoCommon extends LinearOpMode {
 
     public void flip() {
         marv.drive(0, 0, 0);
+        marv.collectorL.setPower(-0.25);
+        marv.setConveyGateOpen();
+        sleep(2000);
+        marv.collectorL.setPower(0);
         marv.convey(1);
         sleep(100);
         marv.setFlippoPos(1);
@@ -578,7 +582,7 @@ public class RHPAutoCommon extends LinearOpMode {
         rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
-                marv.drivehp(0, 0, 0.35);
+                marv.drivehp(0, 0, 0.15);
             }
         });
         while (opModeIsActive() && rhp.rhpcHasLine()) {marv.drivehp(0, 0, 0.15);}
@@ -588,7 +592,7 @@ public class RHPAutoCommon extends LinearOpMode {
         rhp.blockUntilHit(this, new Runnable() {
             @Override
             public void run() {
-                marv.drivehp(0, 0, -0.35);
+                marv.drivehp(0, 0, -0.15);
             }
         });
         while (opModeIsActive() && rhp.rhpcHasLine()) {marv.drivehp(0, 0, -0.15);}
