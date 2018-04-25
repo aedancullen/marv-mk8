@@ -142,6 +142,28 @@ public class RHPAutoCommon extends LinearOpMode {
 
         }
 
+        marv.setEncoderBehavior(RUN_TO_POSITION);
+        marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        marv.setDriveTargetPowers(0.2);
+        marv.setDriveTargetPositionsWithRot(rhp.zeroY + (-18 * ticksPerUnit), rhp.zeroX, rhp.zeroRot);
+
+        long timeAtStart = System.currentTimeMillis();
+        while (opModeIsActive() && marv.encodersAreBusy() && System.currentTimeMillis() - timeAtStart < 1500) {}
+
+        marv.setDriveTargetPowers(0);
+        marv.setEncoderBehavior(RUN_USING_ENCODER);
+
+        marv.setEncoderBehavior(RUN_TO_POSITION);
+        marv.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        marv.setDriveTargetPowers(0.2);
+        marv.setDriveTargetPositionsWithRot(rhp.zeroY + (-5 * ticksPerUnit), rhp.zeroX, rhp.zeroRot);
+
+        timeAtStart = System.currentTimeMillis();
+        while (opModeIsActive() && marv.encodersAreBusy() && System.currentTimeMillis() - timeAtStart < 1500) {}
+
+        marv.setDriveTargetPowers(0);
+        marv.setEncoderBehavior(RUN_USING_ENCODER);
+
 
         /*telemetry.addData("edgeLX", rhp.edgeLX);
         telemetry.addData("edgeRX", rhp.edgeRX);
@@ -425,7 +447,7 @@ public class RHPAutoCommon extends LinearOpMode {
         marv.setFlippoPos(1);
         long time = System.currentTimeMillis();
         while (opModeIsActive() && System.currentTimeMillis() < time + 700) {
-            try{Thread.sleep(1);marv.drivehp(0, 0, 0);} catch (Exception e) {}
+            try{Thread.sleep(1);marv.drive(0, 0, 0);} catch (Exception e) {}
         }
         rhp.setZeroRot(marv.fl, marv.fr, marv.bl, marv.br);
         marv.setFlippoPos(0);

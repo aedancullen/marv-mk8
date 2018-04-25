@@ -31,6 +31,7 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
 
     long timeAtBashStart = 0;
     long timeAtDismountStart = 0;
+    long timeAtCollectStart = 0;
 
     public MarvMk8CCommon marv;
     LinearOpMode mode;
@@ -147,11 +148,16 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
             if (marv.readScotty() > 1.5) {
                 return false;
             }
+            if (System.currentTimeMillis()  - timeAtCollectStart > 5000) {
+                return false;
+            }
         }
         else if (segment.id.startsWith("bash")) {
             if (System.currentTimeMillis() - timeAtBashStart > 1500) {
                 return false;
             }
+            marv.collectorL.setPower(0);
+            marv.collectorR.setPower(0.5);
         }
         else if (segment.id.startsWith("flip") && host.getNavigationStatus() == AutopilotHost.NavigationStatus.ORIENTING) {
             marv.setConveyGateOpen();
@@ -161,7 +167,7 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
                 marv.collectorL.setPower(collectspeed - collectdiff / 2.0);
             }
             else {
-                marv.collectorL.setPower(-0.25);
+                marv.collectorL.setPower(-0.5);
             }
         }
 
@@ -197,6 +203,8 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
             marv.convey(1);
             marv.collectorR.setPower(collectspeed + collectdiff / 2.0);
             marv.collectorL.setPower(-collectspeed + collectdiff / 2.0);
+
+            timeAtCollectStart = System.currentTimeMillis();
 
             if (next.id.startsWith("collect1")) {
                 next.navigationTarget = new double[]{storage.readInt("p1x"), storage.readInt("p1y"), 0};
