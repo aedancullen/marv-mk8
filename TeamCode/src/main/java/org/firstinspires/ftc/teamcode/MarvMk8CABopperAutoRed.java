@@ -25,7 +25,7 @@ public class MarvMk8CABopperAutoRed extends LinearOpMode {
         marv.isOnRedSide = true;
         marv.isOnBSide = false;
 
-        marvAuto.host.setRobotPosition(new double[]{0, 0, 0});
+        marvAuto.host.setRobotPosition(new double[]{0, -1, 0});
 
         waitForStart();
 

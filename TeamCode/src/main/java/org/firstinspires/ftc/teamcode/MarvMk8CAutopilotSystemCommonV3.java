@@ -145,7 +145,7 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
         }
 
         else if (segment.id.startsWith("collect")) {
-            if (marv.readScotty() > 1.5) {
+            if (marv.readScotty() > 1.8) {
                 return false;
             }
             if (System.currentTimeMillis()  - timeAtCollectStart > 5000) {
