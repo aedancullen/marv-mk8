@@ -81,9 +81,9 @@ public class MarvMk8CCommon {
     double winchZeroPosition;
     
     int winchMaxPosition = 3189; /*set correctly*/
-    int relicSlideMaxPosition = 1336; /*set correctly*/
+    int relicSlideMaxPosition = 2000; /*set correctly*/
     int relicSlideMinPosition = 200;
-    int relicSlideSlowPosition = 1336;
+    int relicSlideSlowPosition = 2000;
     
     int winchLevel=0;
     int winchTolerance = 100; /*set reasonably*/

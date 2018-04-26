@@ -192,7 +192,7 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
             marv.collectorR.setPower(-collectspeed - collectdiff / 2.0);
             marv.collectorL.setPower(collectspeed - collectdiff / 2.0);
             mode.sleep(500);*/
-            marv.setFlippoPos(1);
+            marv.setFlippoPos(0.6);
             mode.sleep(750);
             marv.setFlippoPos(0);
 
