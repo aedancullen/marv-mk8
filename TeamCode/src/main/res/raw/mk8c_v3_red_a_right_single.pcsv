@@ -1,0 +1,7 @@
+id,success,fail,targetx,targety,targetz,targetorientation,steeringgain,accuracyx,accuracyy,accuracyz,accuracyorientation,basepower,lowestpower,powergain,rampup,rampdown,useorientation
+__start__,flipkey,none,0,23,0,1.571,1.2,1,1,999,0.05,0.2,0.2,-9,false,true,false
+flipkey,bashkey-nopid,none,3,28.5,0,1.571,1.2,1,1,999,0.02,0.4,0.2,-9,false,true,true
+bashkey-nopid,out,out,9,28.5,0,1.571,0,1,999,999,0.02,0.2,0.2,-9,false,true,false
+out,beshkey2-nopid,none,2,43.5,0,1.571,0,1,999,999,0.02,0.2,0.2,-9,false,true,false
+beshkey2-nopid,out2,out2,9,28.5,0,1.571,0,1,999,999,0.02,0.2,0.2,-9,false,true,false
+out2,none,none,2,43.5,0,1.571,0,1,999,999,0.02,0.2,0.2,-9,false,true,false

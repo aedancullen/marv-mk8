@@ -111,13 +111,13 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
 
         if (!marv.isOnBSide) {
             if (detectedMark == RelicRecoveryVuMark.RIGHT) {
-                if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_right");}else {super.beginPathTravel("mk8c_v3_blue_a_right");}
+                if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_right_single");}else {super.beginPathTravel("mk8c_v3_blue_a_right");}
             }
             else if (detectedMark == RelicRecoveryVuMark.CENTER || detectedMark == RelicRecoveryVuMark.UNKNOWN) {
-                if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_center");}else {super.beginPathTravel("mk8c_v3_blue_a_center");}
+                if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_center_single");}else {super.beginPathTravel("mk8c_v3_blue_a_center");}
             }
             else if (detectedMark == RelicRecoveryVuMark.LEFT) {
-                if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_left");}else {super.beginPathTravel("mk8c_v3_blue_a_left");}
+                if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_left_single");}else {super.beginPathTravel("mk8c_v3_blue_a_left");}
             }
         }
         else {
@@ -152,7 +152,7 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
                 return false;
             }
         }
-        else if (segment.id.startsWith("bash")) {
+        else if (segment.id.startsWith("bash") || segment.id.startsWith("besh")) {
             if (System.currentTimeMillis() - timeAtBashStart > 1500) {
                 return false;
             }
@@ -177,6 +177,10 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
 
 
     public void onSegmentTransition(AutopilotSegment previous, AutopilotSegment next, boolean wasOkayToContinue) {
+
+        if (next != null && next.id.contains("besh")) {
+            timeAtBashStart = System.currentTimeMillis();
+        }
 
         if (previous != null && previous.id.endsWith("nopid")) {
             marv.setEncoderBehavior(RUN_USING_ENCODER);
