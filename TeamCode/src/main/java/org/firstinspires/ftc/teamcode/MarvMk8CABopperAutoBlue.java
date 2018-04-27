@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
  * Created by Bob on 4/18/2018.
  */
 
-@Autonomous(name = "ABopper Blue")
+@Autonomous(name = "ABopper Blue No Extras")
 public class MarvMk8CABopperAutoBlue extends LinearOpMode {
 
     MarvMk8CCommon marv;
@@ -24,6 +24,7 @@ public class MarvMk8CABopperAutoBlue extends LinearOpMode {
 
         marv.isOnRedSide = false;
         marv.isOnBSide = false;
+        marv.isDoingExtras = false;
 
         marvAuto.host.setRobotPosition(new double[]{0, 0, 0});
 

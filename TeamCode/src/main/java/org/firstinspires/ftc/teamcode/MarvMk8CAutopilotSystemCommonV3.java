@@ -110,14 +110,27 @@ public class MarvMk8CAutopilotSystemCommonV3 extends AutopilotSystem {
         timeAtDismountStart = System.currentTimeMillis();
 
         if (!marv.isOnBSide) {
-            if (detectedMark == RelicRecoveryVuMark.RIGHT) {
-                if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_right_single");}else {super.beginPathTravel("mk8c_v3_blue_a_right");}
+            if (!marv.isDoingExtras) {
+                if (detectedMark == RelicRecoveryVuMark.RIGHT) {
+                    if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_right_single");}else {super.beginPathTravel("mk8c_v3_blue_a_right_single");}
+                }
+                else if (detectedMark == RelicRecoveryVuMark.CENTER || detectedMark == RelicRecoveryVuMark.UNKNOWN) {
+                    if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_center_single");}else {super.beginPathTravel("mk8c_v3_blue_a_center_single");}
+                }
+                else if (detectedMark == RelicRecoveryVuMark.LEFT) {
+                    if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_left_single");}else {super.beginPathTravel("mk8c_v3_blue_a_left_single");}
+                }
             }
-            else if (detectedMark == RelicRecoveryVuMark.CENTER || detectedMark == RelicRecoveryVuMark.UNKNOWN) {
-                if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_center_single");}else {super.beginPathTravel("mk8c_v3_blue_a_center");}
-            }
-            else if (detectedMark == RelicRecoveryVuMark.LEFT) {
-                if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_left_single");}else {super.beginPathTravel("mk8c_v3_blue_a_left");}
+            else {
+                if (detectedMark == RelicRecoveryVuMark.RIGHT) {
+                    if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_right");}else {super.beginPathTravel("mk8c_v3_blue_a_right");}
+                }
+                else if (detectedMark == RelicRecoveryVuMark.CENTER || detectedMark == RelicRecoveryVuMark.UNKNOWN) {
+                    if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_center");}else {super.beginPathTravel("mk8c_v3_blue_a_center");}
+                }
+                else if (detectedMark == RelicRecoveryVuMark.LEFT) {
+                    if (marv.isOnRedSide) {super.beginPathTravel("mk8c_v3_red_a_left");}else {super.beginPathTravel("mk8c_v3_blue_a_left");}
+                }
             }
         }
         else {
